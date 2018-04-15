@@ -1,0 +1,51 @@
+{
+  "name": "tumn",
+  "version": "1.0.0",
+  "description": "Offers a blurry web for children.",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hatsu-koi/tumn.git"
+  },
+  "keywords": [
+    "tumn",
+    "chrome",
+    "extension"
+  ],
+  "author": "Hatsukoi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hatsu-koi/tumn/issues"
+  },
+  "homepage": "https://github.com/hatsu-koi/tumn#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "less": "^3.0.1",
+    "less-loader": "^4.1.0",
+    "style-loader": "^0.20.3",
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3",
+    "webpackbar": "^2.6.1"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "mdi": "^2.2.43",
+    "vue": "^2.5.16",
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.2"
+  }
+}

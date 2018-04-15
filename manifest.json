@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "Tumn",
+    "version": "1.0",
+    "description": "Offers a blurry web for us.",
+    "default_locale": "en",
+    "icons": {
+        "16": "app/icons/icon16.png",
+        "24": "app/icons/icon24.png",
+        "32": "app/icons/icon32.png"
+    },
+    "browser_action": {
+        "default_icon": "app/icons/icon32.png",
+        "default_popup": "app/index.html"
+    },
+    "permissions": []
+}
