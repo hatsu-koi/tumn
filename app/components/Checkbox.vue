@@ -63,6 +63,7 @@
 		&__label {
 			margin-left: 15px;
 			font-family: var(--theme-font);
+			color: var(--theme-dark-1);
 		}
 	}
 

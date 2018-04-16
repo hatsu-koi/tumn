@@ -1,7 +1,9 @@
 <template>
 	<button class="MainButton" :class="{'MainButton--active': active}" @click="toggle">
 		<div class="MainButton__text">
-			<slot></slot>
+			<i class="mdi mdi-check" v-if="active"></i>
+			<i class="mdi mdi-close" v-else></i>
+			Filtering
 		</div>
 
 		<div class="MainButton__identifier">
@@ -12,19 +14,19 @@
 	</button>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 	.MainButton {
 		display: flex;
 		width: 250px;
 		height: 36px;
 		padding: 0;
-		background: var(--theme-color);
+		background: var(--theme-light-1);
 		border: none;
 		cursor: pointer;
 		outline: none;
 		font-family: var(--theme-font);
 
-		transition: box-shadow .3s ease;
+		transition: all .3s ease;
 
 		&:hover {
 			.MainButton__identifier {
@@ -40,8 +42,12 @@
 
 		&__text {
 			flex: 1;
-			color: #f0f0f0;
+			color: var(--theme-dark-1);
 			text-align: center;
+
+			& > .mdi {
+				margin-right: 10px;
+			}
 		}
 
 		&__identifier {
@@ -56,19 +62,25 @@
 				height: 0;
 				border-top: 18px solid transparent;
 				border-left: 8px solid transparent;
-				border-right: 8px solid #f0f0f0;
-				border-bottom: 18px solid #f0f0f0;
+				border-right: 8px solid var(--theme-light-3);
+				border-bottom: 18px solid var(--theme-light-3);
 			}
 
 			&__text {
-				background: #f0f0f0;
-				color: #808080;
+				background: var(--theme-light-3);
+				color: var(--theme-dark-2);
 				flex: 1;
 				text-align: center;
 			}
 		}
 
 		&--active {
+			background: var(--theme-color);
+
+			.MainButton__text {
+				color: var(--theme-light-3);
+			}
+
 			.MainButton__identifier {
 				width: 80px;
 			}

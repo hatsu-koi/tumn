@@ -1,4 +1,4 @@
-import Index from "./pages/Test.vue";
+import Index from "./pages/Index.vue";
 import Vue from "vue";
 
 import "./less/index.less";

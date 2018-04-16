@@ -16,7 +16,7 @@
 	</button>
 </template>
 
-<style lang="less">
+<style lang="less" scoped>
 	.ListMenu {
 		display: flex;
 		width: 250px;
@@ -25,7 +25,7 @@
 		align-items: center;
 		justify-content: space-between;
 
-		background: #dbdbdb;
+		background: var(--theme-light-1);
 		border: none;
 		cursor: pointer;
 		outline: none;
@@ -35,7 +35,7 @@
 		* {
 			height: 36px;
 			line-height: 36px;
-			color: #4c4c4c;
+			color: var(--theme-dark-1);
 			font-family: var(--theme-font);
 			font-size: 18px;
 		}
