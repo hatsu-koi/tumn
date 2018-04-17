@@ -23,7 +23,7 @@
 		height: 50px;
 		overflow: hidden;
 
-		background: var(--theme-dark-1);
+		background: var(--theme-dark-3);
 
 		* {
 			font-family: var(--theme-font);
@@ -49,7 +49,7 @@
 			cursor: pointer;
 
 			span {
-				background: var(--theme-dark-1);
+				background: var(--theme-dark-3);
 				display: flex;
 				flex: 1;
 				width: 80px;
@@ -72,8 +72,8 @@
 				height: 0;
 				border-top: 25px solid transparent;
 				border-left: 8px solid transparent;
-				border-right: 8px solid var(--theme-dark-1);
-				border-bottom: 25px solid var(--theme-dark-1);
+				border-right: 8px solid var(--theme-dark-3);
+				border-bottom: 25px solid var(--theme-dark-3);
 			}
 
 			&--active {

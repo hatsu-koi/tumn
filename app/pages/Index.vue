@@ -14,21 +14,23 @@
 
 			<section class="Config">
 				<h2>Current Site</h2>
-				<list-menu icon="hook" desc="1 Active">
+				<list-menu icon="hook" desc="1 Active" @click="openMenu('hook')">
 					Hooks
 				</list-menu>
 
-				<list-menu icon="filter" desc="3 Active">
+				<list-menu icon="filter" desc="3 Active" @click="openMenu('filter')">
 					Filters
 				</list-menu>
 
-				<list-menu icon="arrange-bring-forward" desc="Blur">
+				<list-menu icon="arrange-bring-forward" desc="Blur" @click="openMenu('cover')">
 					Cover
 				</list-menu>
 			</section>
 		</section>
 
 		<navigation></navigation>
+
+		<sidebar title="Hooks" ref="hook"></sidebar>
 	</div>
 </template>
 
@@ -40,6 +42,8 @@
 
 		display: flex;
 		flex-direction: column;
+		position: relative;
+		overflow: hidden;
 	}
 
 	.Header {
@@ -86,7 +90,7 @@
 		}
 
 		h2 {
-			color: var(--theme-dark-1);
+			color: var(--theme-dark-3);
 			font-family: var(--theme-font);
 			font-weight: 400;
 			font-size: 21px;
@@ -101,6 +105,7 @@
 	import ListMenu from "../components/ListMenu.vue";
 	import MainButton from "../components/MainButton.vue";
 	import Navigation from "../components/Navigation.vue";
+	import Sidebar from "../components/Sidebar.vue";
 
 	export default {
 		data() {
@@ -113,7 +118,15 @@
 		components: {
 			ListMenu,
 			MainButton,
-			Navigation
+			Navigation,
+			Sidebar
+		},
+
+		methods: {
+			openMenu(title) {
+				console.log("Open!");
+				this.$refs[title].open();
+			}
 		}
 	};
 </script>

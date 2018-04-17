@@ -1,5 +1,5 @@
 <template>
-	<button class="ListMenu">
+	<button class="ListMenu" @click="click">
 		<div class="ListMenu__segment">
 			<i class="ListMenu__icon mdi" :class="`mdi-${icon}`" v-if="icon"></i>
 			<h2 class="ListMenu__text">
@@ -35,7 +35,7 @@
 		* {
 			height: 36px;
 			line-height: 36px;
-			color: var(--theme-dark-1);
+			color: var(--theme-dark-3);
 			font-family: var(--theme-font);
 			font-size: 18px;
 		}
@@ -73,6 +73,12 @@
 		props: {
 			icon: String,
 			desc: String
+		},
+
+		methods: {
+			click() {
+				this.$emit('click');
+			}
 		}
 	};
 </script>

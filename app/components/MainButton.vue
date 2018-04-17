@@ -42,7 +42,7 @@
 
 		&__text {
 			flex: 1;
-			color: var(--theme-dark-1);
+			color: var(--theme-dark-3);
 			text-align: center;
 
 			& > .mdi {
@@ -68,7 +68,7 @@
 
 			&__text {
 				background: var(--theme-light-3);
-				color: var(--theme-dark-2);
+				color: var(--theme-dark-4);
 				flex: 1;
 				text-align: center;
 			}
