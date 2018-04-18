@@ -10,5 +10,30 @@
 	.Tile {
 		background: var(--theme-dark-1);
 		box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .3);
+		padding: 15px;
+		margin: 15px;
+		margin-top: 20px;
+
+		& > h1 {
+			color: var(--theme-dark-5);
+			margin: 0;
+			padding: 0;
+			font-family: var(--theme-font);
+			font-weight: 400;
+			font-size: 18px;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+
+		&__divider {
+			border: none;
+			border-top: 3px solid var(--theme-dark-4);
+			max-width: 50px;
+			margin-left: 0;
+			margin-right: 0;
+			margin-top: 10px;
+			margin-bottom: 20px;
+		}
 	}
 </style>

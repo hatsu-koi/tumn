@@ -2,9 +2,15 @@
 	<label class="Checkbox">
 		<input class="Checkbox__input" type="checkbox" v-model="_checked">
 		<div class="Checkbox__decorator"></div>
-		<span class="Checkbox__label">
-			<slot></slot>
-		</span>
+		<div class="Checkbox__label">
+			<div class="Checkbox__title">
+				<slot></slot>
+			</div>
+
+			<div class="Checkbox__description">
+				<slot name="description"></slot>
+			</div>
+		</div>
 	</label>
 </template>
 
@@ -12,17 +18,21 @@
 	.Checkbox {
 		display: inline-flex;
 		align-items: center;
+		margin-top: 10px;
+		margin-bottom: 10px;
+
+		width: 100%;
 
 		&__input {
 			display: none;
 		}
 
 		&__decorator {
-			content: '';
 			display: inline-flex;
 			position: relative;
 			width: 20px;
 			height: 20px;
+			flex: 0 0 auto;
 
 			background: transparent;
 			border: 2px solid var(--theme-color);
@@ -61,9 +71,22 @@
 		}
 
 		&__label {
+			flex: 1;
+			min-width: 0;
 			margin-left: 15px;
 			font-family: var(--theme-font);
-			color: var(--theme-dark-3);
+		}
+
+		&__title {
+			color: var(--theme-light-1);
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		&__description {
+			color: var(--theme-dark-4);
+			font-size: 13px;
 		}
 	}
 

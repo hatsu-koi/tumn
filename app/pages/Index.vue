@@ -6,7 +6,7 @@
 		</header>
 
 		<section class="Container">
-			<main-button v-model="active">
+			<main-button v-model="filteringActive">
 				<span slot="identifier">
 					100%
 				</span>
@@ -29,15 +29,20 @@
 		</section>
 
 		<navigation></navigation>
+		<transition name="Backdrop--fade">
+			<div class="Backdrop" v-if="menuActive" @click="closeMenu()"></div>
+		</transition>
 
-		<sidebar title="Hooks" ref="hook"></sidebar>
+		<sidebar title="Hooks" ref="hook" v-model="menu.hook">
+			<tile-options></tile-options>
+		</sidebar>
 	</div>
 </template>
 
 <style lang="less" scoped>
 	#app {
 		width: 300px;
-		height: 400px;
+		height: 450px;
 		background: var(--theme-light-2);
 
 		display: flex;
@@ -68,7 +73,7 @@
 	}
 
 	.Container {
-		padding: 15px 0;
+		padding: 30px 0;
 		flex: 1;
 		overflow: auto;
 
@@ -78,7 +83,7 @@
 	}
 
 	.Config {
-		margin-top: 15px;
+		margin-top: 30px;
 		margin-bottom: 0;
 
 		& > * {
@@ -99,6 +104,37 @@
 			padding: 0;
 		}
 	}
+
+	.Backdrop {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, .4);
+		transition: all .4s ease;
+
+		&--fade-enter, &--fade-leave-to {
+			opacity: 0;
+		}
+	}
+
+	@keyframes backdrop {
+		0% {
+			display: none;
+			opacity: 0;
+		}
+
+		1% {
+			display: block;
+			opacity: 0;
+		}
+
+		100% {
+			display: block;
+			opacity: 1;
+		}
+	}
 </style>
 
 <script>
@@ -106,12 +142,17 @@
 	import MainButton from "../components/MainButton.vue";
 	import Navigation from "../components/Navigation.vue";
 	import Sidebar from "../components/Sidebar.vue";
+	import TileOptions from "../components/TileOptions.vue";
 
 	export default {
 		data() {
 			return {
-				active: true,
-				check: false
+				filteringActive: true,
+				menu: {
+					hook: false,
+					filter: false,
+					cover: false
+				}
 			};
 		},
 
@@ -119,13 +160,23 @@
 			ListMenu,
 			MainButton,
 			Navigation,
-			Sidebar
+			Sidebar,
+			TileOptions
 		},
 
 		methods: {
 			openMenu(title) {
-				console.log("Open!");
 				this.$refs[title].open();
+			},
+
+			closeMenu() {
+				Object.keys(this.menu).forEach(v => this.$refs[v].close());
+			}
+		},
+
+		computed: {
+			menuActive() {
+				return Object.keys(this.menu).some(v => this.menu[v]);
 			}
 		}
 	};

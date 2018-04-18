@@ -49,13 +49,14 @@
 
 <script>
 	export default {
-		data() {
-			return {
-				active: false
-			};
+		model: {
+			prop: 'active',
+			event: 'sidebar'
 		},
 
 		props: {
+			active: Boolean,
+
 			title: {
 				type: String,
 				required: true
@@ -64,15 +65,15 @@
 
 		methods: {
 			toggle() {
-				this.active = !this.active;
+				this.$emit('sidebar', !this.active);
 			},
 
 			open() {
-				this.active = true;
+				this.$emit('sidebar', true);
 			},
 
 			close() {
-				this.active = false;
+				this.$emit('sidebar', false);
 			}
 		}
 	};
