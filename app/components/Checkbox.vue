@@ -78,7 +78,7 @@
 		}
 
 		&__title {
-			color: var(--theme-light-1);
+			color: var(--theme-dark-3);
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
@@ -86,7 +86,8 @@
 
 		&__description {
 			color: var(--theme-dark-4);
-			font-size: 13px;
+			font-size: 12px;
+			margin-top: 4px;
 		}
 	}
 

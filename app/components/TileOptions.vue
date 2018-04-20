@@ -8,7 +8,7 @@
 		<checkbox class="ListSelector" v-for="option in options" :key="option.name" v-model="option.active">
 			{{option.name}}
 
-			<span slot="description">
+			<span slot="description" v-if="description">
 				{{option.description}}
 			</span>
 		</checkbox>
@@ -20,29 +20,18 @@
 	import Checkbox from "./Checkbox.vue";
 
 	export default {
-		data() {
-			return {
-				title: "Khinenw's NN FilterSet",
-				options: [
-					{
-						name: 'MatureContentNN',
-						description: "Filters Mature Content by neural network.",
-						active: false
-					},
+		props: {
+			title: {
+				type: String,
+				required: true
+			},
 
-					{
-						name: 'SwearwordsNN',
-						description: "Filters Swearwords by neural network.",
-						active: false
-					},
+			options: {
+				type: Array,
+				required: true
+			},
 
-					{
-						name: 'HateSpeechNN',
-						description: "Filters Hate Speeches by neural network.",
-						active: true
-					}
-				]
-			};
+			description: Boolean
 		},
 
 		components: {

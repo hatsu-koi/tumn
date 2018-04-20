@@ -1,4 +1,4 @@
-import Index from "./pages/Index.vue";
+import Extension from "./layouts/Extension.vue";
 import Vue from "vue";
 
 import "./less/index.less";
@@ -6,6 +6,6 @@ import "./less/index.less";
 new Vue({
 	el: '#app',
 	render(h) {
-		return h(Index);
+		return h(Extension);
 	}
 });

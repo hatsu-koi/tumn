@@ -5,16 +5,19 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackBar = require('webpackbar');
 
 module.exports = {
-	entry: path.resolve(__dirname, 'app', 'index.js'),
+	entry: {
+		extension: path.resolve(__dirname, 'app', 'extension.js'),
+		settings: path.resolve(__dirname, 'app', 'settings.js')
+	},
 
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: '/dist/',
-		filename: 'tumn.bundle.js'
+		filename: '[name].bundle.js'
 	},
 
 	mode: process.env.NODE_ENV || 'development',
-	
+
 	module: {
 		rules: [
 			{
@@ -106,7 +109,7 @@ module.exports = {
 	},
 
 	plugins: [
-		new ExtractTextPlugin('tumn.bundle.css'),
+		new ExtractTextPlugin('[name].bundle.css'),
 		new WebpackBar()
 	],
 

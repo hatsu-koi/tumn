@@ -34,7 +34,7 @@
 		</transition>
 
 		<sidebar title="Hooks" ref="hook" v-model="menu.hook">
-			<tile-options></tile-options>
+			<tile-options :title="mock.title" :options="mock.options"></tile-options>
 		</sidebar>
 	</div>
 </template>
@@ -118,23 +118,6 @@
 			opacity: 0;
 		}
 	}
-
-	@keyframes backdrop {
-		0% {
-			display: none;
-			opacity: 0;
-		}
-
-		1% {
-			display: block;
-			opacity: 0;
-		}
-
-		100% {
-			display: block;
-			opacity: 1;
-		}
-	}
 </style>
 
 <script>
@@ -152,6 +135,29 @@
 					hook: false,
 					filter: false,
 					cover: false
+				},
+
+				mock: {
+					title: "Khinenw's NN FilterSet",
+					options: [
+						{
+							name: 'MatureContentNN',
+							description: "Filters Mature Content by neural network.",
+							active: false
+						},
+
+						{
+							name: 'SwearwordsNN',
+							description: "Filters Swearwords by neural network.",
+							active: false
+						},
+
+						{
+							name: 'HateSpeechNN',
+							description: "Filters Hate Speeches by neural network.",
+							active: true
+						}
+					]
 				}
 			};
 		},

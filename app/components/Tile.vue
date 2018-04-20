@@ -8,14 +8,14 @@
 
 <style lang="less" scoped>
 	.Tile {
-		background: var(--theme-dark-1);
+		background: var(--theme-light-1);
 		box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .3);
 		padding: 15px;
 		margin: 15px;
 		margin-top: 20px;
 
 		& > h1 {
-			color: var(--theme-dark-5);
+			color: var(--theme-dark-4);
 			margin: 0;
 			padding: 0;
 			font-family: var(--theme-font);
