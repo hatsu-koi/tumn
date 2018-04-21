@@ -1,5 +1,5 @@
 <template>
-	<button class="ListMenu" @click="click">
+	<button class="ListMenu" :class="{'ListMenu--large': large}" @click="click">
 		<div class="ListMenu__segment">
 			<i class="ListMenu__icon mdi" :class="`mdi-${icon}`" v-if="icon"></i>
 			<h2 class="ListMenu__text">
@@ -65,6 +65,17 @@
 				margin-right: 10px;
 			}
 		}
+
+		&--large {
+			width: 400px;
+			height: 65px;
+
+			* {
+				font-size: 30px;
+				line-height: 65px;
+				height: 65px;
+			}
+		}
 	}
 </style>
 
@@ -72,7 +83,8 @@
 	export default {
 		props: {
 			icon: String,
-			desc: String
+			desc: String,
+			large: Boolean
 		},
 
 		methods: {

@@ -13,7 +13,7 @@ Vue.use(VueRouter);
 const router = new VueRouter({
 	routes: [
 		{path: '/', component: Overview},
-		{path: '/settings', component: Settings},
+		{path: '/settings/:name/', component: Settings},
 		{path: '/sites', component: Sites},
 		{path: '/statistics', component: Statistics}
 	]

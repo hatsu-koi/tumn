@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Tumn",
     "version": "1.0",
-    "description": "Offers a blurry web for us.",
+    "description": "Offers a blurry web for us all.",
     "default_locale": "en",
     "icons": {
         "16": "app/icons/icon16.png",

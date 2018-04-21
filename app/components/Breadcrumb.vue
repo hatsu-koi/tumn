@@ -22,21 +22,36 @@
 			font-family: var(--theme-font);
 			color: var(--theme-light-1);
 
-			/* &:not(:last-child):not(:first-child)::before {
+			cursor: pointer;
+			transition: all .4s ease;
+
+			&:hover {
+				padding-left: 30px;
+				padding-right: 30px;
+
+				&:last-child {
+					padding-left: 30px;
+					padding-right: 50px;
+				}
+			}
+
+			&:not(:last-child):not(:first-child)::before {
 				content: '\f13e';
 				font-family: 'Material Design Icons';
 				line-height: 0;
 				margin-left: 10px;
 				margin-right: 10px;
-			} */
+			}
 
-			//&:last-child {
-			&:not(:first-child) {
+			&:last-child {
+				padding-right: 20px;
+			}
+
+			&:last-child:not(:first-child) {
 				border-radius: 0 2px 2px 0;
 				background: var(--theme-color);
 				margin-left: 30px;
 				padding-left: 10px;
-				padding-right: 20px;
 				position: relative;
 				color: var(--theme-light-1);
 
