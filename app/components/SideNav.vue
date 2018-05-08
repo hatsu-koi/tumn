@@ -91,7 +91,7 @@
 			margin-right: 30px;
 			padding: 0;
 			color: var(--theme-light-2);
-			font-family: var(--theme-font);
+			font-family: var(--theme-font-title);
 			font-weight: 300;
 
 			visibility: hidden;

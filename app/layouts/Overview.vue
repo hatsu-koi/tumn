@@ -1,10 +1,6 @@
 <template>
-	<section class="Overview Scroller Scroller--vertical">
-		<header class="Header">
-			<breadcrumb>
-				<router-link to="/" tag="li">Tumn</router-link>
-			</breadcrumb>
-		</header>
+	<settings-pane class="Overview">
+		<settings-header></settings-header>
 
 		<h1>Overview</h1>
 
@@ -52,37 +48,10 @@
 		<footer class="Footer">
 			<chart :data="mockChart" :height="200"></chart>
 		</footer>
-	</section>
+	</settings-pane>
 </template>
 
 <style lang="less" scoped>
-	.Overview {
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-		min-width: 0;
-
-		overflow: auto;
-
-		h1 {
-			font-family: var(--theme-font);
-			font-weight: 100;
-			font-size: 3.5rem;
-			color: var(--theme-dark-2);
-			margin: 0;
-			padding-top: 5vh;
-			padding-left: 5vw;
-		}
-	}
-
-	.Header {
-		display: flex;
-		background: var(--theme-light-1);
-		height: 80px;
-		align-items: center;
-		flex: 0 0 auto;
-	}
-
 	.Content {
 		display: flex;
 		overflow: auto;
@@ -91,34 +60,6 @@
 
 		padding: 50px 5vw;
 		margin: 30px 5vw;
-	}
-
-	.Scroller {
-		color: rgba(0, 0, 0, .1);
-		transition: color .4s ease;
-
-		&:hover {
-			color: rgba(0, 0, 0, .2);
-		}
-
-		&::-webkit-scrollbar {
-			background: transparent;
-			height: 8px;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: transparent;
-			box-shadow: inset 0 0 0 10px;
-			//border-radius: 8px;
-		}
-
-		&--vertical::-webkit-scrollbar {
-			width: 8px;
-		}
-
-		&--horizontal::-webkit-scrollbar {
-			height: 8px;
-		}
 	}
 
 	.Column {
@@ -130,9 +71,9 @@
 		}
 
 		&__title {
-			font-family: var(--theme-font);
+			font-family: var(--theme-font-title);
 			font-weight: 300;
-			font-size: 2.5rem;
+			font-size: 2.1rem;
 			margin: 0;
 			padding: 0;
 			color: var(--theme-dark-2);
@@ -146,7 +87,7 @@
 
 	.Figure {
 		color: var(--theme-color);
-		font-size: 3rem;
+		font-size: 2.5rem;
 		align-self: center;
 		flex: 1;
 		display: flex;
@@ -160,8 +101,8 @@
 
 		margin-top: 5px;
 		color: var(--theme-dark-5);
-		font-family: var(--theme-font);
-		font-size: 1.4rem;
+		font-family: var(--theme-font-title);
+		font-size: 1.2rem;
 	}
 
 	.Footer {
@@ -175,12 +116,16 @@
 	import Breadcrumb from "../components/Breadcrumb.vue";
 	import Chart from "../components/Chart.vue";
 	import ListMenu from "../components/ListMenu.vue";
+	import SettingsHeader from "../components/SettingsHeader.vue";
+	import SettingsPane from "../components/SettingsPane.vue";
 
 	export default {
 		components: {
 			Breadcrumb,
 			Chart,
-			ListMenu
+			ListMenu,
+			SettingsHeader,
+			SettingsPane
 		},
 
 		data() {
@@ -200,7 +145,7 @@
 
 		methods: {
 			navigateSetting(text) {
-				this.$router.push(`settings/${text}`);
+				this.$router.push(`settings#${text}`);
 			},
 
 			scrollToHorizontal(ev) {

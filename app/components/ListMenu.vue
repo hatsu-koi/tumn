@@ -67,13 +67,13 @@
 		}
 
 		&--large {
-			width: 400px;
-			height: 65px;
+			width: 300px;
+			height: 50px;
 
 			* {
-				font-size: 30px;
-				line-height: 65px;
-				height: 65px;
+				font-size: 1.3rem;
+				line-height: 50px;
+				height: 50px;
 			}
 		}
 	}

@@ -65,7 +65,7 @@
 		}
 
 		&__text {
-			font-family: var(--theme-font);
+			font-family: var(--theme-font-title);
 			font-weight: 100;
 			font-size: 40px;
 			color: var(--theme-light-2);
@@ -96,7 +96,7 @@
 
 		h2 {
 			color: var(--theme-dark-3);
-			font-family: var(--theme-font);
+			font-family: var(--theme-font-title);
 			font-weight: 400;
 			font-size: 21px;
 			margin: 0;

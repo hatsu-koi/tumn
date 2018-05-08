@@ -1,8 +1,11 @@
 <template>
-	<section class="Tile">
+	<section class="Tile" :class="{'Tile--flatten': flatten}">
 		<slot name="title"></slot>
 		<hr class="Tile__divider">
-		<slot></slot>
+
+		<div class="Tile__content">
+			<slot></slot>
+		</div>
 	</section>
 </template>
 
@@ -14,7 +17,7 @@
 		margin: 15px;
 		margin-top: 20px;
 
-		& > h1 {
+		h1 {
 			color: var(--theme-dark-4);
 			margin: 0;
 			padding: 0;
@@ -35,5 +38,34 @@
 			margin-top: 10px;
 			margin-bottom: 20px;
 		}
+
+		&--flatten {
+			background: transparent;
+			box-shadow: none;
+			margin: 0;
+			padding: 0;
+
+			h1 {
+				font-weight: 300;
+				font-size: 1.3rem;
+			}
+
+			.Tile__divider {
+				border: none;
+				margin: 0;
+			}
+
+			.Tile__content {
+				padding-left: 20px;
+			}
+		}
 	}
 </style>
+
+<script>
+	export default {
+		props: {
+			flatten: Boolean
+		}
+	};
+</script>

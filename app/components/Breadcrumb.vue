@@ -30,7 +30,7 @@
 				padding-right: 30px;
 
 				&:last-child {
-					padding-left: 30px;
+					padding-left: 30px !important;
 					padding-right: 50px;
 				}
 			}
