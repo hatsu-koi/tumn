@@ -13,20 +13,28 @@
 		width: 60vw;
 		margin: 30px auto;
 		background: var(--theme-light-3);
-		padding: 20px;
 		box-sizing: content-box;
 		box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .3);
+		padding: 40px 0 20px;
 
 		&__title {
 			color: var(--theme-dark-1);
 			font-family: var(--theme-font);
+			font-size: 1.6rem;
 			font-weight: 300;
+			margin: 0;
+			padding: 0;
+			padding-left: 60px;
 
 			&::before {
 				content: '#';
 				color: var(--theme-dark-5);
 				margin-right: 10px;
 			}
+		}
+
+		&__list {
+			padding: 0;
 		}
 	}
 

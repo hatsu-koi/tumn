@@ -1,5 +1,8 @@
 <template>
-	<tile class="TileOptions" :class="{'TileOptions--foldable': flatten}" :flatten="flatten">
+	<tile class="TileOptions"
+		:class="{'TileOptions--foldable': flatten, 'TileOptions--closed': folded}"
+		:flatten="flatten">
+
 		<header class="TileOptions__header" slot="title" @click="toggle">
 			<h1 class="TileOptions__title">
 				<i class="mdi mdi-filter"></i>
@@ -7,12 +10,11 @@
 			</h1>
 
 			<i class="TileOptions__fold Rippler mdi mdi-chevron-up"
-				:class="{'TileOptions__fold--fold': folded}"
 				v-ripple-small>
 			</i>
 		</header>
 
-		<div class="TileOptions__options" :class="{'TileOptions__options--closed': folded}" ref="options">
+		<div class="TileOptions__options" ref="options">
 			<checkbox class="ListSelector" v-for="option in options" :key="option.name" v-model="option.active">
 				{{option.name}}
 
@@ -32,8 +34,15 @@
 		}
 
 		&--foldable {
+			transition: all .3s ease;
+
+			&:hover {
+				background: var(--theme-light-2);
+			}
+
 			.TileOptions__header {
 				cursor: pointer;
+				padding: 0 50px;
 
 				& > * {
 					padding: 20px;
@@ -54,20 +63,27 @@
 					top: 50%;
 					transform: translate(-50%, -50%);
 				}
-
-				&--fold {
-					transform: rotate(180deg);
-				}
 			}
 
 			.TileOptions__options {
 				transition: all .3s ease;
 				overflow: hidden;
-
-				&--closed {
-					max-height: 0 !important;
-				}
+				padding-left: 50px;
 			}
+		}
+
+		&--foldable&--closed {
+			.TileOptions__options {
+				max-height: 0 !important;
+			}
+
+			.TileOptions__fold {
+				transform: rotate(180deg);
+			}
+		}
+
+		&--foldable:not(&--closed) {
+			// background: var(--theme-light-2);
 		}
 
 		&__fold {

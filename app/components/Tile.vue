@@ -56,7 +56,7 @@
 			}
 
 			.Tile__content {
-				padding-left: 20px;
+				padding-left: 50px;
 			}
 		}
 	}

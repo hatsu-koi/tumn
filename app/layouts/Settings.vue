@@ -13,15 +13,26 @@
 					:title="mock.title"
 					:options="mock.options"
 					flatten description
-					@open="closeExcept(i - 1)">
+					@open="closeExcept('filters', i - 1)">
 				</tile-options>
 			</template>
 		</config-list>
 
-		<config-list name="Hooks">
+		<config-list name="Hooks" ref="hooks">
+			<template v-for="i in 3">
+				<tile-options
+					:key="i"
+					:title="mock.title"
+					:options="mock.options"
+					flatten description
+					@open="closeExcept('hooks', i - 1)">
+				</tile-options>
+			</template>
 		</config-list>
 
 		<config-list name="Cover">
+			<carousel>
+			</carousel>
 		</config-list>
 
 		<config-list name="Child Mode">
@@ -34,6 +45,7 @@
 
 <script>
 	import Breadcrumb from "../components/Breadcrumb.vue";
+	import Carousel from "../components/Carousel.vue";
 	import ConfigList from "../components/ConfigList.vue";
 	import SettingsHeader from "../components/SettingsHeader.vue";
 	import SettingsPane from "../components/SettingsPane.vue";
@@ -68,8 +80,8 @@
 		},
 
 		methods: {
-			closeExcept(target) {
-				this.$refs.filters.$children
+			closeExcept(name, target) {
+				this.$refs[name].$children
 					.filter((_, i) => i !== target)
 					.forEach(elem => elem.folded = true);
 			}
@@ -77,6 +89,7 @@
 
 		components: {
 			Breadcrumb,
+			Carousel,
 			ConfigList,
 			SettingsHeader,
 			SettingsPane,
