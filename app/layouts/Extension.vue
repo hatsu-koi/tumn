@@ -43,7 +43,7 @@
 	#app {
 		width: 300px;
 		height: 450px;
-		background: var(--theme-light-2);
+		background: var(--theme-grey-9);
 
 		display: flex;
 		flex-direction: column;
@@ -68,7 +68,7 @@
 			font-family: var(--theme-font-title);
 			font-weight: 100;
 			font-size: 40px;
-			color: var(--theme-light-2);
+			color: var(--theme-grey-9);
 		}
 	}
 
@@ -95,7 +95,7 @@
 		}
 
 		h2 {
-			color: var(--theme-dark-3);
+			color: var(--theme-grey-3);
 			font-family: var(--theme-font-title);
 			font-weight: 400;
 			font-size: 21px;

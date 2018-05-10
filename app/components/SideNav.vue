@@ -36,7 +36,7 @@
 
 <style lang="less" scoped>
 	.SideNav {
-		background: var(--theme-dark-1);
+		background: var(--theme-grey-1);
 
 		&__list {
 			display: flex;
@@ -68,17 +68,17 @@
 				}
 
 				i {
-					color: var(--theme-light-2);
+					color: var(--theme-grey-9);
 					font-size: 40px;
 				}
 			}
 
 			&.router-link-active {
-				background: var(--theme-dark-3);
+				background: var(--theme-grey-3);
 			}
 
 			&:hover {
-				background: var(--theme-dark-2);
+				background: var(--theme-grey-2);
 			}
 
 			&--accent {
@@ -90,7 +90,7 @@
 			margin: 0;
 			margin-right: 30px;
 			padding: 0;
-			color: var(--theme-light-2);
+			color: var(--theme-grey-9);
 			font-family: var(--theme-font-title);
 			font-weight: 300;
 

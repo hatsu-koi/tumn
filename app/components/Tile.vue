@@ -11,14 +11,14 @@
 
 <style lang="less" scoped>
 	.Tile {
-		background: var(--theme-light-1);
+		background: var(--theme-grey-7);
 		box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .3);
 		padding: 15px;
 		margin: 15px;
 		margin-top: 20px;
 
 		h1 {
-			color: var(--theme-dark-4);
+			color: var(--theme-grey-4);
 			margin: 0;
 			padding: 0;
 			font-family: var(--theme-font);
@@ -31,7 +31,7 @@
 
 		&__divider {
 			border: none;
-			border-top: 3px solid var(--theme-dark-4);
+			border-top: 3px solid var(--theme-grey-4);
 			max-width: 50px;
 			margin-left: 0;
 			margin-right: 0;

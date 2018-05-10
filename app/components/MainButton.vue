@@ -20,7 +20,7 @@
 		width: 250px;
 		height: 36px;
 		padding: 0;
-		background: var(--theme-light-1);
+		background: var(--theme-grey-7);
 		border: none;
 		cursor: pointer;
 		outline: none;
@@ -42,7 +42,7 @@
 
 		&__text {
 			flex: 1;
-			color: var(--theme-dark-3);
+			color: var(--theme-grey-3);
 			text-align: center;
 
 			& > .mdi {
@@ -62,13 +62,13 @@
 				height: 0;
 				border-top: 18px solid transparent;
 				border-left: 8px solid transparent;
-				border-right: 8px solid var(--theme-light-3);
-				border-bottom: 18px solid var(--theme-light-3);
+				border-right: 8px solid var(--theme-grey-10);
+				border-bottom: 18px solid var(--theme-grey-10);
 			}
 
 			&__text {
-				background: var(--theme-light-3);
-				color: var(--theme-dark-4);
+				background: var(--theme-grey-10);
+				color: var(--theme-grey-4);
 				flex: 1;
 				text-align: center;
 			}
@@ -78,7 +78,7 @@
 			background: var(--theme-color);
 
 			.MainButton__text {
-				color: var(--theme-light-3);
+				color: var(--theme-grey-10);
 			}
 
 			.MainButton__identifier {

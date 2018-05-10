@@ -23,7 +23,7 @@
 		height: 50px;
 		overflow: hidden;
 
-		background: var(--theme-dark-3);
+		background: var(--theme-grey-3);
 
 		* {
 			font-family: var(--theme-font);
@@ -37,7 +37,7 @@
 		&__button {
 			background: transparent;
 			display: flex;
-			color: var(--theme-light-3);
+			color: var(--theme-grey-10);
 
 			border: none;
 			outline: none;
@@ -49,7 +49,7 @@
 			cursor: pointer;
 
 			span {
-				background: var(--theme-dark-3);
+				background: var(--theme-grey-3);
 				display: flex;
 				flex: 1;
 				width: 80px;
@@ -72,8 +72,8 @@
 				height: 0;
 				border-top: 25px solid transparent;
 				border-left: 8px solid transparent;
-				border-right: 8px solid var(--theme-dark-3);
-				border-bottom: 25px solid var(--theme-dark-3);
+				border-right: 8px solid var(--theme-grey-3);
+				border-bottom: 25px solid var(--theme-grey-3);
 			}
 
 			&--active {

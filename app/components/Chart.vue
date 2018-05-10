@@ -34,7 +34,7 @@
 			width: 15px;
 			height: 15px;
 			border-radius: 100%;
-			background: var(--theme-dark-1);
+			background: var(--theme-grey-1);
 			transform: translate(-50%, -50%);
 			cursor: pointer;
 
@@ -50,8 +50,8 @@
 			top: -50px;
 			left: 50%;
 			opacity: 0;
-			background: var(--theme-dark-1);
-			color: var(--theme-light-2);
+			background: var(--theme-grey-1);
+			color: var(--theme-grey-9);
 			font-family: var(--theme-font);
 			padding: 10px;
 			text-align: center;
@@ -70,7 +70,7 @@
 				height: 0;
 				transform: translateX(-50%);
 
-				border-top: 10px solid var(--theme-dark-1);
+				border-top: 10px solid var(--theme-grey-1);
 				border-left: 10px solid transparent;
 				border-bottom: 10px solid transparent;
 				border-right: 10px solid transparent;

@@ -10,7 +10,7 @@
 <style lang="less" scoped>
 	.SettingsHeader {
 		display: flex;
-		background: var(--theme-light-1);
+		background: var(--theme-grey-7);
 		height: 80px;
 		align-items: center;
 		flex: 0 0 auto;

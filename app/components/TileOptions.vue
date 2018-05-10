@@ -37,7 +37,7 @@
 			transition: all .3s ease;
 
 			&:hover {
-				background: var(--theme-light-2);
+				background: var(--theme-grey-8) !important;
 			}
 
 			.TileOptions__header {
@@ -51,7 +51,7 @@
 
 			.TileOptions__fold {
 				display: block;
-				color: var(--theme-dark-1);
+				color: var(--theme-grey-1);
 				font-size: 1.3rem;
 				transition: all .4s ease;
 				transform: rotate(360deg);
@@ -83,7 +83,7 @@
 		}
 
 		&--foldable:not(&--closed) {
-			background: var(--theme-light-2);
+			background: var(--theme-grey-9);
 		}
 
 		&__fold {

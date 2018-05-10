@@ -76,7 +76,7 @@
 			font-size: 2.1rem;
 			margin: 0;
 			padding: 0;
-			color: var(--theme-dark-2);
+			color: var(--theme-grey-2);
 			white-space: nowrap;
 		}
 
@@ -100,7 +100,7 @@
 		}
 
 		margin-top: 5px;
-		color: var(--theme-dark-5);
+		color: var(--theme-grey-5);
 		font-family: var(--theme-font-title);
 		font-size: 1.2rem;
 	}

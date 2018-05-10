@@ -78,14 +78,14 @@
 		}
 
 		&__title {
-			color: var(--theme-dark-3);
+			color: var(--theme-grey-3);
 			white-space: nowrap;
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
 
 		&__description {
-			color: var(--theme-dark-4);
+			color: var(--theme-grey-4);
 			font-size: 12px;
 			margin-top: 4px;
 		}

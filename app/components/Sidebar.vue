@@ -21,7 +21,7 @@
 		width: 90%;
 		height: 100%;
 		padding-right: 10%;
-		background: var(--theme-light-2);
+		background: var(--theme-grey-9);
 		transition: right .4s cubic-bezier(0.63,-0.25, 0.34, 1.49), box-shadow .4s ease;
 
 		&--active {
@@ -30,14 +30,14 @@
 		}
 
 		&__header {
-			background: var(--theme-light-1);
+			background: var(--theme-grey-7);
 
 			padding-top: 10px;
 			padding-left: 5px;
 			padding-bottom: 10px;
 
 			a {
-				color: var(--theme-dark-2);
+				color: var(--theme-grey-2);
 				font-family: var(--theme-font);
 				font-weight: 200;
 				font-size: 50px;

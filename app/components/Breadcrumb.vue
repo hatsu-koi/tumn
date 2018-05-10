@@ -6,7 +6,7 @@
 
 <style lang="less" scoped>
 	.Breadcrumb {
-		background: var(--theme-dark-3);
+		background: var(--theme-grey-3);
 		display: flex;
 		height: 50px;
 		margin: 0;
@@ -20,7 +20,7 @@
 			list-style: none;
 			line-height: 50px;
 			font-family: var(--theme-font);
-			color: var(--theme-light-1);
+			color: var(--theme-grey-7);
 
 			cursor: pointer;
 			transition: all .4s ease;
@@ -53,7 +53,7 @@
 				margin-left: 30px;
 				padding-left: 10px;
 				position: relative;
-				color: var(--theme-light-1);
+				color: var(--theme-grey-7);
 
 				&::before, &::after {
 					content: '';

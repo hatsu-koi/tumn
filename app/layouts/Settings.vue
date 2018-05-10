@@ -85,7 +85,7 @@
 		&__showcase {
 			height: 200px;
 			margin: 30px;
-			background: var(--theme-light-2);
+			background: var(--theme-grey-9);
 
 			display: flex;
 			flex-direction: column;
@@ -96,9 +96,9 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			color: var(--theme-dark-1);
+			color: var(--theme-grey-1);
 			font-family: var(--theme-font-title);
-			background: var(--theme-light-1);
+			background: var(--theme-grey-7);
 		}
 
 		&__text {
@@ -109,7 +109,7 @@
 
 			font-family: var(--theme-font);
 			font-weight: 400;
-			color: var(--theme-dark-1);
+			color: var(--theme-grey-1);
 		}
 
 		&__title {

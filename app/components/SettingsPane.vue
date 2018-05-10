@@ -17,7 +17,7 @@
 			font-family: var(--theme-font-title);
 			font-weight: 100;
 			font-size: 3.5rem;
-			color: var(--theme-dark-2);
+			color: var(--theme-grey-2);
 			margin: 0;
 			padding-top: 5vh;
 			padding-left: 5vw;

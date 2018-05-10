@@ -11,7 +11,7 @@
 	#app {
 		width: 100vw;
 		height: 100vh;
-		background: var(--theme-light-2);
+		background: var(--theme-grey-9);
 
 		display: flex;
 		position: relative;
