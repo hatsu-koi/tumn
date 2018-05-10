@@ -31,6 +31,26 @@
 		</config-list>
 
 		<config-list name="Cover">
+			<div class="SettingItem">
+				<checkbox model="cover.toggleCover">
+					Toggle revealing by click
+
+					<span slot="description">
+						If you click cover, it will reveal.
+					</span>
+				</checkbox>
+			</div>
+
+			<div class="SettingItem">
+				<slider model="cover.opacity">
+					Opacity
+
+					<span slot="description">
+						Default opacity of cover.
+					</span>
+				</slider>
+			</div>
+
 			<carousel class="Cover__carousel"
 				paginationActiveColor="#202020"
 				paginationColor="#d1d2d3"
@@ -77,6 +97,11 @@
 </template>
 
 <style lang="less" scoped>
+	.SettingItem {
+		display: flex;
+		padding: 0 70px;
+	}
+
 	.Cover {
 		&__carousel {
 			margin: 0 80px;
@@ -132,9 +157,11 @@
 <script>
 	import Breadcrumb from "../components/Breadcrumb.vue";
 	import {Carousel, Slide} from "vue-carousel";
+	import Checkbox from "../components/Checkbox.vue";
 	import ConfigList from "../components/ConfigList.vue";
 	import SettingsHeader from "../components/SettingsHeader.vue";
 	import SettingsPane from "../components/SettingsPane.vue";
+	import Slider from "../components/Slider.vue";
 	import TileOptions from "../components/TileOptions.vue";
 
 	import filters from "../src/filters";
@@ -163,6 +190,10 @@
 							active: true
 						}
 					]
+				},
+
+				cover: {
+					toggleCover: false
 				}
 			};
 		},
@@ -188,10 +219,12 @@
 		components: {
 			Breadcrumb,
 			Carousel,
+			Checkbox,
 			ConfigList,
 			SettingsHeader,
 			SettingsPane,
 			Slide,
+			Slider,
 			TileOptions
 		}
 	};

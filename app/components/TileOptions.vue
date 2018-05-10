@@ -37,7 +37,7 @@
 			transition: all .3s ease;
 
 			&:hover {
-				background: var(--theme-grey-8) !important;
+				background: var(--theme-grey-8);
 			}
 
 			.TileOptions__header {
