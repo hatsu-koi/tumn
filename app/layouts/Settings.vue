@@ -48,7 +48,7 @@
 
 						<div class="Cover__content">
 							<span class="Cover__title">Filter 01</span>
-							<button class="Button">Use</button>
+							<button class="Button" v-ripple="'rgba(255, 255, 255, .1)'">Use</button>
 						</div>
 					</div>
 				</slide>
@@ -65,6 +65,7 @@
 					</div>
 				</slide>
 			</carousel>
+			<!-- TODO cover opacity, hover시 cover opacity 조정 옵션, 클릭해서 toggle 기능 -->
 		</config-list>
 
 		<config-list name="Child Mode">

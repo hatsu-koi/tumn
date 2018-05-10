@@ -22,6 +22,16 @@ body, html {
 	&:hover {
 		box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .45);
 	}
+
+	&--disabled {
+		background: var(--theme-dark-6);
+		color: var(--theme-dark-4);
+		box-shadow: none;
+
+		&:hover {
+			box-shadow: none;
+		}
+	}
 }
 
 .Scroller {

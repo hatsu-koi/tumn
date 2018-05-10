@@ -4,11 +4,13 @@ import Settings from "./layouts/Settings.vue";
 import Sites from "./layouts/Sites.vue";
 import Statistics from "./layouts/Statistics.vue";
 import Vue from "vue";
+import VueRipple from "vue-ripple-directive";
 import VueRippleSmall from "./src/VueRippleSmall";
 import VueRouter from "vue-router";
 
 import "./less/index.less";
 
+Vue.directive('ripple', VueRipple);
 Vue.directive('ripple-small', VueRippleSmall);
 Vue.use(VueRouter);
 

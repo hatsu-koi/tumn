@@ -83,7 +83,7 @@
 		}
 
 		&--foldable:not(&--closed) {
-			// background: var(--theme-light-2);
+			background: var(--theme-light-2);
 		}
 
 		&__fold {
