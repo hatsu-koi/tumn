@@ -32,6 +32,13 @@
 
 		<cover-section></cover-section>
 
+		<config-list name="Customization">
+			<color-chooser :palette="customization.palette" v-model="customization.color">
+			</color-chooser>
+
+			<!-- TODO Language, color, font chooser-->
+		</config-list>
+
 		<config-list name="Child Mode">
 		</config-list>
 
@@ -42,6 +49,7 @@
 
 <script>
 	import Breadcrumb from "../components/Breadcrumb.vue";
+	import ColorChooser from "../components/ColorChooser.vue";
 	import ConfigList from "../components/ConfigList.vue";
 	import CoverSection from "../components/CoverSection.vue";
 	import SettingsHeader from "../components/SettingsHeader.vue";
@@ -72,6 +80,11 @@
 							active: true
 						}
 					]
+				},
+
+				customization: {
+					color: '#1e98e9',
+					palette: ['#1e98e9', '#03a9f4', '#00bcd4', '#ffc107', '#ff9800', '#e65100']
 				}
 			};
 		},
@@ -86,6 +99,7 @@
 
 		components: {
 			Breadcrumb,
+			ColorChooser,
 			ConfigList,
 			CoverSection,
 			SettingsHeader,
