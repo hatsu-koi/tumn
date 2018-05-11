@@ -12,7 +12,7 @@
 					:key="i"
 					:title="mock.title"
 					:options="mock.options"
-					flatten description
+					flatten description editable
 					@open="closeExcept('filters', i - 1)">
 				</tile-options>
 			</template>
@@ -24,69 +24,13 @@
 					:key="i"
 					:title="mock.title"
 					:options="mock.options"
-					flatten description
+					flatten description editable
 					@open="closeExcept('hooks', i - 1)">
 				</tile-options>
 			</template>
 		</config-list>
 
-		<config-list name="Cover">
-			<div class="SettingItem">
-				<checkbox model="cover.toggleCover">
-					Toggle revealing by click
-
-					<span slot="description">
-						If you click cover, it will reveal.
-					</span>
-				</checkbox>
-			</div>
-
-			<div class="SettingItem">
-				<slider model="cover.opacity">
-					Opacity
-
-					<span slot="description">
-						Default opacity of cover.
-					</span>
-				</slider>
-			</div>
-
-			<carousel class="Cover__carousel"
-				paginationActiveColor="#202020"
-				paginationColor="#d1d2d3"
-				:navigationEnabled="true">
-
-				<slide v-for="i in 10" :key="i">
-					<div class="Cover__showcase">
-						<div class="Cover__text">
-							너 느 아버지가&nbsp;
-							<span class="Tumn__AbuseFilter">
-								<div class="Tumn__AbuseFilter__wrap" :style="getFilter('f01')"></div>
-									고자라지
-							</span>
-						</div>
-
-						<div class="Cover__content">
-							<span class="Cover__title">Filter 01</span>
-							<button class="Button" v-ripple="'rgba(255, 255, 255, .1)'">Use</button>
-						</div>
-					</div>
-				</slide>
-
-				<slide>
-					<div class="Cover__showcase Cover__showcase--upload">
-						<div class="Cover__text">
-							<a @click="upload" v-ripple-small>+</a>
-						</div>
-
-						<div class="Cover__content">
-							<span class="Cover__title">Upload</span>
-						</div>
-					</div>
-				</slide>
-			</carousel>
-			<!-- TODO cover opacity, hover시 cover opacity 조정 옵션, 클릭해서 toggle 기능 -->
-		</config-list>
+		<cover-section></cover-section>
 
 		<config-list name="Child Mode">
 		</config-list>
@@ -96,75 +40,13 @@
 	</settings-pane>
 </template>
 
-<style lang="less" scoped>
-	.SettingItem {
-		display: flex;
-		padding: 0 70px;
-	}
-
-	.Cover {
-		&__carousel {
-			margin: 0 80px;
-		}
-
-		&__showcase {
-			height: 200px;
-			margin: 30px;
-			background: var(--theme-grey-9);
-
-			display: flex;
-			flex-direction: column;
-		}
-
-		&__content {
-			height: 36px;
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			color: var(--theme-grey-1);
-			font-family: var(--theme-font-title);
-			background: var(--theme-grey-7);
-		}
-
-		&__text {
-			display: flex;
-			flex: 1;
-			justify-content: center;
-			align-items: center;
-
-			font-family: var(--theme-font);
-			font-weight: 400;
-			color: var(--theme-grey-1);
-		}
-
-		&__title {
-			margin-left: 30px;
-		}
-
-		&__showcase--upload &__text a{
-			font-size: 3rem;
-			font-family: var(--theme-font);
-			font-weight: 100;
-			text-align: center;
-			line-height: 3.4rem;
-			cursor: pointer;
-			width: 3.4rem;
-			height: 3.4rem;
-		}
-	}
-</style>
-
 <script>
 	import Breadcrumb from "../components/Breadcrumb.vue";
-	import {Carousel, Slide} from "vue-carousel";
-	import Checkbox from "../components/Checkbox.vue";
 	import ConfigList from "../components/ConfigList.vue";
+	import CoverSection from "../components/CoverSection.vue";
 	import SettingsHeader from "../components/SettingsHeader.vue";
 	import SettingsPane from "../components/SettingsPane.vue";
-	import Slider from "../components/Slider.vue";
 	import TileOptions from "../components/TileOptions.vue";
-
-	import filters from "../src/filters";
 
 	export default {
 		data() {
@@ -190,10 +72,6 @@
 							active: true
 						}
 					]
-				},
-
-				cover: {
-					toggleCover: false
 				}
 			};
 		},
@@ -203,28 +81,15 @@
 				this.$refs[name].$children
 					.filter((_, i) => i !== target)
 					.forEach(elem => elem.folded = true);
-			},
-
-			getFilter(id) {
-				return {
-					'background-image': `url(${filters[id]})`
-				};
-			},
-
-			upload() {
-
 			}
 		},
 
 		components: {
 			Breadcrumb,
-			Carousel,
-			Checkbox,
 			ConfigList,
+			CoverSection,
 			SettingsHeader,
 			SettingsPane,
-			Slide,
-			Slider,
 			TileOptions
 		}
 	};

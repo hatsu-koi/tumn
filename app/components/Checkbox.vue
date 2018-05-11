@@ -1,5 +1,5 @@
 <template>
-	<label class="Checkbox">
+	<label class="Checkbox" :class="{'Checkbox--reverse': reverse}">
 		<input class="Checkbox__input" type="checkbox" v-model="_checked">
 		<div class="Checkbox__decorator"></div>
 		<div class="Checkbox__label">
@@ -89,6 +89,14 @@
 			font-size: 12px;
 			margin-top: 4px;
 		}
+
+		&--reverse {
+			flex-direction: row-reverse;
+
+			.Checkbox__label {
+				margin-left: 0;
+			}
+		}
 	}
 
 	@keyframes check {
@@ -127,7 +135,8 @@
 		},
 
 		props: {
-			checked: Boolean
+			checked: Boolean,
+			reverse: Boolean
 		},
 
 		computed: {

@@ -1,6 +1,10 @@
 <template>
 	<tile class="TileOptions"
-		:class="{'TileOptions--foldable': flatten, 'TileOptions--closed': folded}"
+		:class="{
+			'TileOptions--foldable': flatten,
+			'TileOptions--closed': folded,
+			'TileOptions--editable': editable
+		}"
 		:flatten="flatten">
 
 		<header class="TileOptions__header" slot="title" @click="toggle">
@@ -9,9 +13,7 @@
 				{{title}}
 			</h1>
 
-			<i class="TileOptions__fold Rippler mdi mdi-chevron-up"
-				v-ripple-small>
-			</i>
+			<i class="TileOptions__fold mdi mdi-chevron-up" v-ripple-small></i>
 		</header>
 
 		<div class="TileOptions__options" ref="options">
@@ -22,6 +24,24 @@
 					{{option.description}}
 				</span>
 			</checkbox>
+
+			<div class="TileOptions__footer" v-if="editable">
+				<span class="TileOptions__version">
+					v1.0
+				</span>
+
+				<button class="Button Button--flat" v-ripple="'rgba(0, 0, 0, .1)'">
+					<i class="mdi mdi-alert"></i> Issues
+				</button>
+
+				<button class="Button Button--flat" v-ripple="'rgba(0, 0, 0, .1)'">
+					<i class="mdi mdi-web"></i> Web
+				</button>
+
+				<button class="Button Button--alert" v-ripple="'rgba(255, 255, 255, .1)'">
+					<i class="mdi mdi-delete"></i> Delete
+				</button>
+			</div>
 		</div>
 	</tile>
 </template>
@@ -89,6 +109,20 @@
 		&__fold {
 			display: none;
 		}
+
+		&__footer {
+			display: flex;
+			justify-content: flex-end;
+			padding: 10px 80px 10px 0;
+		}
+
+		&__version {
+			font-family: var(--theme-font);
+			color: var(--theme-grey-4);
+			font-size: .85rem;
+			padding: 10px 15px;
+			margin-right: 10px;
+		}
 	}
 </style>
 
@@ -115,8 +149,8 @@
 			},
 
 			description: Boolean,
-
-			flatten: Boolean
+			flatten: Boolean,
+			editable: Boolean
 		},
 
 		methods: {

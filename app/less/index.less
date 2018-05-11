@@ -1,3 +1,5 @@
+// Style attribute not supported :(
+@import "~nouislider/distribute/nouislider.css";
 @import "~mdi/css/materialdesignicons.css";
 
 @import "abuse.less";
@@ -8,6 +10,10 @@ body, html {
 	padding: 0;
 }
 
+body *:not(input) {
+	user-select: none;
+}
+
 .Button {
 	background: var(--theme-color);
 	border: none;
@@ -16,11 +22,25 @@ body, html {
 	font-family: var(--theme-font);
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
 	padding: 10px 30px;
+	margin: 0 5px;
 	outline: none;
 	transition: all .4s ease;
+	font-size: .85rem;
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	&:last-child {
+		margin-right: 0;
+	}
 
 	&:hover {
-		box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .45);
+		box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .4);
+	}
+
+	&--alert {
+		background: var(--theme-alert);
 	}
 
 	&--disabled {
@@ -30,6 +50,16 @@ body, html {
 
 		&:hover {
 			box-shadow: none;
+		}
+	}
+
+	&--flat {
+		background: transparent;
+		color: var(--theme-grey-4);
+		box-shadow: none;
+
+		&:hover {
+			box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .3);
 		}
 	}
 }
@@ -72,6 +102,7 @@ body, html {
 		background: rgba(0, 0, 0, .1);
 		border-radius: 100%;
 		position: absolute;
+		pointer-events: none;
 		left: 50%;
 		top: 50%;
 		transform: translate(-50%, -50%);
