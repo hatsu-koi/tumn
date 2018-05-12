@@ -53,6 +53,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		cursor: pointer;
 		outline: none;
 		position: relative;
 
@@ -157,11 +158,6 @@
 		methods: {
 			setColor(color) {
 				this.$emit('change', color);
-				document.querySelector('html').style.setProperty('--theme-color', color);
-				document.querySelector('html').style.setProperty('--theme-chart-1', color);
-				document.querySelector('html').style.setProperty(
-					'--theme-chart-2', Color(color).lighten(0.3).rgbString()
-				);
 			},
 
 			handleColor(color) {

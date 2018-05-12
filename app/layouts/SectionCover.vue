@@ -1,7 +1,7 @@
 <template>
 	<config-list name="Cover">
 		<div class="SettingItem">
-			<checkbox v-model="cover.toggleCover" reverse>
+			<checkbox v-model="toggleCover" reverse>
 				Toggle revealing by click
 
 				<span slot="description">
@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="SettingItem">
-			<slider v-model="cover.opacity">
+			<slider v-model="opacity">
 				Opacity
 
 				<span slot="description">
@@ -21,7 +21,7 @@
 		</div>
 
 		<div class="SettingItem">
-			<slider v-model="cover.hoverOpacity">
+			<slider v-model="hoverOpacity">
 				Revealed Opacity
 
 				<span slot="description">
@@ -36,7 +36,7 @@
 					<span class="SettingItem__title">Cover</span>
 					<span class="SettingItem__description">Image of cover</span>
 				</div>
-				<span class="SettingItem__value">{{cover.filter}}</span>
+				<span class="SettingItem__value">{{filter}}</span>
 			</div>
 
 			<carousel class="Cover__carousel"
@@ -60,7 +60,7 @@
 						<div class="Cover__content">
 							<span class="Cover__title">filter{{i}}</span>
 							<button class="Button"
-								:class="{'Button--disabled': `filter${i}` === cover.filter}"
+								:class="{'Button--disabled': `filter${i}` === filter}"
 								v-ripple="'rgba(255, 255, 255, .1)'"
 								@click="setFilter(`filter${i}`)">
 
@@ -153,19 +153,11 @@
 	import ConfigList from "../components/ConfigList.vue";
 	import Slider from "../components/Slider.vue";
 
+	import {bindState} from '../src/bindState';
 	import filters from "../src/filters";
 
 	export default {
-		data() {
-			return {
-				cover: {
-					toggleCover: false,
-					opacity: 0,
-					hoverOpacity: 0,
-					filter: 'filter1'
-				}
-			};
-		},
+		computed: bindState('config/cover', ['toggleCover', 'opacity', 'hoverOpacity', 'filter']),
 
 		methods: {
 			getFilter(id) {
@@ -175,7 +167,7 @@
 			},
 
 			setFilter(id) {
-				this.cover.filter = id;
+				this.filter = id;
 			},
 
 			upload() {

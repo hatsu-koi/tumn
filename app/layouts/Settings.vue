@@ -30,21 +30,8 @@
 			</template>
 		</config-list>
 
-		<cover-section></cover-section>
-
-		<config-list name="Customization">
-			<div class="SettingItem">
-				<div class="SettingItem__content">
-					<div class="SettingItem__label">
-						<span class="SettingItem__title">Theme Color</span>
-						<span class="SettingItem__description">Color of Tumn UI</span>
-					</div>
-					<color-chooser :palette="customization.palette" v-model="customization.color"></color-chooser>
-				</div>
-			</div>
-
-			<!-- TODO Language, color, font chooser-->
-		</config-list>
+		<section-cover></section-cover>
+		<section-customization></section-customization>
 
 		<config-list name="Child Mode">
 		</config-list>
@@ -56,9 +43,9 @@
 
 <script>
 	import Breadcrumb from "../components/Breadcrumb.vue";
-	import ColorChooser from "../components/ColorChooser.vue";
 	import ConfigList from "../components/ConfigList.vue";
-	import CoverSection from "../components/CoverSection.vue";
+	import SectionCover from "./SectionCover.vue";
+	import SectionCustomization from "./SectionCustomization.vue";
 	import SettingsHeader from "../components/SettingsHeader.vue";
 	import SettingsPane from "../components/SettingsPane.vue";
 	import TileOptions from "../components/TileOptions.vue";
@@ -87,11 +74,6 @@
 							active: true
 						}
 					]
-				},
-
-				customization: {
-					color: '#1e98e9',
-					palette: ['#1e98e9', '#03a9f4', '#00bcd4', '#ffc107', '#ff9800', '#e65100']
 				}
 			};
 		},
@@ -106,9 +88,9 @@
 
 		components: {
 			Breadcrumb,
-			ColorChooser,
 			ConfigList,
-			CoverSection,
+			SectionCover,
+			SectionCustomization,
 			SettingsHeader,
 			SettingsPane,
 			TileOptions

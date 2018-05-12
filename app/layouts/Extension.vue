@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<app>
 		<header class="Header">
 			<img class="Header__logo" src="../images/logo.svg" alt="Tumn Logo">
 			<span class="Header__text">Tumn</span>
@@ -36,7 +36,7 @@
 		<sidebar title="Hooks" ref="hook" v-model="menu.hook">
 			<tile-options :title="mock.title" :options="mock.options"></tile-options>
 		</sidebar>
-	</div>
+	</app>
 </template>
 
 <style lang="less" scoped>
@@ -121,6 +121,7 @@
 </style>
 
 <script>
+	import App from "../components/App.vue";
 	import ListMenu from "../components/ListMenu.vue";
 	import MainButton from "../components/MainButton.vue";
 	import Navigation from "../components/Navigation.vue";
@@ -163,6 +164,7 @@
 		},
 
 		components: {
+			App,
 			ListMenu,
 			MainButton,
 			Navigation,

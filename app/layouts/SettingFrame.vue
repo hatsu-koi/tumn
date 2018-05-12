@@ -1,10 +1,10 @@
 <template>
-	<div id="app">
+	<app>
 		<side-nav></side-nav>
 		<transition name="navigate" mode="out-in">
 			<router-view></router-view>
 		</transition>
-	</div>
+	</app>
 </template>
 
 <style lang="less" scoped>
@@ -34,10 +34,12 @@
 </style>
 
 <script>
+	import App from "../components/App.vue";
 	import SideNav from "../components/SideNav.vue";
 
 	export default {
 		components: {
+			App,
 			SideNav
 		}
 	};
