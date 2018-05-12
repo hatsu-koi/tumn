@@ -36,7 +36,7 @@
 					<span class="SettingItem__title">Cover</span>
 					<span class="SettingItem__description">Image of cover</span>
 				</div>
-				<span class="SettingItem__value">Filter 01</span>
+				<span class="SettingItem__value">{{cover.filter}}</span>
 			</div>
 
 			<carousel class="Cover__carousel"
@@ -51,14 +51,21 @@
 						<div class="Cover__text">
 							너 느 아버지가&nbsp;
 							<span class="Tumn__AbuseFilter">
-								<div class="Tumn__AbuseFilter__wrap" :style="getFilter('f01')"></div>
-									고자라지
+								<!--TODO add more filters, change getFilter('filter1') -->
+								<div class="Tumn__AbuseFilter__wrap" :style="getFilter('filter1')"></div>
+								고자라지
 							</span>
 						</div>
 
 						<div class="Cover__content">
-							<span class="Cover__title">Filter 01</span>
-							<button class="Button" v-ripple="'rgba(255, 255, 255, .1)'">Use</button>
+							<span class="Cover__title">filter{{i}}</span>
+							<button class="Button"
+								:class="{'Button--disabled': `filter${i}` === cover.filter}"
+								v-ripple="'rgba(255, 255, 255, .1)'"
+								@click="setFilter(`filter${i}`)">
+
+								Use
+							</button>
 						</div>
 					</div>
 				</slide>
@@ -80,39 +87,6 @@
 </template>
 
 <style lang="less" scoped>
-	.SettingItem {
-		display: flex;
-		flex-direction: column;
-		padding: 0 70px;
-		max-width: 768px;
-		margin: 30px auto;
-		font-family: var(--theme-font);
-
-		&__content {
-			display: flex;
-			justify-content: space-between;
-		}
-
-		&__label {
-			display: flex;
-			flex-direction: column;
-		}
-
-		&__title {
-			color: var(--theme-grey-3);
-		}
-
-		&__description {
-			color: var(--theme-grey-4);
-			font-size: 12px;
-			margin-top: 4px;
-		}
-
-		&__value {
-			color: var(--theme-grey-4);
-		}
-	}
-
 	.Cover {
 		&__carousel {
 			margin-top: 30px;
@@ -187,7 +161,8 @@
 				cover: {
 					toggleCover: false,
 					opacity: 0,
-					hoverOpacity: 0
+					hoverOpacity: 0,
+					filter: 'filter1'
 				}
 			};
 		},
@@ -197,6 +172,10 @@
 				return {
 					'background-image': `url(${filters[id]})`
 				};
+			},
+
+			setFilter(id) {
+				this.cover.filter = id;
 			},
 
 			upload() {

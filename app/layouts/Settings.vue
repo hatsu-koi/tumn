@@ -33,8 +33,15 @@
 		<cover-section></cover-section>
 
 		<config-list name="Customization">
-			<color-chooser :palette="customization.palette" v-model="customization.color">
-			</color-chooser>
+			<div class="SettingItem">
+				<div class="SettingItem__content">
+					<div class="SettingItem__label">
+						<span class="SettingItem__title">Theme Color</span>
+						<span class="SettingItem__description">Color of Tumn UI</span>
+					</div>
+					<color-chooser :palette="customization.palette" v-model="customization.color"></color-chooser>
+				</div>
+			</div>
 
 			<!-- TODO Language, color, font chooser-->
 		</config-list>

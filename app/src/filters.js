@@ -1,5 +1,5 @@
-import f01 from "../images/filters/f01.svg";
+import filter1 from "../images/filters/filter1.svg";
 
 export default {
-	f01
+	filter1
 };

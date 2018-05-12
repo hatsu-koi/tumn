@@ -1,34 +1,47 @@
 <template>
 	<div class="ColorChooser">
-		<button v-for="color in palette"
-			class="Color"
-			:class="{'Color--active': color === activeColor}"
-			:style="{background: color}"
-			@click="setColor(color)">
+		<div class="ColorChooser__colors">
+			<button v-for="color in palette"
+				class="Color"
+				:class="{'Color--active': color === activeColor}"
+				:style="{background: color}"
+				@click="handleColor(color)">
+					<i class="Color__icon mdi mdi-check" v-ripple-small></i>
+			</button>
+
+			<button class="Color Color--add"
+				:class="{'Color--active': customColor === activeColor, 'Color--dark': isCustomDark}"
+				:style="{background: customColor}"
+				@click="handleCustomColor()">
+
 				<i class="Color__icon mdi mdi-check" v-ripple-small></i>
-		</button>
+				<i class="Color__add mdi mdi-plus" v-ripple-small></i>
+			</button>
 
-		<button class="Color Color--add"
-			:class="{'Color--active': customColor === activeColor}"
-			:style="{background: customColor}"
-			@click="handleCustomColor()">
+			<div class="Dialog" v-if="dialog">
+				<a class="Dialog__close" @click="dialog = false">
+					<i class="mdi mdi-close"></i>
+				</a>
 
-			<i class="Color__icon mdi mdi-check" v-ripple-small></i>
-			<i class="Color__add mdi mdi-plus" v-ripple-small></i>
-		</button>
-
-		<chrome-picker
-			:value="customColor"
-			@input="updateCustomColor"
-			v-if="dialog"
-			ref="picker">
-		</chrome-picker>
+				<chrome-picker
+					:value="customColor"
+					@input="updateCustomColor"
+					ref="picker">
+				</chrome-picker>
+			</div>
+		</div>
 	</div>
 </template>
 
 <style lang="less" scoped>
 	.ColorChooser {
 		display: flex;
+		margin: 0 30px;
+
+		&__colors {
+			display: flex;
+			position: relative;
+		}
 	}
 
 	.Color {
@@ -62,16 +75,52 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+			color: rgba(0, 0, 0, .9);
 			font-size: 1.3rem;
+			transition: all .4s ease;
 		}
 
 		&--active {
 			.Color__icon {
 				visibility: visible;
-				background: rgba(0, 0, 0, .3);
+				background: rgba(0, 0, 0, .7);
 				color: var(--theme-grey-7);
 				font-size: 1.2rem;
 			}
+
+			.Color__add {
+				top: 0;
+				left: 100%;
+				transform: translate(-100%, 0);
+			}
+		}
+
+		&--dark {
+			.Color__add {
+				color: rgba(255, 255, 255, .9);
+			}
+		}
+	}
+
+	.Dialog {
+		position: absolute;
+		top: 0;
+		left: 100%;
+
+		&__close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 5px;
+			z-index: 2;
+			background: rgba(0, 0, 0, .6);
+			border-radius: 50%;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			line-height: 20px;
+			color: var(--theme-grey-7);
+			cursor: pointer;
 		}
 	}
 </style>
@@ -82,9 +131,9 @@
 	export default {
 		data() {
 			return {
-				customColor: '#e1e1e1',
+				customColor: 'rgba(230,230,230,1)',
 				dialog: false
-			}
+			};
 		},
 
 		model: {
@@ -107,20 +156,42 @@
 		methods: {
 			setColor(color) {
 				this.$emit('change', color);
+				document.querySelector('html').style.setProperty('--theme-color', color);
+				document.querySelector('html').style.setProperty('--theme-chart-1', color);
+				document.querySelector('html').style.setProperty('--theme-chart-2', color);
+			},
+
+			handleColor(color) {
+				this.setColor(color);
+				this.dialog = false;
 			},
 
 			handleCustomColor(color) {
-				if(this.activeColor === this.customColor) {
-					this.dialog = true;
-					return;
-				}
-
 				this.setColor(this.customColor);
+				this.dialog = true;
 			},
 
 			updateCustomColor({rgba}) {
 				this.customColor = `rgba(${[rgba.r, rgba.g, rgba.b, rgba.a].join(',')})`;
 				this.setColor(this.customColor);
+			}
+		},
+
+		computed: {
+			isCustomDark() {
+				const match = this.customColor.match(/rgba\((\d+),(\d+),(\d+),(\d+)\)/);
+				if(!match) return false;
+
+				match.shift();
+
+				const [r, g,b, a] = match.map((v, i) => {
+					if(i === 3) return v;
+
+					return (v * match[3] + 255 * (1 - match[3])) / 255;
+				});
+
+				const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+				return luma < 0.4;
 			}
 		},
 

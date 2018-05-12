@@ -115,9 +115,9 @@
 				}
 
 				&-handle {
-					top: 2px;
-					width: 16px;
-					height: 16px;
+					top: 2px !important;
+					width: 16px !important;
+					height: 16px !important;
 					background: var(--theme-color);
 					border: none;
 					border-radius: 100%;
