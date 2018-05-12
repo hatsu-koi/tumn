@@ -127,6 +127,7 @@
 
 <script>
 	import {Chrome} from 'vue-color';
+	import Color from "color";
 
 	export default {
 		data() {
@@ -158,7 +159,9 @@
 				this.$emit('change', color);
 				document.querySelector('html').style.setProperty('--theme-color', color);
 				document.querySelector('html').style.setProperty('--theme-chart-1', color);
-				document.querySelector('html').style.setProperty('--theme-chart-2', color);
+				document.querySelector('html').style.setProperty(
+					'--theme-chart-2', Color(color).lighten(0.3).rgbString()
+				);
 			},
 
 			handleColor(color) {
@@ -179,19 +182,10 @@
 
 		computed: {
 			isCustomDark() {
-				const match = this.customColor.match(/rgba\((\d+),(\d+),(\d+),(\d+)\)/);
-				if(!match) return false;
+				const color = Color(this.customColor);
+				const alpha = color.alpha();
 
-				match.shift();
-
-				const [r, g,b, a] = match.map((v, i) => {
-					if(i === 3) return v;
-
-					return (v * match[3] + 255 * (1 - match[3])) / 255;
-				});
-
-				const luma = 0.299 * r + 0.587 * g + 0.114 * b;
-				return luma < 0.4;
+				return color.alpha(1).mix(Color('#fff'), 1 - alpha).dark();
 			}
 		},
 
