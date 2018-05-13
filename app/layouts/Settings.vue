@@ -33,9 +33,6 @@
 		<section-cover></section-cover>
 		<section-customization></section-customization>
 
-		<config-list :name="$t('settings.child_mode.child_mode')" slug="child-mode">
-		</config-list>
-
 		<config-list :name="$t('settings.troubleshooting.troubleshooting')" slug="trouble-shooting">
 		</config-list>
 	</settings-pane>

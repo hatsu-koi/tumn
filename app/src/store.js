@@ -13,7 +13,7 @@ export default function makeStore() {
 			color: '#1e98e9',
 			font: 'Roboto, NanumBarunGothic, sans-serif',
 			title: 'Titillium Web, NanumSquare, sans-serif',
-			'i18n': "ko_KR"
+			i18n: "ko_KR"
 		},
 
 		mutations: {

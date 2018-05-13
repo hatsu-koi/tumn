@@ -21,13 +21,6 @@
 				</div>
 				<h1 class="SideNav__title">{{$t('settings.sites')}}</h1>
 			</router-link>
-
-			<router-link to="/statistics" class="SideNav__item">
-				<div class="SideNav__item__block">
-					<i class="mdi mdi-chart-donut"></i>
-				</div>
-				<h1 class="SideNav__title">{{$t('settings.stats')}}</h1>
-			</router-link>
 		</nav>
 
 		<div class="SideNav__scroller"></div>

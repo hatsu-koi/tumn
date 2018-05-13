@@ -29,7 +29,7 @@
 		</section>
 
 		<navigation></navigation>
-		<transition name="Backdrop--fade">
+		<transition name="Backdrop-fade">
 			<div class="Backdrop" v-if="menuActive" @click="closeMenu()"></div>
 		</transition>
 
@@ -113,10 +113,6 @@
 		bottom: 0;
 		background: rgba(0, 0, 0, .4);
 		transition: all .4s ease;
-
-		&--fade-enter, &--fade-leave-to {
-			opacity: 0;
-		}
 	}
 </style>
 

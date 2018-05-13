@@ -59,6 +59,8 @@
 						{{$t('settings.customization.language_desc')}}
 					</span>
 				</div>
+
+				<selector v-model="i18n" :items="items"></selector>
 			</div>
 		</div>
 	</config-list>
@@ -67,17 +69,29 @@
 <script>
 	import ColorChooser from "../components/ColorChooser.vue";
 	import ConfigList from "../components/ConfigList.vue";
+	import Selector from "../components/Selector.vue";
 	import TextInput from "../components/TextInput.vue";
 
 	import {bindState} from '../src/bindState';
+	import translation from "../src/translation";
 
 	export default {
+		data() {
+			return {
+				items: Object.keys(translation).map(k => ({
+					value: k,
+					text: translation[k].name
+				}))
+			};
+		},
+
 		components: {
 			ColorChooser,
 			ConfigList,
+			Selector,
 			TextInput
 		},
 
-		computed: bindState('config/customization', ['color', 'font', 'title'])
-	}
+		computed: bindState('config/customization', ['color', 'font', 'title', 'i18n'])
+	};
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<div class="ColorChooser">
+	<div class="ColorChooser" v-click-outside="closeDialog">
 		<div class="ColorChooser__colors">
 			<button v-for="color in palette"
 				class="Color"
@@ -18,17 +18,19 @@
 				<i class="Color__add mdi mdi-plus" v-ripple-small></i>
 			</button>
 
-			<div class="Dialog" v-if="dialog">
-				<a class="Dialog__close" @click="dialog = false">
-					<i class="mdi mdi-close"></i>
-				</a>
+			<transition name="FadeSlide">
+				<div class="Dialog" v-if="dialog">
+					<a class="Dialog__close" @click="closeDialog">
+						<i class="mdi mdi-close"></i>
+					</a>
 
-				<chrome-picker
-					:value="customColor"
-					@input="updateCustomColor"
-					ref="picker">
-				</chrome-picker>
-			</div>
+					<chrome-picker
+						:value="customColor"
+						@input="updateCustomColor"
+						ref="picker">
+					</chrome-picker>
+				</div>
+			</transition>
 		</div>
 	</div>
 </template>
@@ -173,6 +175,10 @@
 			updateCustomColor({rgba}) {
 				this.customColor = `rgba(${[rgba.r, rgba.g, rgba.b, rgba.a].join(',')})`;
 				this.setColor(this.customColor);
+			},
+
+			closeDialog() {
+				this.dialog = false;
 			}
 		},
 

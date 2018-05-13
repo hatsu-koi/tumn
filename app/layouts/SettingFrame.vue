@@ -1,7 +1,7 @@
 <template>
 	<app>
 		<side-nav></side-nav>
-		<transition name="navigate" mode="out-in">
+		<transition name="Navigate" mode="out-in">
 			<router-view></router-view>
 		</transition>
 	</app>
@@ -16,20 +16,6 @@
 		display: flex;
 		position: relative;
 		overflow: hidden;
-	}
-
-	.navigate {
-		&-enter-active, &-leave-active {
-			transition: all .3s;
-		}
-
-		&-enter {
-			transform: translateY(100vw);
-		}
-
-		&-leave-to {
-			opacity: .3;
-		}
 	}
 </style>
 

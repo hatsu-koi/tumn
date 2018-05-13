@@ -1,9 +1,9 @@
 <template>
 	<section class="ConfigList">
 		<h2 class="ConfigList__title">{{name}}</h2>
-		<ul class="ConfigList__list">
+		<div class="ConfigList__list">
 			<slot></slot>
-		</ul>
+		</div>
 		<!-- <hr class="ConfigList__divider"> -->
 	</section>
 </template>

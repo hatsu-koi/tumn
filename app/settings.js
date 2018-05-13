@@ -5,6 +5,7 @@ import Sites from "./layouts/Sites.vue";
 import Statistics from "./layouts/Statistics.vue";
 import Vue from "vue";
 import Vuex from "vuex";
+import VueClickOutside from "v-click-outside";
 import VueI18n from "vue-i18n";
 import VueRipple from "vue-ripple-directive";
 import VueRippleSmall from "./src/VueRippleSmall";
@@ -15,6 +16,7 @@ import "./less/index.less";
 
 Vue.directive('ripple', VueRipple);
 Vue.directive('ripple-small', VueRippleSmall);
+Vue.use(VueClickOutside);
 Vue.use(VueI18n);
 Vue.use(VueRouter);
 Vue.use(Vuex);

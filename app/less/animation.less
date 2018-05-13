@@ -1,0 +1,68 @@
+.Navigate {
+	&-enter-active, &-leave-active {
+		transition: all .3s;
+	}
+
+	&-enter {
+		transform: translateY(100vw);
+	}
+
+	&-leave-to {
+		opacity: .3;
+	}
+}
+
+.Backdrop-fade {
+	&-enter, &-leave-to {
+		opacity: 0;
+	}
+}
+
+.FadeSlide {
+	&-enter-active, &-leave-active {
+		transition: all .4s ease;
+	}
+
+	&-enter {
+		transform: translate(-50px, 0);
+		opacity: 0;
+	}
+
+	&-leave-to {
+		transform: translate(50px, 0);
+		opacity: 0;
+	}
+}
+
+.FadeSlide--vertical {
+	&-enter-active, &-leave-active {
+		transition: all .4s ease;
+	}
+
+	&-enter {
+		transform: translate(-50px, 0);
+		opacity: 0;
+	}
+
+	&-leave-to {
+		transform: translate(50px, 0);
+		opacity: 0;
+	}
+}
+
+.FadeExpand {
+	&-enter-active, &-leave-active {
+		transition: all .4s ease;
+		transform-origin: right top;
+	}
+
+	&-enter {
+		transform: translate(0, -40px) scale(0.7);
+		opacity: 0;
+	}
+
+	&-leave-to {
+		transform: translate(0, 40px);
+		opacity: 0;
+	}
+}
