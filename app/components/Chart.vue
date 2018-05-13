@@ -3,8 +3,8 @@
 		<svg class="Chart__content" viewBox="0 0 1 1" preserveAspectRatio="none">
 			<defs>
 				<linearGradient id="chart-gradient" x1="40%" y1="0%" x2="60%" y2="100%">
-					<stop offset="0%" style="stop-color: var(--theme-chart-1)"></stop>
-					<stop offset="100%" style="stop-color: var(--theme-chart-2)"></stop>
+					<stop offset="0%" style="stop-color: var(--theme-grad-1)"></stop>
+					<stop offset="100%" style="stop-color: var(--theme-grad-2)"></stop>
 				</linearGradient>
 			</defs>
 			<path :d="path" fill="url(#chart-gradient)"></path>

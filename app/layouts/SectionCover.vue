@@ -1,31 +1,31 @@
 <template>
-	<config-list name="Cover">
+	<config-list :name="$t('settings.cover.cover')" slug="cover">
 		<div class="SettingItem">
 			<checkbox v-model="toggleCover" reverse>
-				Toggle revealing by click
+				{{$t('settings.cover.reveal_toggle')}}
 
 				<span slot="description">
-					If you click cover, it will reveal.
+					{{$t('settings.cover.reveal_toggle_desc')}}
 				</span>
 			</checkbox>
 		</div>
 
 		<div class="SettingItem">
 			<slider v-model="opacity">
-				Opacity
+				{{$t('settings.cover.opacity')}}
 
 				<span slot="description">
-					Default opacity of cover.
+					{{$t('settings.cover.opacity_desc')}}
 				</span>
 			</slider>
 		</div>
 
 		<div class="SettingItem">
 			<slider v-model="hoverOpacity">
-				Revealed Opacity
+				{{$t('settings.cover.revealed_opacity')}}
 
 				<span slot="description">
-					Opacity of cover when hovered.
+					{{$t('settings.cover.revealed_opacity_desc')}}
 				</span>
 			</slider>
 		</div>
@@ -33,8 +33,13 @@
 		<div class="SettingItem">
 			<div class="SettingItem__content">
 				<div class="SettingItem__label">
-					<span class="SettingItem__title">Cover</span>
-					<span class="SettingItem__description">Image of cover</span>
+					<span class="SettingItem__title">
+						{{$t('settings.cover.cover')}}
+					</span>
+
+					<span class="SettingItem__description">
+						{{$t('settings.cover.cover_desc')}}
+					</span>
 				</div>
 				<span class="SettingItem__value">{{filter}}</span>
 			</div>
@@ -49,12 +54,13 @@
 				<slide v-for="i in 10" :key="i">
 					<div class="Cover__showcase">
 						<div class="Cover__text">
-							너 느 아버지가&nbsp;
+							{{$t('settings.cover.placeholder_prefix')}}&nbsp;
 							<span class="Tumn__AbuseFilter">
 								<!--TODO add more filters, change getFilter('filter1') -->
 								<div class="Tumn__AbuseFilter__wrap" :style="getFilter('filter1')"></div>
-								고자라지
+								{{$t('settings.cover.placeholder_swear')}}
 							</span>
+							{{$t('settings.cover.placeholder_postfix')}}
 						</div>
 
 						<div class="Cover__content">
@@ -64,7 +70,7 @@
 								v-ripple="'rgba(255, 255, 255, .1)'"
 								@click="setFilter(`filter${i}`)">
 
-								Use
+								{{$t('settings.cover.use')}}
 							</button>
 						</div>
 					</div>
@@ -77,7 +83,9 @@
 						</div>
 
 						<div class="Cover__content">
-							<span class="Cover__title">Upload</span>
+							<span class="Cover__title">
+								{{$t('settings.cover.upload')}}
+							</span>
 						</div>
 					</div>
 				</slide>

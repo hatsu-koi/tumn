@@ -1,0 +1,65 @@
+{
+	"extension": {
+		"current_site": "현재 사이트",
+		"filtering": "필터링",
+		"settings": "설정",
+		"sites": "사이트",
+		"hooks": "진입점",
+		"filters": "필터",
+		"cover": "커버",
+		"active": "{num}개 활성"
+	},
+
+	"settings": {
+		"overview": "개요",
+		"settings": "설정",
+		"sites": "사이트",
+		"stats": "통계",
+		"plugins": "플러그인",
+		"processor": "처리기",
+		"processor_online": "온라인",
+		"processor_offline": "오프라인",
+		"hooks": "진입점",
+		"filters": "필터",
+		"active": "{num}개 활성화됨",
+		"filtered_words": "걸러내진 단어",
+		"web": "웹",
+		"issue": "이슈",
+		"delete": "삭제",
+		"cover": {
+			"reveal_toggle": "커버 들어내기를 클릭으로 토글합니다.",
+			"reveal_toggle_desc": "기본적으로 커서를 위에 올리면 들어냅니다.",
+			"opacity": "투명도",
+			"opacity_desc": "커버의 투명도 입니다.",
+			"revealed_opacity": "들어내진 커버 투명도",
+			"revealed_opacity_desc": "들어내진 커버의 투명도입니다.",
+			"cover": "커버",
+			"cover_desc": "필터된 단어의 커버로 사용될 이미지입니다.",
+			"placeholder_prefix": "너 느 아버지가",
+			"placeholder_swear": "고자라지",
+			"placeholder_postfix": "?",
+			"use": "사용하기",
+			"upload": "업로드"
+		},
+
+		"customization": {
+			"customization": "개인 설정",
+			"theme_color": "테마 색상",
+			"theme_color_desc": "Tumn의 UI에 쓰일 테마 색상입니다.",
+			"theme_font": "테마 글꼴",
+			"theme_font_desc": "Tumn UI에 쓰일 본문 글꼴입니다. (쉼표로 구분된 목록)",
+			"theme_title": "제목 글꼴",
+			"theme_title_desc": "Tumn UI에 쓰일 제목 글꼴입니다. (쉼표로 구분된 목록)",
+			"language": "언어",
+			"language_desc": "UI 상 텍스트의 언어입니다."
+		},
+
+		"child_mode": {
+			"child_mode": "키즈 모드"
+		},
+
+		"troubleshooting": {
+			"troubleshooting": "문제 찾기"
+		}
+	}
+}

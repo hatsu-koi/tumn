@@ -8,22 +8,22 @@
 		<section class="Container">
 			<main-button v-model="filteringActive">
 				<span slot="identifier">
-					100%
+					34%
 				</span>
 			</main-button>
 
 			<section class="Config">
-				<h2>Current Site</h2>
-				<list-menu icon="hook" desc="1 Active" @click="openMenu('hook')">
-					Hooks
+				<h2>{{$t('extension.current_site')}}</h2>
+				<list-menu icon="hook" :desc="$t('extension.active', {num: 1})" @click="openMenu('hook')">
+					{{$t('extension.hooks')}}
 				</list-menu>
 
-				<list-menu icon="filter" desc="3 Active" @click="openMenu('filter')">
-					Filters
+				<list-menu icon="filter" :desc="$t('extension.active', {num: 3})" @click="openMenu('filter')">
+					{{$t('extension.filters')}}
 				</list-menu>
 
-				<list-menu icon="arrange-bring-forward" desc="Blur" @click="openMenu('cover')">
-					Cover
+				<list-menu icon="arrange-bring-forward" desc="filter1" @click="openMenu('cover')">
+					{{$t('extension.cover')}}
 				</list-menu>
 			</section>
 		</section>
@@ -33,7 +33,7 @@
 			<div class="Backdrop" v-if="menuActive" @click="closeMenu()"></div>
 		</transition>
 
-		<sidebar title="Hooks" ref="hook" v-model="menu.hook">
+		<sidebar :title="$t('extension.hooks')" ref="hook" v-model="menu.hook">
 			<tile-options :title="mock.title" :options="mock.options"></tile-options>
 		</sidebar>
 	</app>
@@ -57,7 +57,7 @@
 		align-items: center;
 		height: 100px;
 
-		background: linear-gradient(to right, #478cdc, #12a8bd);
+		background: linear-gradient(to right, var(--theme-grad-1), var(--theme-grad-2));
 
 		&__logo {
 			width: 80px;

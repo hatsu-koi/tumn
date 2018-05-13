@@ -1,0 +1,63 @@
+{
+	"extension": {
+		"current_site": "Current Site",
+		"filtering": "Filtering",
+		"settings": "Settings",
+		"sites": "Sites",
+		"hooks": "Hooks",
+		"filters": "Filters",
+		"cover": "Cover",
+		"active": "{num} Active"
+	},
+
+	"settings": {
+		"overview": "Overview",
+		"settings": "Settings",
+		"sites": "Sites",
+		"stats": "Statistics",
+		"plugins": "Plugins",
+		"processor": "Processor",
+		"processor_online": "Online",
+		"processor_offline": "Offline",
+		"hooks": "Hooks",
+		"filters": "Filters",
+		"cover": "Cover",
+		"active": "{num} Active",
+		"filtered_words": "Filtered Words",
+		"cover": {
+			"reveal_toggle": "Toggle revealing by click",
+			"reveal_toggle_desc": "If you click cover, it will reveal.",
+			"opacity": "Opacity",
+			"opacity_desc": "Default opacity of cover.",
+			"revealed_opacity": "Revealed Opacity",
+			"revealed_opacity_desc": "Opacity of cover when hovered.",
+			"cover": "Cover",
+			"cover_desc": "Image of cover",
+			"placeholder_prefix": "What a piece of ",
+			"placeholder_swear": "shit",
+			"placeholder_postfix": "!",
+			"use": "Use",
+			"upload": "Upload"
+		},
+
+		"customization": {
+			"customization": "Customization",
+			"theme_color": "Theme Color",
+			"theme_color_desc": "Color of Tumn UI",
+			"theme_font": "Theme Font",
+			"theme_font_desc": "Text font of Tumn UI (Comma-seperated list)",
+			"theme_title": "Theme Title Font",
+			"theme_title_desc": "Title font of Tumn UI (Comma-seperated list)",
+			"language": "Language",
+			"language_desc": "Language which will be used in UI"
+		},
+
+		"child_mode": {
+			"child_mode": "Child Mode"
+		},
+
+		"troubleshooting": {
+			"troubleshooting": "Troubleshooting"
+		}
+	}
+}

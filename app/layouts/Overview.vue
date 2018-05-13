@@ -2,41 +2,47 @@
 	<settings-pane class="Overview">
 		<settings-header></settings-header>
 
-		<h1>Overview</h1>
+		<h1>{{$t("settings.overview")}}</h1>
 
 		<div class="Content Scroller Scroller--horizontal" ref="content" @mousewheel="scrollToHorizontal">
 			<div class="Column">
 				<h2 class="Column__title">
-					<i class="mdi mdi-puzzle"></i> Plugins
+					<i class="mdi mdi-puzzle"></i> {{$t("settings.plugins")}}
 				</h2>
 
-				<list-menu icon="hook" desc="1 Active" @click="navigateSetting('hook')" large>
-					Hooks
+				<list-menu icon="hook"
+					:desc="$t('settings.active', {num: 1})"
+					@click="navigateSetting('hook')" large>
+
+					{{$t("settings.hooks")}}
 				</list-menu>
 
-				<list-menu icon="filter" desc="3 Active" @click="navigateSetting('filter')" large>
-					Filters
+				<list-menu icon="filter"
+					:desc="$t('settings.active', {num: 3})"
+					@click="navigateSetting('filter')" large>
+
+					{{$t("settings.filters")}}
 				</list-menu>
 			</div>
 
 			<div class="Column">
 				<h2 class="Column__title">
-					<i class="mdi mdi-cloud"></i> Processor
+					<i class="mdi mdi-cloud"></i> {{$t("settings.processor")}}
 				</h2>
 
 				<span class="Indicator Indicator--online">
 					<i class="mdi mdi-triangle"></i>
-					Online
+					{{$t("settings.processor_online")}}
 				</span>
 
 				<list-menu icon="bug" @click="navigateSetting('trouble-shooting')" large>
-					Troubleshooting
+					{{$t("settings.troubleshooting.troubleshooting")}}
 				</list-menu>
 			</div>
 
 			<div class="Column">
 				<h2 class="Column__title">
-					<i class="mdi mdi-history"></i> Filtered Words
+					<i class="mdi mdi-history"></i> {{$t("settings.filtered_words")}}
 				</h2>
 
 				<span class="Figure">

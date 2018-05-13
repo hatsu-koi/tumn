@@ -3,7 +3,7 @@
 		<div class="MainButton__text">
 			<i class="mdi mdi-check" v-if="active"></i>
 			<i class="mdi mdi-close" v-else></i>
-			Filtering
+			{{$t('extension.filtering')}}
 		</div>
 
 		<div class="MainButton__identifier">

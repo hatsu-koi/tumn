@@ -5,28 +5,28 @@
 				<div class="SideNav__item__block">
 					<img src="../images/logo-inverse.svg">
 				</div>
-				<h1 class="SideNav__title">Overview</h1>
+				<h1 class="SideNav__title">{{$t('settings.overview')}}</h1>
 			</router-link>
 
 			<router-link to="/settings" class="SideNav__item">
 				<div class="SideNav__item__block">
 					<i class="mdi mdi-settings"></i>
 				</div>
-				<h1 class="SideNav__title">Settings</h1>
+				<h1 class="SideNav__title">{{$t('settings.settings')}}</h1>
 			</router-link>
 
 			<router-link to="/sites" class="SideNav__item">
 				<div class="SideNav__item__block">
 					<i class="mdi mdi-format-list-checks"></i>
 				</div>
-				<h1 class="SideNav__title">Sites</h1>
+				<h1 class="SideNav__title">{{$t('settings.sites')}}</h1>
 			</router-link>
 
 			<router-link to="/statistics" class="SideNav__item">
 				<div class="SideNav__item__block">
 					<i class="mdi mdi-chart-donut"></i>
 				</div>
-				<h1 class="SideNav__title">Statistics</h1>
+				<h1 class="SideNav__title">{{$t('settings.stats')}}</h1>
 			</router-link>
 		</nav>
 
@@ -97,7 +97,8 @@
 			visibility: hidden;
 			opacity: 0;
 			transition: visibility 0.4s, opacity 0.4s linear;
-			flex: 0 1 0;
+			flex: 1 0;
+			white-space: nowrap;
 		}
 
 		&:hover {

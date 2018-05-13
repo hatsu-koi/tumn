@@ -1,12 +1,12 @@
 <template>
 	<settings-pane class="Settings">
 		<settings-header>
-			<router-link to="/settings" tag="li">Settings</router-link>
+			<router-link to="/settings" tag="li">{{$t('settings.settings')}}</router-link>
 		</settings-header>
 
-		<h1>Settings</h1>
+		<h1>{{$t('settings.settings')}}</h1>
 
-		<config-list name="Filters" ref="filters">
+		<config-list :name="$t('settings.filters')" slug="filters" ref="filters">
 			<template v-for="i in 3">
 				<tile-options
 					:key="i"
@@ -18,7 +18,7 @@
 			</template>
 		</config-list>
 
-		<config-list name="Hooks" ref="hooks">
+		<config-list :name="$t('settings.hooks')" slug="hooks" ref="hooks">
 			<template v-for="i in 3">
 				<tile-options
 					:key="i"
@@ -33,10 +33,10 @@
 		<section-cover></section-cover>
 		<section-customization></section-customization>
 
-		<config-list name="Child Mode">
+		<config-list :name="$t('settings.child_mode.child_mode')" slug="child-mode">
 		</config-list>
 
-		<config-list name="TroubleShooting">
+		<config-list :name="$t('settings.troubleshooting.troubleshooting')" slug="trouble-shooting">
 		</config-list>
 	</settings-pane>
 </template>

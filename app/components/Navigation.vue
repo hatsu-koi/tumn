@@ -3,14 +3,14 @@
 		<button class="Navigation__button">
 			<span>
 				<i class="mdi mdi-settings"></i>
-				Settings
+				{{$t('extension.settings')}}
 			</span>
 		</button>
 
 		<button class="Navigation__button Navigation__button--active">
 			<span>
 				<i class="mdi mdi-format-list-checks"></i>
-				Sites
+				{{$t('extension.sites')}}
 			</span>
 		</button>
 	</nav>

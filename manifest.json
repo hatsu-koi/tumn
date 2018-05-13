@@ -5,13 +5,13 @@
     "description": "Offers a blurry web for us all.",
     "default_locale": "en",
     "icons": {
-        "16": "app/icons/icon16.png",
-        "24": "app/icons/icon24.png",
-        "32": "app/icons/icon32.png"
+        "16": "app/images/icons/icon16.png",
+        "24": "app/images/icons/icon24.png",
+        "32": "app/images/icons/icon32.png"
     },
     "browser_action": {
-        "default_icon": "app/icons/icon32.png",
-        "default_popup": "app/index.html"
+        "default_icon": "app/images/icons/icon32.png",
+        "default_popup": "app/pages/extension.html"
     },
     "permissions": []
 }

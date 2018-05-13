@@ -31,15 +31,15 @@
 				</span>
 
 				<button class="Button Button--flat" v-ripple="'rgba(0, 0, 0, .1)'">
-					<i class="mdi mdi-alert"></i> Issues
+					<i class="mdi mdi-alert"></i> {{$t('settings.issue')}}
 				</button>
 
 				<button class="Button Button--flat" v-ripple="'rgba(0, 0, 0, .1)'">
-					<i class="mdi mdi-web"></i> Web
+					<i class="mdi mdi-web"></i> {{$t('settings.web')}}
 				</button>
 
 				<button class="Button Button--alert" v-ripple="'rgba(255, 255, 255, .1)'">
-					<i class="mdi mdi-delete"></i> Delete
+					<i class="mdi mdi-delete"></i> {{$t('settings.delete')}}
 				</button>
 			</div>
 		</div>

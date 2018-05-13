@@ -46,12 +46,17 @@
 			name: {
 				type: String,
 				required: true
+			},
+
+			slug: {
+				type: String,
+				default: ""
 			}
 		},
 
 		computed: {
 			hash() {
-				return this.name
+				return this.slug ? this.slug : this.name
 					.replace(/(^[A-Z]|[A-Z]$)/, match => match.toLowerCase())
 					.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
 			}

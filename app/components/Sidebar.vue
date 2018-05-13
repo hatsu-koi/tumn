@@ -38,7 +38,7 @@
 
 			a {
 				color: var(--theme-grey-2);
-				font-family: var(--theme-font);
+				font-family: var(--theme-font-title);
 				font-weight: 200;
 				font-size: 50px;
 				text-decoration: none;
