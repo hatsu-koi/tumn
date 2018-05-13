@@ -35,9 +35,9 @@
 			"revealed_opacity_desc": "Opacity of cover when hovered.",
 			"cover": "Cover",
 			"cover_desc": "Image of cover",
-			"placeholder_prefix": "What a piece of ",
-			"placeholder_swear": "shit",
-			"placeholder_postfix": "!",
+			"placeholder_prefix": "All work and no play makes Jack",
+			"placeholder_swear": "a dull boy",
+			"placeholder_postfix": ".",
 			"use": "Use",
 			"upload": "Upload"
 		},

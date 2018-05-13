@@ -1,14 +1,15 @@
 .Navigate {
 	&-enter-active, &-leave-active {
-		transition: all .3s;
+		transition: all .3s !important;
 	}
 
 	&-enter {
-		transform: translateY(100vw);
+		opacity: 0;
+		transform: translateY(3vh) !important;
 	}
 
 	&-leave-to {
-		opacity: .3;
+		opacity: 0;
 	}
 }
 
@@ -19,22 +20,6 @@
 }
 
 .FadeSlide {
-	&-enter-active, &-leave-active {
-		transition: all .4s ease;
-	}
-
-	&-enter {
-		transform: translate(-50px, 0);
-		opacity: 0;
-	}
-
-	&-leave-to {
-		transform: translate(50px, 0);
-		opacity: 0;
-	}
-}
-
-.FadeSlide--vertical {
 	&-enter-active, &-leave-active {
 		transition: all .4s ease;
 	}

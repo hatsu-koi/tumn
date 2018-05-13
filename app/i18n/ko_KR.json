@@ -37,9 +37,9 @@
 			"revealed_opacity_desc": "들어내진 커버의 투명도입니다.",
 			"cover": "커버",
 			"cover_desc": "필터된 단어의 커버로 사용될 이미지입니다.",
-			"placeholder_prefix": "너 느 아버지가",
-			"placeholder_swear": "고자라지",
-			"placeholder_postfix": "?",
+			"placeholder_prefix": "얘, 너",
+			"placeholder_swear": "배냇병신",
+			"placeholder_postfix": "이지?",
 			"use": "사용하기",
 			"upload": "업로드"
 		},

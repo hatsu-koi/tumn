@@ -92,6 +92,12 @@
 			TextInput
 		},
 
-		computed: bindState('config/customization', ['color', 'font', 'title', 'i18n'])
+		computed: bindState('config/customization', ['color', 'font', 'title', 'i18n']),
+
+		watch: {
+			i18n() {
+				location.reload();
+			}
+		}
 	};
 </script>
