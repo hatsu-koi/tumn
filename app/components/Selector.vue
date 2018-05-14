@@ -1,6 +1,6 @@
 <template>
 	<div class="Selector" :class="{'Selector--open': dropdown}" v-click-outside="hideDropdown">
-		<button type="button" class="Selector__button" @click="toggleDropdown()">
+		<button type="button" class="Selector__button" @click="toggleDropdown()" v-ripple="'rgba(0, 0, 0, .2)'">
 			<span class="Selector__value">{{valueText}}</span>
 			<i class="Selector__icon mdi mdi-chevron-down"></i>
 		</button>
@@ -10,6 +10,7 @@
 				<button class="Selector__item"
 					:class="{'Selector__item--active': item.value === value}"
 					v-for="item in items"
+					v-ripple="'rgba(0, 0, 0, .2)'"
 					@click="setItem(item)">
 
 					{{item.text}}
@@ -109,8 +110,10 @@
 
 		methods: {
 			setItem({value}) {
-				this.$emit('change', value);
-				this.dropdown = false;
+				setTimeout(() => {
+					this.$emit('change', value);
+					this.dropdown = false;
+				}, 500);
 			},
 
 			toggleDropdown() {

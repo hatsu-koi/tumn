@@ -1,68 +1,56 @@
 <template>
 	<config-list :name="$t('settings.customization.customization')" slug="customization">
-		<div class="SettingItem">
-			<div class="SettingItem__content">
-				<div class="SettingItem__label">
-					<span class="SettingItem__title">
-						{{$t('settings.customization.theme_color')}}
-					</span>
-					<span class="SettingItem__description">
-						{{$t('settings.customization.theme_color_desc')}}
-					</span>
-				</div>
+		<setting-item>
+			<span slot="title">
+				{{$t('settings.customization.theme_color')}}
+			</span>
 
-				<color-chooser
-					:palette="['#1e98e9', '#03a9f4', '#00bcd4', '#ffc107', '#ff9800', '#e65100']"
-					v-model="color">
+			<span slot="description">
+				{{$t('settings.customization.theme_color_desc')}}
+			</span>
 
-				</color-chooser>
-			</div>
-		</div>
+			<color-chooser slot="option"
+				:palette="['#1e98e9', '#03a9f4', '#00bcd4', '#ffc107', '#ff9800', '#e65100']"
+				v-model="color">
 
-		<div class="SettingItem">
-			<div class="SettingItem__content">
-				<div class="SettingItem__label">
-					<span class="SettingItem__title">
-						{{$t('settings.customization.theme_font')}}
-					</span>
-					<span class="SettingItem__description">
-						{{$t('settings.customization.theme_font_desc')}}
-					</span>
-				</div>
+			</color-chooser>
+		</setting-item>
 
-				<text-input v-model="font"></text-input>
-			</div>
-		</div>
+		<setting-item>
+			<span slot="title">
+				{{$t('settings.customization.theme_font')}}
+			</span>
 
-		<div class="SettingItem">
-			<div class="SettingItem__content">
-				<div class="SettingItem__label">
-					<span class="SettingItem__title">
-						{{$t('settings.customization.theme_title')}}
-					</span>
-					<span class="SettingItem__description">
-						{{$t('settings.customization.theme_title_desc')}}
-					</span>
-				</div>
+			<span slot="description">
+				{{$t('settings.customization.theme_font_desc')}}
+			</span>
 
-				<text-input v-model="title"></text-input>
-			</div>
-		</div>
+			<text-input slot="option" v-model="font"></text-input>
+		</setting-item>
 
-		<div class="SettingItem">
-			<div class="SettingItem__content">
-				<div class="SettingItem__label">
-					<span class="SettingItem__title">
-						{{$t('settings.customization.language')}}
-					</span>
-					<span class="SettingItem__description">
-						{{$t('settings.customization.language_desc')}}
-					</span>
-				</div>
+		<setting-item>
+			<span slot="title">
+				{{$t('settings.customization.theme_title')}}
+			</span>
 
-				<selector v-model="i18n" :items="items"></selector>
-			</div>
-		</div>
+			<span slot="description">
+				{{$t('settings.customization.theme_title_desc')}}
+			</span>
+
+			<text-input slot="option" v-model="title"></text-input>
+		</setting-item>
+
+		<setting-item>
+			<span slot="title">
+				{{$t('settings.customization.language')}}
+			</span>
+
+			<span slot="description">
+				{{$t('settings.customization.language_desc')}}
+			</span>
+
+			<selector slot="option" v-model="i18n" :items="items"></selector>
+		</setting-item>
 	</config-list>
 </template>
 
@@ -70,6 +58,7 @@
 	import ColorChooser from "../components/ColorChooser.vue";
 	import ConfigList from "../components/ConfigList.vue";
 	import Selector from "../components/Selector.vue";
+	import SettingItem from "../components/SettingItem.vue";
 	import TextInput from "../components/TextInput.vue";
 
 	import {bindState} from '../src/bindState';
@@ -89,6 +78,7 @@
 			ColorChooser,
 			ConfigList,
 			Selector,
+			SettingItem,
 			TextInput
 		},
 

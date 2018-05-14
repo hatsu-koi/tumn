@@ -12,14 +12,14 @@
 
 				<list-menu icon="hook"
 					:desc="$t('settings.active', {num: 1})"
-					@click="navigateSetting('hook')" large>
+					@click="navigateSetting('hooks')" large>
 
 					{{$t("settings.hooks")}}
 				</list-menu>
 
 				<list-menu icon="filter"
 					:desc="$t('settings.active', {num: 3})"
-					@click="navigateSetting('filter')" large>
+					@click="navigateSetting('filters')" large>
 
 					{{$t("settings.filters")}}
 				</list-menu>

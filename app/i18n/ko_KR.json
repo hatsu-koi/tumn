@@ -23,6 +23,8 @@
 		"processor_offline": "오프라인",
 		"hooks": "진입점",
 		"filters": "필터",
+		"need_processor": "프로세서가 오프라인입니다.",
+		"need_processor_cover": "이 설정을 사용하기 위해서는 프로세서가 켜져 있어야 합니다.",
 		"active": "{num}개 활성화됨",
 		"filtered_words": "걸러내진 단어",
 		"web": "웹",
@@ -31,10 +33,10 @@
 		"cover": {
 			"reveal_toggle": "커버 들어내기를 클릭으로 토글합니다.",
 			"reveal_toggle_desc": "기본적으로 커서를 위에 올리면 들어냅니다.",
-			"opacity": "투명도",
-			"opacity_desc": "커버의 투명도 입니다.",
-			"revealed_opacity": "들어내진 커버 투명도",
-			"revealed_opacity_desc": "들어내진 커버의 투명도입니다.",
+			"opacity": "불투명도",
+			"opacity_desc": "커버의 불투명도 입니다.",
+			"revealed_opacity": "들어내진 커버 불투명도",
+			"revealed_opacity_desc": "들어내진 커버의 불투명도입니다.",
 			"cover": "커버",
 			"cover_desc": "필터된 단어의 커버로 사용될 이미지입니다.",
 			"placeholder_prefix": "얘, 너",
@@ -61,7 +63,19 @@
 		},
 
 		"troubleshooting": {
-			"troubleshooting": "문제 찾기"
+			"troubleshooting": "문제 해결",
+			"show_log": "로그 열기",
+			"show_log_desc": "프로세서의 로그파일을 엽니다.",
+			"show_log_button": "열기",
+			"issue": "이슈 사이트",
+			"issue_desc": "Tumn의 알려진 버그를 찾아보거나, 새로 제보합니다.",
+			"issue_button": "열기",
+			"import": "설정 가져오기",
+			"import_desc": "내보내기로 내보내어진 설정 파일을 현재 설정으로 가져옵니다.",
+			"import_button": "가져오기",
+			"export": "설정 내보내기",
+			"export_desc": "현재 설정을 파일로 내보냅니다.",
+			"export_button": "내보내기"
 		}
 	}
 }

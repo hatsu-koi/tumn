@@ -1,10 +1,9 @@
 <template>
-	<section class="ConfigList">
+	<section class="ConfigList" :id="hash">
 		<h2 class="ConfigList__title">{{name}}</h2>
 		<div class="ConfigList__list">
 			<slot></slot>
 		</div>
-		<!-- <hr class="ConfigList__divider"> -->
 	</section>
 </template>
 

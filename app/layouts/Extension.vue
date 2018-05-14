@@ -124,6 +124,8 @@
 	import Sidebar from "../components/Sidebar.vue";
 	import TileOptions from "../components/TileOptions.vue";
 
+	import getMock from "../src/mock";
+
 	export default {
 		data() {
 			return {
@@ -134,28 +136,7 @@
 					cover: false
 				},
 
-				mock: {
-					title: "Khinenw's NN FilterSet",
-					options: [
-						{
-							name: 'MatureContentNN',
-							description: "Filters Mature Content by neural network.",
-							active: false
-						},
-
-						{
-							name: 'SwearwordsNN',
-							description: "Filters Swearwords by neural network.",
-							active: false
-						},
-
-						{
-							name: 'HateSpeechNN',
-							description: "Filters Hate Speeches by neural network.",
-							active: true
-						}
-					]
-				}
+				mock: getMock()
 			};
 		},
 

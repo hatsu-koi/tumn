@@ -8,7 +8,7 @@
 	import Color from "color";
 
 	export default {
-		mounted() {
+		created() {
 			this.$store.watch((state) => state.config.customization.color, (color) => {
 				document.querySelector('html').style.setProperty('--theme-color', color);
 				document.querySelector('html').style.setProperty('--theme-grad-1', color);

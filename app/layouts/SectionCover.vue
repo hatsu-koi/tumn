@@ -1,6 +1,6 @@
 <template>
 	<config-list :name="$t('settings.cover.cover')" slug="cover">
-		<div class="SettingItem">
+		<setting-item nocontent>
 			<checkbox v-model="toggleCover" reverse>
 				{{$t('settings.cover.reveal_toggle')}}
 
@@ -8,9 +8,9 @@
 					{{$t('settings.cover.reveal_toggle_desc')}}
 				</span>
 			</checkbox>
-		</div>
+		</setting-item>
 
-		<div class="SettingItem">
+		<setting-item nocontent>
 			<slider v-model="opacity">
 				{{$t('settings.cover.opacity')}}
 
@@ -18,9 +18,9 @@
 					{{$t('settings.cover.opacity_desc')}}
 				</span>
 			</slider>
-		</div>
+		</setting-item>
 
-		<div class="SettingItem">
+		<setting-item nocontent>
 			<slider v-model="hoverOpacity">
 				{{$t('settings.cover.revealed_opacity')}}
 
@@ -28,21 +28,20 @@
 					{{$t('settings.cover.revealed_opacity_desc')}}
 				</span>
 			</slider>
-		</div>
+		</setting-item>
 
-		<div class="SettingItem">
-			<div class="SettingItem__content">
-				<div class="SettingItem__label">
-					<span class="SettingItem__title">
-						{{$t('settings.cover.cover')}}
-					</span>
+		<setting-item>
+			<span slot="title">
+				{{$t('settings.cover.cover')}}
+			</span>
 
-					<span class="SettingItem__description">
-						{{$t('settings.cover.cover_desc')}}
-					</span>
-				</div>
-				<span class="SettingItem__value">{{filter}}</span>
-			</div>
+			<span slot="description">
+				{{$t('settings.cover.cover_desc')}}
+			</span>
+
+			<span slot="option">
+				{{filter}}
+			</span>
 
 			<carousel class="Cover__carousel"
 				paginationActiveColor="#202020"
@@ -90,7 +89,7 @@
 					</div>
 				</slide>
 			</carousel>
-		</div>
+		</setting-item>
 	</config-list>
 </template>
 
@@ -159,6 +158,7 @@
 	import {Carousel, Slide} from "vue-carousel";
 	import Checkbox from "../components/Checkbox.vue";
 	import ConfigList from "../components/ConfigList.vue";
+	import SettingItem from "../components/SettingItem.vue";
 	import Slider from "../components/Slider.vue";
 
 	import {bindState} from '../src/bindState';
@@ -187,6 +187,7 @@
 			Carousel,
 			Checkbox,
 			ConfigList,
+			SettingItem,
 			Slide,
 			Slider
 		}
