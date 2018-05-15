@@ -22,9 +22,9 @@
 					{{$t('extension.filters')}}
 				</list-menu>
 
-				<list-menu icon="arrange-bring-forward" desc="filter1" @click="openMenu('cover')">
+				<!-- <list-menu icon="arrange-bring-forward" desc="filter1" @click="openMenu('cover')">
 					{{$t('extension.cover')}}
-				</list-menu>
+				</list-menu> -->
 			</section>
 		</section>
 
@@ -34,8 +34,16 @@
 		</transition>
 
 		<sidebar :title="$t('extension.hooks')" ref="hook" v-model="menu.hook">
-			<tile-options :title="mock.title" :options="mock.options"></tile-options>
+			<tile-options v-for="hook in hooks"
+				type="hooks"
+				:key="hook.id"
+				:title="hook.title"
+				:options="hook.options">
+
+			</tile-options>
 		</sidebar>
+
+		<!-- TODO filter sidebar -->
 	</app>
 </template>
 
@@ -124,7 +132,7 @@
 	import Sidebar from "../components/Sidebar.vue";
 	import TileOptions from "../components/TileOptions.vue";
 
-	import getMock from "../src/mock";
+	import {mapState} from "vuex";
 
 	export default {
 		data() {
@@ -134,9 +142,7 @@
 					hook: false,
 					filter: false,
 					cover: false
-				},
-
-				mock: getMock()
+				}
 			};
 		},
 
@@ -162,7 +168,12 @@
 		computed: {
 			menuActive() {
 				return Object.keys(this.menu).some(v => this.menu[v]);
-			}
+			},
+
+			...mapState({
+				filters: state => state.filters.filters,
+				hooks: state => state.hooks.hooks
+			})
 		}
 	};
 </script>

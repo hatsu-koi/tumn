@@ -1,12 +1,13 @@
 <template>
 	<config-list :name="$t('settings.filters')" slug="filters" ref="filters">
-		<template v-if="mock.processor">
-			<tile-options v-for="i in 3"
-				:key="i"
-				:title="mock.title"
-				:options="mock.options"
+		<template v-if="mockProcessor">
+			<tile-options v-for="(filter, index) in filters"
+				type="filters"
+				:key="filter.id"
+				:title="filter.title"
+				:options="filter.options"
 				flatten description editable
-				@open="closeExcept('filters', i - 1)">
+				@open="closeExcept('hooks', index)">
 			</tile-options>
 		</template>
 
@@ -54,12 +55,12 @@
 	import ConfigList from "../components/ConfigList.vue";
 	import TileOptions from "../components/TileOptions.vue";
 
-	import getMock from "../src/mock";
+	import {mapState} from "vuex";
 
 	export default {
 		data() {
 			return {
-				mock: getMock()
+				mockProcessor: false
 			};
 		},
 
@@ -70,6 +71,10 @@
 					.forEach(elem => elem.folded = true);
 			}
 		},
+
+		computed: mapState({
+			filters: state => state.filters.filters
+		}),
 
 		components: {
 			ConfigList,

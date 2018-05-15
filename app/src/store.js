@@ -1,4 +1,6 @@
 import createPersistedState from "vuex-persistedstate";
+import {getMock, getMockHooks} from "./mock";
+import * as mutations from "./mutations";
 import {update} from "./bindState";
 import translation from "./translation";
 
@@ -36,6 +38,92 @@ export default function makeStore() {
 		}
 	};
 
+	// TODO integrate sites, filters, hooks mutations.
+
+	const sites = {
+		namespaced: true,
+
+		state: {
+			sites: [
+				{
+					name: 'Twitter',
+					id: 'twitter1',
+					match: {
+						type: 'Regex',
+						value: '/(?:http|https):\/\/twitter.com\/.*/'
+					},
+					rules: {
+						hooks: [
+							'khinenwhooks.scrollhook',
+							'khinenwhooks.loadhook'
+						],
+
+						filters: [
+							'khinenwnn.swearwords',
+							'khinenwnn.hatespeech'
+						]
+					}
+				}
+			]
+		},
+
+		mutations: {
+			addFilter(state, {id, filterId}) {
+
+			},
+
+			addHook(state, {id, hookId}) {
+
+			},
+
+			removeFilter(state, {id, filterId}) {
+
+			},
+
+			removeHook(state, {id, hookId}) {
+
+			},
+
+			addSite: mutations.addSet('sites'),
+			updateSite: mutations.updateSet('sites'),
+			removeSite: mutations.removeSet('sites')
+		}
+	};
+
+	const filters = {
+		namespaced: true,
+
+		state: {
+			filters: getMock()
+		},
+
+		mutations: {
+			addFilter: mutations.addElem('filters'),
+			updateFilter: mutations.updateElem('filters'),
+			removeFilter: mutations.removeElem('filters'),
+			addFilterSet: mutations.addSet('filters'),
+			updateFilterSet: mutations.updateSet('filters'),
+			removeFilterSet: mutations.removeSet('filters')
+		}
+	};
+
+	const hooks = {
+		namespaced: true,
+
+		state: {
+			hooks: getMockHooks()
+		},
+
+		mutations: {
+			addFilter: mutations.addElem('hooks'),
+			updateFilter: mutations.updateElem('hooks'),
+			removeFilter: mutations.removeElem('hooks'),
+			addFilterSet: mutations.addSet('hooks'),
+			updateFilterSet: mutations.updateSet('hooks'),
+			removeFilterSet: mutations.removeSet('hooks')
+		}
+	};
+
 	const config = {
 		namespaced: true,
 
@@ -47,7 +135,10 @@ export default function makeStore() {
 
 	const store = new Vuex.Store({
 		modules: {
-			config
+			config,
+			filters,
+			hooks,
+			sites
 		},
 
 		plugins: [createPersistedState()]

@@ -52,7 +52,8 @@ module.exports = {
 						'js': {
 							loader: 'babel-loader',
 							options: {
-								presets: ['env']
+								presets: ['env'],
+								plugins: ['transform-object-rest-spread']
 							}
 						}
 					}
@@ -63,7 +64,8 @@ module.exports = {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				options: {
-					presets: ['env']
+					presets: ['env'],
+					plugins: ['transform-object-rest-spread']
 				},
 				exclude: /node_modules/
 			},

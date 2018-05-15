@@ -17,7 +17,12 @@
 		</header>
 
 		<div class="TileOptions__options" ref="options">
-			<checkbox class="ListSelector" v-for="option in options" :key="option.name" v-model="option.active">
+			<checkbox class="ListSelector"
+				v-for="option in options"
+				:key="option.name"
+				:checked="option.active"
+				@change="updateElem(option)">
+
 				{{option.name}}
 
 				<span slot="description" v-if="description">
@@ -148,6 +153,11 @@
 				required: true
 			},
 
+			type: {
+				type: String,
+				required: true
+			},
+
 			description: Boolean,
 			flatten: Boolean,
 			editable: Boolean
@@ -157,6 +167,14 @@
 			toggle() {
 				this.folded = !this.folded;
 				if(!this.folded) this.$emit('open');
+			},
+
+			updateElem(option) {
+				this.$store.commit(`${this.type}/updateElem`, {
+					id: option.id,
+					key: 'active',
+					value: !option.value
+				});
 			}
 		},
 
