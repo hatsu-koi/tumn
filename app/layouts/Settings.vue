@@ -16,7 +16,6 @@
 	import SectionFilters from "./SectionFilters.vue";
 	import SectionHooks from "./SectionHooks.vue";
 	import SectionTroubleshooting from "./SectionTroubleshooting.vue";
-	import SettingsHeader from "../components/SettingsHeader.vue";
 	import SettingsPane from "../components/SettingsPane.vue";
 
 	export default {
@@ -26,7 +25,6 @@
 			SectionFilters,
 			SectionHooks,
 			SectionTroubleshooting,
-			SettingsHeader,
 			SettingsPane
 		},
 

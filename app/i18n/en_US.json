@@ -21,6 +21,8 @@
 		"processor": "Processor",
 		"processor_online": "Online",
 		"processor_offline": "Offline",
+		"need_processor": "Processor is offline.",
+		"need_processor_cover": "To use this setting, the processor should be turned on.",
 		"hooks": "Hooks",
 		"filters": "Filters",
 		"cover": "Cover",
@@ -59,7 +61,23 @@
 		},
 
 		"troubleshooting": {
-			"troubleshooting": "Troubleshooting"
+			"troubleshooting": "Troubleshooting",
+			"show_log": "Open log",
+			"show_log_desc": "Open the log file of the processor.",
+			"show_log_button": "Open",
+			"issue": "Issues",
+			"issue_desc": "Look for known bugs of Tumn or report a new one.",
+			"issue_button": "Open",
+			"import": "Import Settings",
+			"import_desc": "Import settings from exported file.",
+			"import_button": "Import",
+			"export": "Export Settings",
+			"export_desc": "Export settings into a file.",
+			"export_button": "Export"
 		}
+	},
+
+	"sites": {
+		"sites": "Sites"
 	}
 }

@@ -119,14 +119,12 @@
 <script>
 	import Chart from "../components/Chart.vue";
 	import ListMenu from "../components/ListMenu.vue";
-	import SettingsHeader from "../components/SettingsHeader.vue";
 	import SettingsPane from "../components/SettingsPane.vue";
 
 	export default {
 		components: {
 			Chart,
 			ListMenu,
-			SettingsHeader,
 			SettingsPane
 		},
 

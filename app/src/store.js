@@ -38,8 +38,6 @@ export default function makeStore() {
 		}
 	};
 
-	// TODO integrate sites, filters, hooks mutations.
-
 	const sites = {
 		namespaced: true,
 
