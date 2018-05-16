@@ -1,7 +1,5 @@
 <template>
 	<settings-pane class="Overview">
-		<settings-header></settings-header>
-
 		<h1>{{$t("settings.overview")}}</h1>
 
 		<div class="Content Scroller Scroller--horizontal" ref="content" @mousewheel="scrollToHorizontal">
@@ -119,7 +117,6 @@
 </style>
 
 <script>
-	import Breadcrumb from "../components/Breadcrumb.vue";
 	import Chart from "../components/Chart.vue";
 	import ListMenu from "../components/ListMenu.vue";
 	import SettingsHeader from "../components/SettingsHeader.vue";
@@ -127,7 +124,6 @@
 
 	export default {
 		components: {
-			Breadcrumb,
 			Chart,
 			ListMenu,
 			SettingsHeader,

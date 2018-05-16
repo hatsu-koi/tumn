@@ -1,9 +1,5 @@
 <template>
 	<settings-pane class="Settings">
-		<settings-header>
-			<router-link to="/settings" tag="li">{{$t('settings.settings')}}</router-link>
-		</settings-header>
-
 		<h1>{{$t('settings.settings')}}</h1>
 
 		<section-filters></section-filters>
@@ -15,7 +11,6 @@
 </template>
 
 <script>
-	import Breadcrumb from "../components/Breadcrumb.vue";
 	import SectionCover from "./SectionCover.vue";
 	import SectionCustomization from "./SectionCustomization.vue";
 	import SectionFilters from "./SectionFilters.vue";
@@ -26,7 +21,6 @@
 
 	export default {
 		components: {
-			Breadcrumb,
 			SectionCover,
 			SectionCustomization,
 			SectionFilters,
@@ -44,7 +38,7 @@
 			if(!elem) return;
 
 			console.log(elem.scrollTop);
-			
+
 			const scrollPane = this.$el;
 			scrollPane.scroll({
 				top: elem.offsetTop,
