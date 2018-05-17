@@ -158,6 +158,11 @@
 				required: true
 			},
 
+			update: {
+				type: Function,
+				default: null
+			},
+
 			description: Boolean,
 			flatten: Boolean,
 			editable: Boolean
@@ -170,11 +175,15 @@
 			},
 
 			updateElem(option) {
-				this.$store.commit(`${this.type}/updateElem`, {
-					id: option.id,
-					key: 'active',
-					value: !option.value
-				});
+				if(!this.update) {
+					this.$store.commit(`${this.type}/updateElem`, {
+						id: option.id,
+						key: 'active',
+						value: !option.value
+					});
+				} else {
+					this.update();
+				}
 			}
 		},
 

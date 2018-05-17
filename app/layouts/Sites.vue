@@ -20,8 +20,7 @@
 				</button>
 			</aside>
 
-			<div class="Options">
-			</div>
+			<site-rule :rule="activeRule" class="Options"></site-rule>
 		</div>
 	</settings-pane>
 </template>
@@ -89,6 +88,7 @@
 
 <script>
 	import SettingsPane from "../components/SettingsPane.vue";
+	import SiteRule from "../components/SiteRule.vue";
 
 	import {mapState} from "vuex";
 
@@ -110,7 +110,8 @@
 		},
 
 		components: {
-			SettingsPane
+			SettingsPane,
+			SiteRule
 		}
 	};
 </script>

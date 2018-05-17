@@ -1,5 +1,5 @@
 <template>
-	<label class="TextInput">
+	<label class="TextInput" :class="{'TextInput--fill': fill}">
 		<input ref="input"
 			class="TextInput__input"
 			v-model="_content"
@@ -24,6 +24,11 @@
 
 		*::selection {
 			background: rgba(0, 0, 0, .2);
+		}
+
+		&--fill {
+			max-width: none;
+			flex: 1;
 		}
 
 		&__input {
@@ -75,6 +80,7 @@
 			autocomplete: Boolean,
 			required: Boolean,
 			novalidate: Boolean,
+			fill: Boolean,
 			content: String,
 
 			type: {
