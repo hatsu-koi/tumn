@@ -4,22 +4,11 @@ import Settings from "./layouts/Settings.vue";
 import Sites from "./layouts/Sites.vue";
 import Statistics from "./layouts/Statistics.vue";
 import Vue from "vue";
-import Vuex from "vuex";
-import VueClickOutside from "v-click-outside";
-import VueI18n from "vue-i18n";
-import VueRipple from "vue-ripple-directive";
-import VueRippleSmall from "./src/VueRippleSmall";
 import VueRouter from "vue-router";
 
-import makeStore from "./src/store";
-import "./less/index.less";
+import init from "./src/init";
 
-Vue.directive('ripple', VueRipple);
-Vue.directive('ripple-small', VueRippleSmall);
-Vue.use(VueClickOutside);
-Vue.use(VueI18n);
 Vue.use(VueRouter);
-Vue.use(Vuex);
 
 const router = new VueRouter({
 	routes: [
@@ -31,14 +20,4 @@ const router = new VueRouter({
 	]
 });
 
-const {store, i18n} = makeStore();
-
-new Vue({
-	el: '#app',
-	router,
-	store,
-	i18n,
-	render(h) {
-		return h(SettingFrame);
-	}
-});
+init(SettingFrame, {router});

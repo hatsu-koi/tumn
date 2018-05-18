@@ -42,6 +42,7 @@
 			display: flex;
 			cursor: pointer;
 			width: 100%;
+			height: 100%;
 			color: var(--theme-grey-1);
 			font-family: var(--theme-font);
 			font-size: 1.1rem;
@@ -63,6 +64,7 @@
 			padding: 0;
 			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
 			margin: 0;
+			z-index: 2;
 		}
 
 		&__item {
@@ -80,8 +82,13 @@
 			}
 
 			&--active {
-				color: var(--theme-color);
-				font-weight: 600;
+				background: var(--theme-grey-7);
+				//color: var(--theme-color);
+				//font-weight: 600;
+
+				&:hover {
+					background: var(--theme-grey-7);
+				}
 			}
 		}
 	}
@@ -110,10 +117,8 @@
 
 		methods: {
 			setItem({value}) {
-				setTimeout(() => {
-					this.$emit('change', value);
-					this.dropdown = false;
-				}, 500);
+				this.$emit('change', value);
+				this.dropdown = false;
 			},
 
 			toggleDropdown() {

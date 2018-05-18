@@ -1,6 +1,6 @@
 <template>
 	<div class="RuleItem">
-		<div class="RuleItem__content" v-if="!nocontent">
+		<div class="RuleItem__content">
 			<div class="RuleItem__label">
 				<span class="RuleItem__title">
 					<slot name="title"></slot>
@@ -44,7 +44,7 @@
 			color: var(--theme-grey-4);
 			font-size: 12px;
 			margin-top: 4px;
-			margin-bottom: 8px;
+			margin-bottom: 16px;
 		}
 	}
 </style>

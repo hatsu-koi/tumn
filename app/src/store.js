@@ -2,10 +2,8 @@ import createPersistedState from "vuex-persistedstate";
 import {getMock, getMockHooks} from "./mock";
 import * as mutations from "./mutations";
 import {update} from "./bindState";
-import translation from "./translation";
 
 import Vuex from "vuex";
-import VueI18n from "vue-i18n";
 
 export default function makeStore() {
 	const customization = {
@@ -52,8 +50,8 @@ export default function makeStore() {
 					},
 					rules: {
 						hooks: [
-							'khinenwhooks.scrollhook',
-							'khinenwhooks.loadhook'
+							'khinenwhooks.scroll',
+							'khinenwhooks.load'
 						],
 
 						filters: [
@@ -80,6 +78,16 @@ export default function makeStore() {
 
 			removeHook(state, {id, hookId}) {
 
+			},
+
+			setMatcher(state, {id, type, value}) {
+				if(type) {
+
+				}
+
+				if(value) {
+
+				}
 			},
 
 			addSite: mutations.addSet('sites'),
@@ -139,13 +147,11 @@ export default function makeStore() {
 			sites
 		},
 
-		plugins: [createPersistedState()]
+		plugins: [createPersistedState({
+			key: 'tumn-settings',
+			paths: ['config', 'sites']
+		})]
 	});
 
-	const i18n = new VueI18n({
-		locale: store.state.config.customization.i18n,
-		messages: translation
-	});
-
-	return {store, i18n};
+	return store;
 };

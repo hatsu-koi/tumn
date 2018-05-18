@@ -20,7 +20,7 @@
 			<checkbox class="ListSelector"
 				v-for="option in options"
 				:key="option.name"
-				:checked="option.active"
+				:checked="isActive(option)"
 				@change="updateElem(option)">
 
 				{{option.name}}
@@ -153,6 +153,11 @@
 				required: true
 			},
 
+			enabledOptions: {
+				type: Array,
+				default: null
+			},
+
 			type: {
 				type: String,
 				required: true
@@ -184,6 +189,13 @@
 				} else {
 					this.update();
 				}
+			},
+
+			isActive(option) {
+				if(Array.isArray(this.enabledOptions))
+					return this.enabledOptions.includes(option.id);
+
+				return option.active;
 			}
 		},
 

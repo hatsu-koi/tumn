@@ -3,7 +3,7 @@
 export const bindState = (namespace, options) => {
 	if(Array.isArray(options)) {
 		options = options.reduce((prev, curr) => {
-			prev[curr] = {};
+			prev[curr] = undefined;
 			return prev;
 		}, {});
 	}
@@ -14,17 +14,18 @@ export const bindState = (namespace, options) => {
 			get() {
 				const base = namespace.split('/').reduce((prev, curr) => prev[curr], this.$store.state);
 
-				if(options[key].getter) {
+				if(options[key] && options[key].getter)
 					return options[key].getter(base);
-				}
 
 				return base[key];
 			},
 
 			set(value) {
-				if(options[key].setter){
+				if(typeof options[key] === 'function')
+					return options[key](this.$store, value);
+				
+				if(options[key] && options[key].setter)
 					return options[key].setter(this.$store, value);
-				}
 
 				this.$store.commit(`${namespace}/update`, {label: key, value});
 			}

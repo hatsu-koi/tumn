@@ -20,7 +20,7 @@
 				</button>
 			</aside>
 
-			<site-rule :rule="activeRule" class="Options"></site-rule>
+			<site-rule :rule-id="activeRule" class="Options"></site-rule>
 		</div>
 	</settings-pane>
 </template>
@@ -30,6 +30,7 @@
 		flex: 1;
 		display: flex;
 		align-items: stretch;
+		height: 100vh;
 	}
 
 	.SiteList {
