@@ -15,40 +15,51 @@
 			<span slot="description">{{$t('sites.match_desc')}}</span>
 
 
-			<div class="Row">
-				<selector v-model="matchType" :items="matchSelector"></selector>
-				<text-input v-model="match" :placeholder="$t('sites.match_input')" fill></text-input>
+			<div class="Row Match">
+				<selector class="Match__selector" v-model="matchType" :items="matchSelector"></selector>
+
+				<text-input class="Match__text"
+					v-model="match"
+					:placeholder="$t('sites.match_input')" fill>
+
+				</text-input>
 			</div>
 		</rule-item>
 
-		<rule-item>
+		<rule-item ref="filter">
 			<span slot="title">{{$t('sites.filters')}}</span>
 			<span slot="description">{{$t('sites.filters_desc')}}</span>
 
-			<tile-options v-for="filter in filters"
-				:key="filter.id"
-				:title="filter.title"
-				:options="filter.options"
-				:enabled-options="rule.rules.filters"
-				:update="updateFilter"
-				type="filter" flatten>
+			<div class="TileOptionsList">
+				<tile-options v-for="(filter, index) in filters"
+					:key="filter.id"
+					:title="filter.title"
+					:options="filter.options"
+					:update="updateFilter"
+					:enabled-options="rule.rules.filters"
+					@open="closeExcept('filter', index)"
+					type="filter" flatten description>
 
-			</tile-options>
+				</tile-options>
+			</div>
 		</rule-item>
 
-		<rule-item>
+		<rule-item ref="hook">
 			<span slot="title">{{$t('sites.hooks')}}</span>
 			<span slot="description">{{$t('sites.hooks_desc')}}</span>
 
-			<tile-options v-for="hook in hooks"
-				:key="hook.id"
-				:title="hook.title"
-				:options="hook.options"
-				:update="updateHook"
-				:enabled-options="rule.rules.hooks"
-				type="hook" flatten>
+			<div class="TileOptionsList">
+				<tile-options v-for="(hook, index) in hooks"
+					:key="hook.id"
+					:title="hook.title"
+					:options="hook.options"
+					:update="updateHook"
+					:enabled-options="rule.rules.hooks"
+					@open="closeExcept('hook', index)"
+					type="hook" flatten description>
 
-			</tile-options>
+				</tile-options>
+			</div>
 		</rule-item>
 	</div>
 </template>
@@ -71,14 +82,26 @@
 	.Row {
 		display: flex;
 	}
+
+	.Match {
+		&__selector {
+			flex: 1;
+			margin-right: 0;
+		}
+
+		&__text {
+			flex: 2;
+			margin-left: 0;
+		}
+	}
 </style>
 
 <script>
-	import Checkbox from "./Checkbox.vue";
-	import RuleItem from "./RuleItem.vue";
-	import Selector from "./Selector.vue";
-	import TextInput from "./TextInput.vue";
-	import TileOptions from "./TileOptions.vue";
+	import Checkbox from "../components/Checkbox.vue";
+	import RuleItem from "../components/RuleItem.vue";
+	import Selector from "../components/Selector.vue";
+	import TextInput from "../components/TextInput.vue";
+	import TileOptions, {closeExcept} from "../components/TileOptions.vue";
 
 	import {mapState} from "vuex";
 	import bindState from "../src/bindState";
@@ -149,6 +172,8 @@
 		},
 
 		methods: {
+			closeExcept,
+
 			updateFilter() {
 
 			},

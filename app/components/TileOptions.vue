@@ -210,5 +210,11 @@
 			Tile,
 			Checkbox
 		}
-	}
+	};
+
+	export function closeExcept(name, target) {
+		this.$refs[name].$children
+			.filter((_, i) => i !== target)
+			.forEach(elem => elem.folded = true);
+	};
 </script>

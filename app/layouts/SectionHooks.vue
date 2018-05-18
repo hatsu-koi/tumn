@@ -28,18 +28,13 @@
 
 <script>
 	import ConfigList from "../components/ConfigList.vue";
-	import TileOptions from "../components/TileOptions.vue";
+	import TileOptions, {closeExcept} from "../components/TileOptions.vue";
 
 	import {mapState} from "vuex";
 
 	export default {
 		methods: {
-			closeExcept(name, target) {
-				console.log(target);
-				this.$refs[name].$children
-					.filter((_, i) => i !== target)
-					.forEach(elem => elem.folded = true);
-			}
+			closeExcept
 		},
 
 		computed: mapState({

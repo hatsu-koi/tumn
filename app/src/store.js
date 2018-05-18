@@ -46,7 +46,7 @@ export default function makeStore() {
 					id: 'twitter1',
 					match: {
 						type: 'Regex',
-						value: '/(?:http|https):\/\/twitter.com\/.*/'
+						value: String.raw`/(?:http|https):\/\/twitter.com\/.*/`
 					},
 					rules: {
 						hooks: [

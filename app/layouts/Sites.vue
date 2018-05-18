@@ -50,12 +50,10 @@
 		}
 
 		&__button {
-			display: flex;
+			height: 50px;
+
 			color: var(--theme-grey-2);
 			background: var(--theme-grey-7);
-			height: 50px;
-			align-items: center;
-			justify-content: center;
 			font-size: 1.1rem;
 
 			&--active {
@@ -89,7 +87,7 @@
 
 <script>
 	import SettingsPane from "../components/SettingsPane.vue";
-	import SiteRule from "../components/SiteRule.vue";
+	import SiteRule from "./SiteRule.vue";
 
 	import {mapState} from "vuex";
 

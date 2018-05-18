@@ -72,7 +72,7 @@
 			color: var(--theme-grey-1);
 			font-family: var(--theme-font);
 			font-size: 1.1rem;
-			padding: 15px 30px;
+			padding: 15px 0;
 			border: none;
 			cursor: pointer;
 			outline: none;
