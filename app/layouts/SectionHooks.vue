@@ -7,6 +7,7 @@
 				:key="hook.id"
 				:title="hook.title"
 				:options="hook.options"
+				:enabled-options="activeHooks"
 				flatten description editable
 				@open="closeExcept('hooks', index)">
 			</tile-options>
@@ -38,7 +39,8 @@
 		},
 
 		computed: mapState({
-			hooks: state => state.hooks.hooks
+			hooks: state => state.hooks.hooks,
+			activeHooks: state => state.hooks.active
 		}),
 
 		components: {

@@ -8,21 +8,18 @@ export function getMock() {
 					name: 'MatureContentNN',
 					id: "khinenwnn.maturecontent",
 					description: "Filters Mature Content by neural network.",
-					active: false
 				},
 
 				{
 					name: 'SwearwordsNN',
 					id: "khinenwnn.swearwords",
 					description: "Filters Swearwords by neural network.",
-					active: false
 				},
 
 				{
 					name: 'HateSpeechNN',
 					id: "khinenwnn.hatespeech",
 					description: "Filters Hate Speeches by neural network.",
-					active: true
 				}
 			]
 		}
@@ -39,14 +36,12 @@ export function getMockHooks() {
 					name: 'ScrollHook',
 					id: "khinenwhooks.scroll",
 					description: "Filters elements in user's screen. Activated at scroll and load.",
-					active: false
 				},
 
 				{
 					name: 'LoadHook',
 					id: "khinenwhooks.load",
 					description: "Filters all elements when the site is loaded.",
-					active: false
 				}
 			]
 		}

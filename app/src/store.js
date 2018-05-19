@@ -1,9 +1,19 @@
+import * as actions from "./actions";
+import * as mutations from "./mutations";
+
 import createPersistedState from "vuex-persistedstate";
 import {getMock, getMockHooks} from "./mock";
-import * as mutations from "./mutations";
 import {update} from "./bindState";
 
 import Vuex from "vuex";
+
+const applyAll = targetObject => (...args) => Object.keys(targetObject).reduce((prev, key) => {
+	prev[key] = targetObject[key](...args);
+	return prev;
+}, {});
+
+const getMutations = applyAll(mutations);
+const getActions = applyAll(actions);
 
 export default function makeStore() {
 	const customization = {
@@ -65,7 +75,7 @@ export default function makeStore() {
 
 		mutations: {
 			addRuleContent(state, {id, type, contentId}) {
-				if(type !== 'filters' || type !== 'hooks') return;
+				if(type !== 'filters' && type !== 'hooks') return;
 
 				const rules = state.sites.find(v => v.id === id);
 				if(!rules) return;
@@ -75,7 +85,7 @@ export default function makeStore() {
 			},
 
 			removeRuleContent(state, {id, type, contentId}) {
-				if(type !== 'filters' || type !== 'hooks') return;
+				if(type !== 'filters' && type !== 'hooks') return;
 
 				const rules = state.sites.find(v => v.id === id);
 				if(!rules) return;
@@ -84,6 +94,15 @@ export default function makeStore() {
 				if(contentIndex < 0) return;
 
 				rules.rules[type].splice(contentIndex, 1);
+			},
+
+			removeRuleContentFromAll(state, {type, contentId}) {
+				state.sites.forEach(rule => {
+					const contentIndex = rule.rules[type].indexOf(contentId);
+					if(contentIndex < 0) return;
+
+					rule.rules[type].splice(contentIndex, 1);
+				});
 			},
 
 			setMatcher(state, {id, type, value}) {
@@ -101,7 +120,7 @@ export default function makeStore() {
 
 			addSite: mutations.addSet('sites'),
 			updateSite: mutations.updateSet('sites'),
-			removeSite: mutations.removeSet('sites')
+			removeSite: mutations.removeSet('sites', false)
 		}
 	};
 
@@ -109,34 +128,24 @@ export default function makeStore() {
 		namespaced: true,
 
 		state: {
-			filters: getMock()
+			filters: getMock(),
+			active: []
 		},
 
-		mutations: {
-			addElem: mutations.addElem('filters'),
-			updateElem: mutations.updateElem('filters'),
-			removeElem: mutations.removeElem('filters'),
-			addElemSet: mutations.addSet('filters'),
-			updateElemSet: mutations.updateSet('filters'),
-			removeElemSet: mutations.removeSet('filters')
-		}
+		mutations: getMutations('filters'),
+		actions: getActions('filters')
 	};
 
 	const hooks = {
 		namespaced: true,
 
 		state: {
-			hooks: getMockHooks()
+			hooks: getMockHooks(),
+			active: []
 		},
 
-		mutations: {
-			addElem: mutations.addElem('hooks'),
-			updateElem: mutations.updateElem('hooks'),
-			removeElem: mutations.removeElem('hooks'),
-			addElemSet: mutations.addSet('hooks'),
-			updateElemSet: mutations.updateSet('hooks'),
-			removeElemSet: mutations.removeSet('hooks')
-		}
+		mutations: getMutations('hooks'),
+		actions: getActions('hooks')
 	};
 
 	const config = {
@@ -158,7 +167,7 @@ export default function makeStore() {
 
 		plugins: [createPersistedState({
 			key: 'tumn-settings',
-			paths: ['config', 'sites']
+			paths: ['config', 'filters.active', 'hooks.active', 'sites']
 		})]
 	});
 

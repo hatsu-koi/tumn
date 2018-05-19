@@ -43,7 +43,10 @@
 					<i class="mdi mdi-web"></i> {{$t('settings.web')}}
 				</button>
 
-				<button class="Button Button--alert" v-ripple="'rgba(255, 255, 255, .1)'">
+				<button class="Button Button--alert"
+					v-ripple="'rgba(255, 255, 255, .1)'"
+					@click="deleteOption()">
+
 					<i class="mdi mdi-delete"></i> {{$t('settings.delete')}}
 				</button>
 			</div>
@@ -181,14 +184,18 @@
 
 			updateElem(option) {
 				if(!this.update) {
-					this.$store.commit(`${this.type}/updateElem`, {
+					this.$store.commit(`${this.type}/activateElem`, {
 						elemId: option.id,
-						key: 'active',
-						value: !option.active
+						active: !this.isActive(option)
 					});
 				} else {
-					this.update();
+					this.update(option, !this.isActive(option));
 				}
+			},
+
+			deleteOption() {
+				this.$store.dispatch(`${this.type}/removeSet`, {
+				});
 			},
 
 			isActive(option) {

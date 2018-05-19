@@ -34,6 +34,8 @@
 		</transition>
 
 		<sidebar :title="$t('extension.hooks')" ref="hook" v-model="menu.hook">
+			<!-- TODO change into rules hooks -->
+			<!-- TODO if there is no rules about this site(*://subdomain.domain.tld/*), create new -->
 			<tile-options v-for="hook in hooks"
 				type="hooks"
 				:key="hook.id"

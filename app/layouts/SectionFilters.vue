@@ -6,6 +6,7 @@
 				:key="filter.id"
 				:title="filter.title"
 				:options="filter.options"
+				:enabled-options="activeFilters"
 				flatten description editable
 				@open="closeExcept('hooks', index)">
 			</tile-options>
@@ -69,7 +70,8 @@
 		},
 
 		computed: mapState({
-			filters: state => state.filters.filters
+			filters: state => state.filters.filters,
+			activeFilters: state => state.filters.active
 		}),
 
 		components: {

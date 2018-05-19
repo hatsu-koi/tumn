@@ -35,7 +35,7 @@
 					:key="filter.id"
 					:title="filter.title"
 					:options="filter.options"
-					:update="updateFilter"
+					:update="updateContent('filters')"
 					:enabled-options="rule.rules.filters"
 					@open="closeExcept('filter', index)"
 					type="filter" flatten description>
@@ -53,13 +53,19 @@
 					:key="hook.id"
 					:title="hook.title"
 					:options="hook.options"
-					:update="updateHook"
+					:update="updateContent('hooks')"
 					:enabled-options="rule.rules.hooks"
 					@open="closeExcept('hook', index)"
 					type="hook" flatten description>
 
 				</tile-options>
 			</div>
+		</rule-item>
+
+		<rule-item ref="hook">
+			<button class="Button">
+				{{$t('sites.remove')}}
+			</button>
 		</rule-item>
 	</div>
 </template>
@@ -174,12 +180,20 @@
 		methods: {
 			closeExcept,
 
-			updateFilter() {
-				
-			},
+			updateContent(contentName) {
+				return (option, active) => {
+					let target = 'sites/removeRuleContent';
 
-			updateHook() {
+					if(active) {
+						target = 'sites/addRuleContent';
+					}
 
+					this.$store.commit(target, {
+						id: this.ruleId,
+						type: contentName,
+						contentId: option.id
+					});
+				};
 			}
 		},
 
