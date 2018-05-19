@@ -175,7 +175,7 @@
 			closeExcept,
 
 			updateFilter() {
-
+				
 			},
 
 			updateHook() {

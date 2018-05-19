@@ -64,29 +64,38 @@ export default function makeStore() {
 		},
 
 		mutations: {
-			addFilter(state, {id, filterId}) {
+			addRuleContent(state, {id, type, contentId}) {
+				if(type !== 'filters' || type !== 'hooks') return;
 
+				const rules = state.sites.find(v => v.id === id);
+				if(!rules) return;
+
+				if(rules.rules[type].indexOf(contentId) < 0)
+					rules.rules[type].push(contentId);
 			},
 
-			addHook(state, {id, hookId}) {
+			removeRuleContent(state, {id, type, contentId}) {
+				if(type !== 'filters' || type !== 'hooks') return;
 
-			},
+				const rules = state.sites.find(v => v.id === id);
+				if(!rules) return;
 
-			removeFilter(state, {id, filterId}) {
+				const contentIndex = rules.rules[type].indexOf(contentId);
+				if(contentIndex < 0) return;
 
-			},
-
-			removeHook(state, {id, hookId}) {
-
+				rules.rules[type].splice(contentIndex, 1);
 			},
 
 			setMatcher(state, {id, type, value}) {
-				if(type) {
+				const rules = state.sites.find(v => v.id === id);
+				if(!rules) return;
 
+				if(type) {
+					rules.match.type = type;
 				}
 
 				if(value) {
-
+					rules.match.value = value;
 				}
 			},
 
@@ -104,12 +113,12 @@ export default function makeStore() {
 		},
 
 		mutations: {
-			addFilter: mutations.addElem('filters'),
-			updateFilter: mutations.updateElem('filters'),
-			removeFilter: mutations.removeElem('filters'),
-			addFilterSet: mutations.addSet('filters'),
-			updateFilterSet: mutations.updateSet('filters'),
-			removeFilterSet: mutations.removeSet('filters')
+			addElem: mutations.addElem('filters'),
+			updateElem: mutations.updateElem('filters'),
+			removeElem: mutations.removeElem('filters'),
+			addElemSet: mutations.addSet('filters'),
+			updateElemSet: mutations.updateSet('filters'),
+			removeElemSet: mutations.removeSet('filters')
 		}
 	};
 
@@ -121,12 +130,12 @@ export default function makeStore() {
 		},
 
 		mutations: {
-			addFilter: mutations.addElem('hooks'),
-			updateFilter: mutations.updateElem('hooks'),
-			removeFilter: mutations.removeElem('hooks'),
-			addFilterSet: mutations.addSet('hooks'),
-			updateFilterSet: mutations.updateSet('hooks'),
-			removeFilterSet: mutations.removeSet('hooks')
+			addElem: mutations.addElem('hooks'),
+			updateElem: mutations.updateElem('hooks'),
+			removeElem: mutations.removeElem('hooks'),
+			addElemSet: mutations.addSet('hooks'),
+			updateElemSet: mutations.updateSet('hooks'),
+			removeElemSet: mutations.removeSet('hooks')
 		}
 	};
 

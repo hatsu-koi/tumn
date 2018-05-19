@@ -182,9 +182,9 @@
 			updateElem(option) {
 				if(!this.update) {
 					this.$store.commit(`${this.type}/updateElem`, {
-						id: option.id,
+						elemId: option.id,
 						key: 'active',
-						value: !option.value
+						value: !option.active
 					});
 				} else {
 					this.update();
