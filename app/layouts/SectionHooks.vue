@@ -1,51 +1,23 @@
 <template>
 	<config-list :name="$t('settings.hooks')" slug="hooks" ref="hooks">
-		<template v-for="(hook, index) in hooks">
-			<tile-options
-				class="HookOptions"
-				type="hooks"
-				:key="hook.id"
-				:title="hook.title"
-				:options="hook.options"
-				:enabled-options="activeHooks"
-				flatten description editable
-				@open="closeExcept('hooks', index)">
-			</tile-options>
-		</template>
+		<tile-hooks :enabled-options="activeHooks" editable></tile-hooks>
 	</config-list>
 </template>
 
-<style lang="less" scoped>
-	.HookOptions {
-		&:first-child {
-			margin-top: 40px;
-		}
-
-		&:last-child {
-			margin-bottom: 40px;
-		}
-	}
-</style>
-
 <script>
 	import ConfigList from "../components/ConfigList.vue";
-	import TileOptions, {closeExcept} from "../components/TileOptions.vue";
+	import TileHooks from "../components/TileHooks.vue";
 
 	import {mapState} from "vuex";
 
 	export default {
-		methods: {
-			closeExcept
-		},
-
 		computed: mapState({
-			hooks: state => state.hooks.hooks,
 			activeHooks: state => state.hooks.active
 		}),
 
 		components: {
 			ConfigList,
-			TileOptions
+			TileHooks
 		}
 	};
 </script>

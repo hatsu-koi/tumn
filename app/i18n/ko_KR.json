@@ -30,6 +30,16 @@
 		"web": "웹",
 		"issue": "이슈",
 		"delete": "삭제",
+		"delete_filters": "필터를 정말로 삭제할까요?",
+		"delete_filters_desc": "{name} 필터를 정말로 삭제할까요? 이 작업은 되돌릴 수 없습니다.",
+		"delete_hooks": "진입점을 정말로 삭제할까요?",
+		"delete_hooks_desc": "{name} 진입점을 정말로 삭제할까요? 이 작업은 되돌릴 수 없습니다.",
+		"delete_confirm": "삭제",
+		"delete_cancel": "취소",
+		"no_filters": "필터가 없습니다.",
+		"no_filters_desc": "원하시는 Tumn 필터를 다운로드하여 추가해보세요!",
+		"no_hooks": "진입점이 없습니다.",
+		"no_hooks_desc": "원하시는 진입점을 다운로드하여 추가해보세요!",
 		"cover": {
 			"reveal_toggle": "커버 들어내기를 클릭으로 토글합니다.",
 			"reveal_toggle_desc": "기본적으로 커서를 위에 올리면 들어냅니다.",
@@ -80,6 +90,24 @@
 	},
 
 	"sites": {
-		"sites": "사이트"
+		"sites": "사이트",
+		"setting": "{name} 사이트 규칙 편집",
+		"name": "이름",
+		"name_input": "이름을 입력하세요",
+		"match": "매칭",
+		"match_input": "패턴을 입력하세요",
+		"match_desc": "아래에서 설명하는 URL을 만족시킬 때 이 규칙이 활성화됩니다.",
+		"regex": "정규식",
+		"match_patterns": "매칭 패턴",
+		"filters": "필터",
+		"filters_desc": "해당 사이트에서 사용하실 필터를 선택해주세요.",
+		"hooks": "진입점",
+		"hooks_desc": "해당 사이트에서 사용하실 진입점을 선택해주세요.",
+		"remove": "삭제",
+		"remove_dialog": "이 규칙을 정말로 삭제할까요?",
+		"remove_dialog_desc": "이 작업은 되돌릴 수 없습니다.",
+		"remove_dialog_confirm": "삭제",
+		"remove_dialog_cancel": "취소",
+		"new_rule": "새로운 규칙"
 	}
 }

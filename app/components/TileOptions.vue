@@ -135,24 +135,22 @@
 </style>
 
 <script>
-	import Tile from "./Tile.vue";
 	import Checkbox from "./Checkbox.vue";
+	import Tile from "./Tile.vue";
+
+	import swal from "sweetalert2";
 
 	export default {
 		data() {
 			return {
-				folded: true
+				folded: true,
+				isTileOptions: true
 			};
 		},
 
 		props: {
-			title: {
-				type: String,
-				required: true
-			},
-
-			options: {
-				type: Array,
+			elem: {
+				type: Object,
 				required: true
 			},
 
@@ -176,6 +174,16 @@
 			editable: Boolean
 		},
 
+		computed: {
+			title() {
+				return this.elem.title;
+			},
+
+			options() {
+				return this.elem.options;
+			}
+		},
+
 		methods: {
 			toggle() {
 				this.folded = !this.folded;
@@ -194,7 +202,19 @@
 			},
 
 			deleteOption() {
-				this.$store.dispatch(`${this.type}/removeSet`, {
+				swal({
+					title: this.$t(`settings.delete_${this.type}`, {name: this.title}),
+					text: this.$t(`settings.delete_${this.type}_desc`, {name: this.title}),
+					type: 'warning',
+					showCancelButton: true,
+					confirmButtonText: this.$t(`settings.delete_confirm`),
+					cancelButtonText: this.$t(`settings.delete_cancel`)
+				}).then((result) => {
+					if(!result.value) return;
+
+					this.$store.dispatch(`${this.type}/removeSet`, {
+						id: this.elem.id
+					});
 				});
 			},
 
@@ -220,8 +240,8 @@
 	};
 
 	export function closeExcept(name, target) {
-		this.$refs[name].$children
-			.filter((_, i) => i !== target)
+		this.$children
+			.filter(elem => elem.isTileOptions && elem.elem.id !== target)
 			.forEach(elem => elem.folded = true);
 	};
 </script>

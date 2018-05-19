@@ -1,26 +1,29 @@
 <template>
 	<settings-pane class="Sites">
 		<div class="Sites__wrapper">
-			<aside class="SiteList">
+			<aside class="SiteList" @click="activeRule = ''">
 				<h2 class="SiteList__title">
 					{{$t('sites.sites')}}
 				</h2>
 
-				<button v-for="rule in rules"
-					class="SiteList__button Button Button--flat"
-					:class="{'SiteList__button--active': activeRule === rule.id}"
-					v-ripple="'rgba(255, 255, 255, .1)'"
-					@click="openRule(rule)">
+				<transition-group name="FadeSlide" tag="div" class="SiteList__list Scroller">
+					<button v-for="rule in rules"
+						class="SiteList__button Button Button--flat"
+						:class="{'SiteList__button--active': activeRule === rule.id}"
+						:key="rule.id"
+						v-ripple="'rgba(255, 255, 255, .1)'"
+						@click="openRule(rule, $event)">
 
-					{{rule.name}}
-				</button>
+						{{rule.name}}
+					</button>
+				</transition-group>
 
-				<button class="SiteList__fab" v-ripple="'rgba(255, 255, 255, .1)'">
+				<button class="SiteList__fab" v-ripple="'rgba(255, 255, 255, .1)'" @click="newRule($event)">
 					<i class="mdi mdi-plus"></i>
 				</button>
 			</aside>
 
-			<site-rule :rule-id="activeRule" class="Options"></site-rule>
+			<site-rule :rule-id="activeRule" class="Options" @remove="activeRule = ''"></site-rule>
 		</div>
 	</settings-pane>
 </template>
@@ -40,6 +43,18 @@
 		padding: 20px 40px;
 		width: 300px;
 		position: relative;
+		overflow: hidden;
+
+		&__list {
+			display: flex;
+			flex: 1;
+			flex-direction: column;
+			overflow: hidden;
+
+			&:hover {
+				overflow: auto;
+			}
+		}
 
 		&__title {
 			font-family: var(--theme-font-title);
@@ -51,10 +66,13 @@
 
 		&__button {
 			height: 50px;
+			flex: 0 0 50px;
 
 			color: var(--theme-grey-2);
 			background: var(--theme-grey-7);
 			font-size: 1.1rem;
+			margin: 0;
+			margin-bottom: 1.1rem;
 
 			&--active {
 				background: var(--theme-color);
@@ -70,6 +88,7 @@
 			color: var(--theme-grey-9);
 			width: 50px;
 			height: 50px;
+			cursor: pointer;
 			border: none;
 			outline: none;
 			box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
@@ -103,8 +122,30 @@
 		}),
 
 		methods: {
-			openRule(rule) {
+			openRule(rule, ev) {
 				this.activeRule = rule.id;
+				ev.stopPropagation();
+			},
+
+			newRule(ev) {
+				const newId = this.$store.getters['sites/maxId'];
+				this.$store.commit('sites/addSite', {
+					set: {
+						name: this.$t('sites.new_rule'),
+						id: newId,
+						match: {
+							type: 'MatchPatterns',
+							value: String.raw`*://*.domain.tld/*`
+						},
+						rules: {
+							hooks: [],
+							filters: []
+						}
+					}
+				});
+
+				this.activeRule = newId;
+				ev.stopPropagation();
 			}
 		},
 

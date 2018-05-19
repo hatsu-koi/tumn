@@ -51,26 +51,18 @@ export default function makeStore() {
 
 		state: {
 			sites: [
-				{
-					name: 'Twitter',
-					id: 'twitter1',
-					match: {
-						type: 'Regex',
-						value: String.raw`/(?:http|https):\/\/twitter.com\/.*/`
-					},
-					rules: {
-						hooks: [
-							'khinenwhooks.scroll',
-							'khinenwhooks.load'
-						],
-
-						filters: [
-							'khinenwnn.swearwords',
-							'khinenwnn.hatespeech'
-						]
-					}
-				}
 			]
+		},
+
+		getters: {
+			maxId(state) {
+				return (state.sites.reduce((prev, curr) => {
+					const intId = parseInt(curr.id);
+					if(!Number.isInteger(intId)) return prev;
+
+					return Math.max(prev, intId);
+				}, -1) + 1).toString();
+			}
 		},
 
 		mutations: {

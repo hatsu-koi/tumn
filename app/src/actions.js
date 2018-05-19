@@ -1,5 +1,5 @@
-export const removeSet = name => ({commit, state, setId}) => {
-	const elemSet = state[name].find(v => v.id === setId);
+export const removeSet = name => ({commit, state}, {id}) => {
+	const elemSet = state[name].find(v => v.id === id);
 	if(!elemSet) return;
 
 	elemSet.options.forEach(option => {
@@ -9,14 +9,14 @@ export const removeSet = name => ({commit, state, setId}) => {
 		}, {root: true});
 	});
 
-	commit('removeSet', {id: setId});
+	commit('removeSet', {id});
 };
 
-export const removeElem = name => ({commit, setId, elemId}) => {
+export const removeElem = name => ({commit}, {id, elemId}) => {
 	commit('sites/removeRuleContentFromAll', {
 		type: name,
 		contentId: elemId
 	}, {root: true});
 
-	commit('removeElem', {id: setId, elemId});
+	commit('removeElem', {id, elemId});
 };

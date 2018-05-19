@@ -39,8 +39,7 @@
 			<tile-options v-for="hook in hooks"
 				type="hooks"
 				:key="hook.id"
-				:title="hook.title"
-				:options="hook.options">
+				:elem="hook">
 
 			</tile-options>
 		</sidebar>

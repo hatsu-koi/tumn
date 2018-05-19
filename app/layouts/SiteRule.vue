@@ -1,73 +1,54 @@
 <template>
-	<div class="SiteRule Scroller Scroller--vertical" v-if="rule">
-		<h2 class="SiteRule__title">
-			{{$t('sites.setting', {name})}}
-		</h2>
+	<transition name="Navigate">
+		<div class="SiteRule Scroller Scroller--vertical" v-if="rule">
+			<h2 class="SiteRule__title">
+				{{$t('sites.setting', {name})}}
+			</h2>
 
-		<rule-item>
-			<span slot="title">{{$t('sites.name')}}</span>
+			<rule-item>
+				<span slot="title">{{$t('sites.name')}}</span>
 
-			<text-input v-model="name" :placeholder="$t('sites.name_input')" fill></text-input>
-		</rule-item>
+				<text-input v-model="name" :placeholder="$t('sites.name_input')" fill></text-input>
+			</rule-item>
 
-		<rule-item>
-			<span slot="title">{{$t('sites.match')}}</span>
-			<span slot="description">{{$t('sites.match_desc')}}</span>
+			<rule-item>
+				<span slot="title">{{$t('sites.match')}}</span>
+				<span slot="description">{{$t('sites.match_desc')}}</span>
 
 
-			<div class="Row Match">
-				<selector class="Match__selector" v-model="matchType" :items="matchSelector"></selector>
+				<div class="Row Match">
+					<selector class="Match__selector" v-model="matchType" :items="matchSelector"></selector>
 
-				<text-input class="Match__text"
-					v-model="match"
-					:placeholder="$t('sites.match_input')" fill>
+					<text-input class="Match__text"
+						v-model="match"
+						:placeholder="$t('sites.match_input')" fill>
 
-				</text-input>
-			</div>
-		</rule-item>
+					</text-input>
+				</div>
+			</rule-item>
 
-		<rule-item ref="filter">
-			<span slot="title">{{$t('sites.filters')}}</span>
-			<span slot="description">{{$t('sites.filters_desc')}}</span>
+			<rule-item>
+				<span slot="title">{{$t('sites.filters')}}</span>
+				<span slot="description">{{$t('sites.filters_desc')}}</span>
 
-			<div class="TileOptionsList">
-				<tile-options v-for="(filter, index) in filters"
-					:key="filter.id"
-					:title="filter.title"
-					:options="filter.options"
-					:update="updateContent('filters')"
-					:enabled-options="rule.rules.filters"
-					@open="closeExcept('filter', index)"
-					type="filter" flatten description>
+				<tile-filters :update="updateContent('filters')" :enabled-options="rule.rules.filters"></tile-filters>
+			</rule-item>
 
-				</tile-options>
-			</div>
-		</rule-item>
+			<rule-item>
+				<span slot="title">{{$t('sites.hooks')}}</span>
+				<span slot="description">{{$t('sites.hooks_desc')}}</span>
 
-		<rule-item ref="hook">
-			<span slot="title">{{$t('sites.hooks')}}</span>
-			<span slot="description">{{$t('sites.hooks_desc')}}</span>
+				<tile-hooks :update="updateContent('hooks')" :enabled-options="rule.rules.hooks"></tile-hooks>
+			</rule-item>
 
-			<div class="TileOptionsList">
-				<tile-options v-for="(hook, index) in hooks"
-					:key="hook.id"
-					:title="hook.title"
-					:options="hook.options"
-					:update="updateContent('hooks')"
-					:enabled-options="rule.rules.hooks"
-					@open="closeExcept('hook', index)"
-					type="hook" flatten description>
-
-				</tile-options>
-			</div>
-		</rule-item>
-
-		<rule-item ref="hook">
-			<button class="Button">
-				{{$t('sites.remove')}}
-			</button>
-		</rule-item>
-	</div>
+			<rule-item class="Row Row--reverse Row--fit">
+				<button class="Row__button Button Button--alert" v-ripple="'rgba(255, 255, 255, .1)'" @click="remove">
+					<i class="mdi mdi-delete"></i>
+					{{$t('sites.remove')}}
+				</button>
+			</rule-item>
+		</div>
+	</transition>
 </template>
 
 <style lang="less" scoped>
@@ -87,6 +68,18 @@
 
 	.Row {
 		display: flex;
+
+		&--reverse {
+			flex-direction: row-reverse !important;
+		}
+
+		&--fit {
+			margin: 0 !important;
+		}
+
+		&__button {
+			max-width: 150px;
+		}
 	}
 
 	.Match {
@@ -107,10 +100,10 @@
 	import RuleItem from "../components/RuleItem.vue";
 	import Selector from "../components/Selector.vue";
 	import TextInput from "../components/TextInput.vue";
-	import TileOptions, {closeExcept} from "../components/TileOptions.vue";
+	import TileFilters from "../components/TileFilters.vue";
+	import TileHooks from "../components/TileHooks.vue";
 
-	import {mapState} from "vuex";
-	import bindState from "../src/bindState";
+	import swal from "sweetalert2";
 
 	export default {
 		data() {
@@ -118,12 +111,12 @@
 				matchSelector: [
 					{
 						value: 'Regex',
-						text: this.$t('sites.match.regex')
+						text: this.$t('sites.regex')
 					},
 
 					{
 						value: 'MatchPatterns',
-						text: this.$t('sites.match.match_patterns')
+						text: this.$t('sites.match_patterns')
 					}
 				]
 			};
@@ -137,11 +130,6 @@
 		},
 
 		computed: {
-			...mapState({
-				filters: state => state.filters.filters,
-				hooks: state => state.hooks.hooks
-			}),
-
 			rule() {
 				return this.$store.state.sites.sites.find(v => v.id === this.ruleId);
 			},
@@ -178,8 +166,6 @@
 		},
 
 		methods: {
-			closeExcept,
-
 			updateContent(contentName) {
 				return (option, active) => {
 					let target = 'sites/removeRuleContent';
@@ -194,6 +180,24 @@
 						contentId: option.id
 					});
 				};
+			},
+
+			remove() {
+				swal({
+					title: this.$t(`sites.remove_dialog`, {name: this.name}),
+					text: this.$t(`sites.remove_dialog_desc`, {name: this.name}),
+					type: 'warning',
+					showCancelButton: true,
+					confirmButtonText: this.$t(`sites.remove_dialog_confirm`),
+					cancelButtonText: this.$t(`sites.remove_dialog_cancel`)
+				}).then((result) => {
+					if(!result.value) return;
+
+					this.$emit('remove');
+					this.$store.commit(`sites/removeSite`, {
+						id: this.rule.id
+					});
+				});
 			}
 		},
 
@@ -202,7 +206,8 @@
 			RuleItem,
 			Selector,
 			TextInput,
-			TileOptions
+			TileFilters,
+			TileHooks
 		}
 	};
 </script>
