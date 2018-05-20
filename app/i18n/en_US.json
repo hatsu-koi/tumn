@@ -28,6 +28,19 @@
 		"cover": "Cover",
 		"active": "{num} Active",
 		"filtered_words": "Filtered Words",
+		"web": "Web",
+		"issue": "Issue",
+		"delete": "Delete",
+		"delete_filters": "Do you really want to delete this filter?",
+		"delete_filters_desc": "Do you really want to DELETE this {name} filter? This is irreversible.",
+		"delete_hooks": "Do you really want to delete this hook?",
+		"delete_hooks_desc": "Do you really want to DELETE this {name} hook? This is irreversible",
+		"delete_confirm": "DELETE",
+		"delete_cancel": "CANCEL",
+		"no_filters": "There are no filters.",
+		"no_filters_desc": "Download Tumn filters you want and add it!",
+		"no_hooks": "There are no hooks.",
+		"no_hooks_desc": "Download hooks you want and add it!",
 		"cover": {
 			"reveal_toggle": "Toggle revealing by click",
 			"reveal_toggle_desc": "If you click cover, it will reveal.",
@@ -78,6 +91,24 @@
 	},
 
 	"sites": {
-		"sites": "Sites"
+		"sites": "Sites",
+		"setting": "Editing rule {name}",
+		"name": "Site Name",
+		"name_input": "Site Name",
+		"match": "Match",
+		"match_input": "Pattern",
+		"match_desc": "If the URL satisfies patterns described below, this rule will be activated.",
+		"regex": "Regex",
+		"match_patterns": "Match Pattern",
+		"filters": "Filter",
+		"filters_desc": "Please select filters which will be used at the site.",
+		"hooks": "Hooks",
+		"hooks_desc": "Please select hooks which will be used at the site.",
+		"remove": "Delete",
+		"remove_dialog": "Do you really want to delete this rule?",
+		"remove_dialog_desc": "Do you really want to delete the {name} rule? This is irreversible.",
+		"remove_dialog_confirm": "DELETE",
+		"remove_dialog_cancel": "CANCEL",
+		"new_rule": "New Rule #{num}"
 	}
 }

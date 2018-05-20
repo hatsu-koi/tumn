@@ -3,7 +3,6 @@
     "name": "Tumn",
     "version": "1.0",
     "description": "Offers a blurry web for us all.",
-    "default_locale": "en",
     "icons": {
         "16": "app/images/icons/icon16.png",
         "24": "app/images/icons/icon24.png",

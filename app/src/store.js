@@ -21,8 +21,8 @@ export default function makeStore() {
 
 		state: {
 			color: '#1e98e9',
-			font: 'Roboto, NanumBarunGothic, sans-serif',
-			title: 'Titillium Web, NanumSquare, sans-serif',
+			font: 'Roboto, Spoqa Han Sans, sans-serif',
+			title: 'Titillium Web, Nanum Square, sans-serif',
 			i18n: "ko_KR"
 		},
 

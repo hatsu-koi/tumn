@@ -131,7 +131,7 @@
 				const newId = this.$store.getters['sites/maxId'];
 				this.$store.commit('sites/addSite', {
 					set: {
-						name: this.$t('sites.new_rule'),
+						name: this.$t('sites.new_rule', {num: newId}),
 						id: newId,
 						match: {
 							type: 'MatchPatterns',

@@ -105,9 +105,9 @@
 		"hooks_desc": "해당 사이트에서 사용하실 진입점을 선택해주세요.",
 		"remove": "삭제",
 		"remove_dialog": "이 규칙을 정말로 삭제할까요?",
-		"remove_dialog_desc": "이 작업은 되돌릴 수 없습니다.",
+		"remove_dialog_desc": "{name} 규칙을 정말로 삭제할까요? 이 작업은 되돌릴 수 없습니다.",
 		"remove_dialog_confirm": "삭제",
 		"remove_dialog_cancel": "취소",
-		"new_rule": "새로운 규칙"
+		"new_rule": "새로운 규칙 #{num}"
 	}
 }

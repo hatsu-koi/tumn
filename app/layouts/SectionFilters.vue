@@ -9,10 +9,25 @@
 			:desc="$t('settings.need_processor_cover')">
 		</warning-pane>
 	</config-list>
+
+	<setting-item>
+		<span slot="title">
+			{{$t('settings.user_dict')}}
+		</span>
+
+		<span slot="description">
+			{{$t('settings.user_dict_desc')}}
+		</span>
+
+		<button class="Button" v-ripple="'rgba(255, 255, 255, .2)'" slot="option">
+			{{$t('settings.user_dict_edit')}}
+		</button>
+	</setting-item>
 </template>
 
 <script>
 	import ConfigList from "../components/ConfigList.vue";
+	import SettingItem from "../components/SettingItem.vue";
 	import TileFilters from "../components/TileFilters.vue";
 	import WarningPane from "../components/WarningPane.vue";
 
@@ -31,6 +46,7 @@
 
 		components: {
 			ConfigList,
+			SettingItem,
 			TileFilters,
 			WarningPane
 		}
