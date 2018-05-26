@@ -12,23 +12,6 @@ const applyAll = targetObject => (...args) => Object.keys(targetObject).reduce((
 	return prev;
 }, {});
 
-const findPos = (array, elem, start, end) => {
-	console.log('pos', start, end);
-	const pivot = Math.floor((start + end) / 2);
-
-	if(array[pivot] === elem) return false;
-
-	if(end <= start) return pivot;
-
-	if(array[pivot] < elem) {
-		return findPos(array, elem, pivot + 1, end);
-	}
-
-	if(array[pivot] > elem) {
-		return findPos(array, elem, start, pivot - 1);
-	}
-};
-
 const getMutations = applyAll(mutations);
 const getActions = applyAll(actions);
 
@@ -144,7 +127,23 @@ export default function makeStore() {
 			addSequence(state, {sequence}) {
 				if(state.dict.includes(sequence)) return;
 
-				[...state.dict, sequence].sort();
+				const findObject = state.dict.reduce((prev, curr, i) => {
+					if(prev.found) return prev;
+
+					if(prev < sequence && sequence < curr) {
+						return {
+							value: i,
+							found: true
+						};
+					}
+
+					return prev;
+				}, '');
+
+				let value = findObject.value;
+				if(!findObject.found) value = state.dict.length;
+
+				state.dict.splice(value, 0, sequence);
 			},
 
 			removeSequence(state, {sequence}) {

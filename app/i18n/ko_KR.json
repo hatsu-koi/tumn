@@ -40,6 +40,11 @@
 		"no_filters_desc": "원하시는 Tumn 필터를 다운로드하여 추가해보세요!",
 		"no_hooks": "진입점이 없습니다.",
 		"no_hooks_desc": "원하시는 진입점을 다운로드하여 추가해보세요!",
+		"user_dict": "사용자 사전",
+		"user_dict_desc": "이 목록에 있는 단어들을 필터링합니다.",
+		"user_dict_edit": "목록 편집",
+		"user_dict_new": "새로운 단어",
+		"user_dict_add": "추가하기",
 		"cover": {
 			"reveal_toggle": "커버 들어내기를 클릭으로 토글합니다.",
 			"reveal_toggle_desc": "기본적으로 커서를 위에 올리면 들어냅니다.",

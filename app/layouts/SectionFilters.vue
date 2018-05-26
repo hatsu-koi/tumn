@@ -9,6 +9,8 @@
 			:desc="$t('settings.need_processor_cover')">
 		</warning-pane>
 
+		<hr class="HorizontalDivider">
+
 		<setting-item>
 			<span slot="title">
 				{{$t('settings.user_dict')}}
@@ -41,7 +43,7 @@
 	export default {
 		data() {
 			return {
-				mockProcessor: true,
+				mockProcessor: false,
 				dictDialog: false
 			};
 		},

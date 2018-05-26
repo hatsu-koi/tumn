@@ -7,7 +7,7 @@
 
 			</warning-pane>
 
-			<transition-group name="FadeSlide" tag="div" v-else>
+			<transition-group name="FadeSlide-group" tag="div" v-else>
 				<tile-options v-for="(filter, index) in filters"
 					class="OptionSectionItem"
 					type="filters"

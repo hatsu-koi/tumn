@@ -39,6 +39,27 @@
 	}
 }
 
+.FadeSlide-group {
+	&-enter-active, &-leave-active, &-move {
+		transition: all .4s ease;
+	}
+
+	&-enter {
+		transform: translate(-50px, 0);
+		opacity: 0;
+	}
+
+	&-leave-to {
+		transform: translate(50px, 0);
+		opacity: 0;
+	}
+
+	&-leave-active {
+		width: 100%;
+		position: absolute;
+	}
+}
+
 .FadeExpand {
 	&-enter-active, &-leave-active {
 		transition: all .4s ease;

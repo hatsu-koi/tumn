@@ -7,16 +7,18 @@
 			<h1 class="Dialog__title">{{$t('settings.user_dict')}}</h1>
 			<div class="Dialog__list">
 				<form class="Dialog__item Dialog__item--add" @submit="addSeq($event)">
-					<text-input v-model="sequenceValue" fill></text-input>
+					<text-input v-model="sequenceValue" :placeholder="$t('settings.user_dict_new')" required fill>
+					</text-input>
+
 					<button class="Button" v-ripple="'rgba(255, 255, 255, .1)'" @click="addSeq">
 						{{$t('settings.user_dict_add')}}
 					</button>
 				</form>
 
-				<transition-group name="FadeSlide" class="Dialog__content Scroller">
+				<transition-group name="FadeSlide-group" class="Dialog__content Scroller">
 					<div class="Dialog__item Dialog__item--value" v-for="seq in dict" :key="idfy(seq)">
 						<span>{{seq}}</span>
-						<i class="mdi mdi-delete" v-ripple-small></i>
+						<i class="Dialog__icon mdi mdi-delete" v-ripple-small @click="remove(seq)"></i>
 					</div>
 				</transition-group>
 			</div>
@@ -33,6 +35,10 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 99;
+	}
+
+	.FadeSlide-move {
+		background: var(--theme-alert) !important;
 	}
 
 	.Dialog {
@@ -61,14 +67,26 @@
 			font-size: 2rem;
 			color: var(--theme-grey-1);
 			padding: 0 50px;
+			margin-top: 10px;
 		}
 
 		&__content {
+			overflow-x: hidden;
+			overflow-y: auto;
+			position: relative;
+		    flex: 1;
+
+			/*
 			overflow: hidden;
+
+			&:not(:hover) {
+				margin-right: 17px;
+			}
 
 			&:hover {
 				overflow: auto;
 			}
+			*/
 		}
 
 		&__list {
@@ -79,6 +97,8 @@
 
 		&__item {
 			display: flex;
+			align-items: center;
+			justify-content: space-between;
 
 			&--add {
 				padding: 0 50px;
@@ -91,7 +111,7 @@
 			}
 
 			&--value {
-				padding: 20px 100px;
+				padding: 15px 100px;
 
 				&:hover {
 					background: var(--theme-grey-8);
@@ -103,6 +123,17 @@
 				font-size: 1.4rem;
 				color: var(--theme-grey-2);
 			}
+		}
+
+		&__icon {
+			width: 30px;
+			height: 30px;
+			font-size: 1.2rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: var(--theme-grey-5);
+			cursor: pointer;
 		}
 	}
 
@@ -138,6 +169,12 @@
 
 				this.sequenceValue = '';
 				if(event) event.preventDefault();
+			},
+
+			remove(sequence) {
+				this.$store.commit('filters/dict/removeSequence', {
+					sequence
+				});
 			},
 
 			idfy(seq) {
