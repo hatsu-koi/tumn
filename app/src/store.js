@@ -12,6 +12,23 @@ const applyAll = targetObject => (...args) => Object.keys(targetObject).reduce((
 	return prev;
 }, {});
 
+const findPos = (array, elem, start, end) => {
+	console.log('pos', start, end);
+	const pivot = Math.floor((start + end) / 2);
+
+	if(array[pivot] === elem) return false;
+
+	if(end <= start) return pivot;
+
+	if(array[pivot] < elem) {
+		return findPos(array, elem, pivot + 1, end);
+	}
+
+	if(array[pivot] > elem) {
+		return findPos(array, elem, start, pivot - 1);
+	}
+};
+
 const getMutations = applyAll(mutations);
 const getActions = applyAll(actions);
 
@@ -116,12 +133,39 @@ export default function makeStore() {
 		}
 	};
 
+	const dict = {
+		namespaced: true,
+
+		state: {
+			dict: []
+		},
+
+		mutations: {
+			addSequence(state, {sequence}) {
+				if(state.dict.includes(sequence)) return;
+
+				[...state.dict, sequence].sort();
+			},
+
+			removeSequence(state, {sequence}) {
+				const seqIdx = state.dict.indexOf(sequence);
+				if(seqIdx < 0) return;
+
+				state.dict.splice(seqIdx, 1);
+			}
+		}
+	};
+
 	const filters = {
 		namespaced: true,
 
 		state: {
 			filters: getMock(),
 			active: []
+		},
+
+		modules: {
+			dict
 		},
 
 		mutations: getMutations('filters'),
@@ -159,7 +203,7 @@ export default function makeStore() {
 
 		plugins: [createPersistedState({
 			key: 'tumn-settings',
-			paths: ['config', 'filters.active', 'hooks.active', 'sites']
+			paths: ['config', 'filters.active', 'filters.dict', 'hooks.active', 'sites']
 		})]
 	});
 

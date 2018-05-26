@@ -1,24 +1,26 @@
 <template>
 	<div class="TileHooks">
 		<transition name="FadeSlide" mode="out-in">
-			<warning-pane v-if="hooks.length === 0" icon="information-outline" info
+			<warning-pane key="$" v-if="hooks.length === 0" icon="information-outline" info
 				:title="$t('settings.no_hooks')"
 				:desc="$t('settings.no_hooks_desc')">
 
 			</warning-pane>
 
-			<tile-options v-else v-for="(hook, index) in hooks"
-				class="OptionSectionItem"
-				type="hooks"
-				:key="hook.id"
-				:elem="hook"
-				:update="update"
-				:enabled-options="enabledOptions"
-				:editable="editable"
-				flatten description
-				@open="closeExcept('hooks', hook.id)">
+			<transition-group name="FadeSlide" tag="div" v-else>
+				<tile-options v-for="(hook, index) in hooks"
+					class="OptionSectionItem"
+					type="hooks"
+					:key="hook.id"
+					:elem="hook"
+					:update="update"
+					:enabled-options="enabledOptions"
+					:editable="editable"
+					flatten description
+					@open="closeExcept('hooks', hook.id)">
 
-			</tile-options>
+				</tile-options>
+			</transition-group>
 		</transition>
 	</div>
 </template>

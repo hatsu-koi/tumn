@@ -14,13 +14,17 @@
 }
 
 .Backdrop-fade {
+	&-enter-active, &-leave-active {
+		transition: all .4s ease;
+	}
+
 	&-enter, &-leave-to {
 		opacity: 0;
 	}
 }
 
 .FadeSlide {
-	&-enter-active, &-leave-active {
+	&-enter-active, &-leave-active, &-move {
 		transition: all .4s ease;
 	}
 

@@ -121,7 +121,6 @@
 		right: 0;
 		bottom: 0;
 		background: rgba(0, 0, 0, .4);
-		transition: all .4s ease;
 	}
 </style>
 

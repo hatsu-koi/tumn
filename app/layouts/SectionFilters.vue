@@ -18,10 +18,14 @@
 				{{$t('settings.user_dict_desc')}}
 			</span>
 
-			<button class="Button" v-ripple="'rgba(255, 255, 255, .2)'" slot="option">
+			<button class="Button" v-ripple="'rgba(255, 255, 255, .2)'" slot="option" @click="dictDialog = true">
 				{{$t('settings.user_dict_edit')}}
 			</button>
 		</setting-item>
+
+		<transition name="Backdrop-fade">
+			<user-dict v-if="dictDialog" @close="dictDialog = false"></user-dict>
+		</transition>
 	</config-list>
 </template>
 
@@ -29,6 +33,7 @@
 	import ConfigList from "../components/ConfigList.vue";
 	import SettingItem from "../components/SettingItem.vue";
 	import TileFilters from "../components/TileFilters.vue";
+	import UserDict from "./UserDict.vue";
 	import WarningPane from "../components/WarningPane.vue";
 
 	import {mapState} from "vuex";
@@ -36,7 +41,8 @@
 	export default {
 		data() {
 			return {
-				mockProcessor: true
+				mockProcessor: true,
+				dictDialog: false
 			};
 		},
 
@@ -48,6 +54,7 @@
 			ConfigList,
 			SettingItem,
 			TileFilters,
+			UserDict,
 			WarningPane
 		}
 	};

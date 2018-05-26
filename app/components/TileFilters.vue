@@ -7,18 +7,20 @@
 
 			</warning-pane>
 
-			<tile-options v-else v-for="(filter, index) in filters"
-				class="OptionSectionItem"
-				type="filters"
-				:key="filter.id"
-				:elem="filter"
-				:update="update"
-				:enabled-options="enabledOptions"
-				:editable="editable"
-				flatten description
-				@open="closeExcept('filters', filter.id)">
+			<transition-group name="FadeSlide" tag="div" v-else>
+				<tile-options v-for="(filter, index) in filters"
+					class="OptionSectionItem"
+					type="filters"
+					:key="filter.id"
+					:elem="filter"
+					:update="update"
+					:enabled-options="enabledOptions"
+					:editable="editable"
+					flatten description
+					@open="closeExcept('filters', filter.id)">
 
-			</tile-options>
+				</tile-options>
+			</transition-group>
 		</transition>
 	</div>
 </template>
