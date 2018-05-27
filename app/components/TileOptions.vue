@@ -1,7 +1,8 @@
 <template>
 	<tile class="TileOptions"
 		:class="{
-			'TileOptions--foldable': flatten,
+			'TileOptions--flatten': flatten,
+			'TileOptions--foldable': foldable,
 			'TileOptions--closed': folded,
 			'TileOptions--editable': editable
 		}"
@@ -61,20 +62,27 @@
 			justify-content: space-between;
 		}
 
-		&--foldable {
-			transition: all .3s ease;
-
-			&:hover {
-				background: var(--theme-grey-8);
-			}
-
+		&--flatten {
 			.TileOptions__header {
-				cursor: pointer;
 				padding: 0 50px;
 
 				& > * {
 					padding: 20px;
 				}
+			}
+
+			.TileOptions__options {
+				transition: all .3s ease;
+				overflow: hidden;
+				padding-left: 50px;
+			}
+		}
+
+		&--foldable {
+			transition: all .3s ease;
+
+			&:hover {
+				background: var(--theme-grey-8);
 			}
 
 			.TileOptions__fold {
@@ -93,10 +101,8 @@
 				}
 			}
 
-			.TileOptions__options {
-				transition: all .3s ease;
-				overflow: hidden;
-				padding-left: 50px;
+			.TileOptions__header {
+				cursor: pointer;
 			}
 		}
 
@@ -159,11 +165,6 @@
 				default: null
 			},
 
-			type: {
-				type: String,
-				required: true
-			},
-
 			update: {
 				type: Function,
 				default: null
@@ -171,12 +172,17 @@
 
 			description: Boolean,
 			flatten: Boolean,
+			foldable: Boolean,
 			editable: Boolean
 		},
 
 		computed: {
 			title() {
 				return this.elem.title;
+			},
+
+			type() {
+				return this.elem.type;
 			},
 
 			options() {
@@ -227,7 +233,7 @@
 		},
 
 		mounted() {
-			if(this.flatten) {
+			if(this.foldable) {
 				const foldContent = this.$refs.options;
 				foldContent.style.maxHeight = foldContent.scrollHeight + 'px';
 			}
@@ -239,7 +245,7 @@
 		}
 	};
 
-	export function closeExcept(name, target) {
+	export function closeExcept(target) {
 		this.$children
 			.filter(elem => elem.isTileOptions && elem.elem.id !== target)
 			.forEach(elem => elem.folded = true);

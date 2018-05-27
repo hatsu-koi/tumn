@@ -114,5 +114,16 @@
 		"remove_dialog_confirm": "DELETE",
 		"remove_dialog_cancel": "CANCEL",
 		"new_rule": "New Rule #{num}"
+	},
+
+	"apply": {
+		"apply": "Install",
+		"author": "Author",
+		"description": "Description",
+		"source": "Source Code",
+		"cancel": "Cancel",
+		"install": "Install",
+		"warning": "You are about to install a plugin.",
+		"warning_desc": "Please be careful when the source is not trustable."
 	}
 }

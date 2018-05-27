@@ -10,14 +10,13 @@
 			<transition-group name="FadeSlide-group" tag="div" v-else>
 				<tile-options v-for="(filter, index) in filters"
 					class="OptionSectionItem"
-					type="filters"
 					:key="filter.id"
 					:elem="filter"
 					:update="update"
 					:enabled-options="enabledOptions"
 					:editable="editable"
 					flatten description
-					@open="closeExcept('filters', filter.id)">
+					@open="closeExcept(filter.id)">
 
 				</tile-options>
 			</transition-group>

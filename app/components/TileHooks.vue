@@ -10,14 +10,13 @@
 			<transition-group name="FadeSlide-group" tag="div" v-else>
 				<tile-options v-for="(hook, index) in hooks"
 					class="OptionSectionItem"
-					type="hooks"
 					:key="hook.id"
 					:elem="hook"
 					:update="update"
 					:enabled-options="enabledOptions"
 					:editable="editable"
-					flatten description
-					@open="closeExcept('hooks', hook.id)">
+					flatten foldable description
+					@open="closeExcept(hook.id)">
 
 				</tile-options>
 			</transition-group>

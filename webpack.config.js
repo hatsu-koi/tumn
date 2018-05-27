@@ -6,6 +6,8 @@ const WebpackBar = require('webpackbar');
 
 module.exports = {
 	entry: {
+		abuse: path.resolve(__dirname, 'app', 'less', 'abuse.less'),
+		apply: path.resolve(__dirname, 'app', 'apply.js'),
 		extension: path.resolve(__dirname, 'app', 'extension.js'),
 		settings: path.resolve(__dirname, 'app', 'settings.js')
 	},

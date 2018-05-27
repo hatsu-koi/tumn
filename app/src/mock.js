@@ -3,6 +3,14 @@ export function getMock() {
 		{
 			title: "Khinenw's NN FilterSet",
 			id: "khinenwnn",
+			information: {
+				author: "Khinenw",
+				description: "FilterSet related to things",
+				source: {
+					href: "https://github.com/hatsu-koi/tumn",
+					text: "https://github.com/hatsu-koi/tumn"
+				}
+			},
 			options: [
 				{
 					name: 'MatureContentNN',
@@ -21,7 +29,9 @@ export function getMock() {
 					id: "khinenwnn.hatespeech",
 					description: "Filters Hate Speeches by neural network.",
 				}
-			]
+			],
+			type: 'filters',
+			version: '1.0.0'
 		}
 	];
 }
@@ -43,7 +53,8 @@ export function getMockHooks() {
 					id: "khinenwhooks.load",
 					description: "Filters all elements when the site is loaded.",
 				}
-			]
+			],
+			type: 'hooks'
 		}
 	];
 }
