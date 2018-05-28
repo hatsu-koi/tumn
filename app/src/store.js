@@ -50,8 +50,7 @@ export default function makeStore() {
 		namespaced: true,
 
 		state: {
-			sites: [
-			]
+			sites: []
 		},
 
 		getters: {

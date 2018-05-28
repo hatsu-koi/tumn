@@ -9,7 +9,11 @@
 		"hooks": "진입점",
 		"filters": "필터",
 		"cover": "커버",
-		"active": "{num}개 활성"
+		"active": "{num}개 활성",
+		"no_url": "현재 사이트 정보를 얻을 수 없습니다.",
+		"no_url_desc": "현재 사이트가 로컬 파일이나 크롬 웹스토어인지 확인해주세요.",
+		"offline": "처리기가 오프라인입니다.",
+		"offline_desc": "처리기를 실행시켜주세요."
 	},
 
 	"settings": {

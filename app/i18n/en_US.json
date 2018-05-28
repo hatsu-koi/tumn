@@ -9,7 +9,11 @@
 		"hooks": "Hooks",
 		"filters": "Filters",
 		"cover": "Cover",
-		"active": "{num} Active"
+		"active": "{num} Active",
+		"no_url": "Could not get current site.",
+		"no_url_desc": "Probably current site is chrome webstore or a local file.",
+		"offline": "Processor is offline.",
+		"offline_desc": "Please turn on the processor."
 	},
 
 	"settings": {

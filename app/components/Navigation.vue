@@ -1,18 +1,18 @@
 <template>
 	<nav class="Navigation">
-		<button class="Navigation__button">
+		<a href="settings.html" class="Navigation__button">
 			<span>
 				<i class="mdi mdi-settings"></i>
 				{{$t('extension.settings')}}
 			</span>
-		</button>
+		</a>
 
-		<button class="Navigation__button Navigation__button--active">
+		<a href="settings.html#/sites" class="Navigation__button Navigation__button--active">
 			<span>
 				<i class="mdi mdi-format-list-checks"></i>
 				{{$t('extension.sites')}}
 			</span>
-		</button>
+		</a>
 	</nav>
 </template>
 
@@ -45,6 +45,8 @@
 			padding-left: 4px;
 			margin-right: -16px;
 			padding-right: 16px;
+
+			text-decoration: none !important;
 
 			cursor: pointer;
 

@@ -33,11 +33,13 @@
 			// font-weight: 300;
 			color: var(--theme-grey-1);
 			margin-bottom: 5px;
+			text-align: center;
 		}
 
 		&__text {
 			font-family: var(--theme-font);
 			color: var(--theme-grey-2);
+		    text-align: center;
 		}
 	}
 </style>

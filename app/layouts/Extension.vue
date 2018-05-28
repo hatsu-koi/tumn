@@ -5,7 +5,7 @@
 			<span class="Header__text">Tumn</span>
 		</header>
 
-		<section class="Container">
+		<section class="Container" v-if="tab && !offline">
 			<main-button v-model="filteringActive">
 				<span slot="identifier">
 					34%
@@ -21,11 +21,21 @@
 				<list-menu icon="filter" :desc="$t('extension.active', {num: 3})" @click="openMenu('filter')">
 					{{$t('extension.filters')}}
 				</list-menu>
-
-				<!-- <list-menu icon="arrange-bring-forward" desc="filter1" @click="openMenu('cover')">
-					{{$t('extension.cover')}}
-				</list-menu> -->
 			</section>
+		</section>
+
+		<section class="Container Container--offline" v-else>
+			<div class="Notification" v-if="!offline">
+				<i class="Notification__icon mdi mdi-alert"></i>
+				<h2 class="Notification__title">{{$t('extension.no_url')}}</h2>
+				<span class="Notification__text">{{$t('extension.no_url_desc')}}</span>
+			</div>
+
+			<div class="Notification" v-else>
+				<i class="Notification__icon mdi mdi-alert"></i>
+				<h2 class="Notification__title">{{$t('extension.offline')}}</h2>
+				<span class="Notification__text">{{$t('extension.offline_desc')}}</span>
+			</div>
 		</section>
 
 		<navigation></navigation>
@@ -33,13 +43,25 @@
 			<div class="Backdrop" v-if="menuActive" @click="closeMenu()"></div>
 		</transition>
 
-		<sidebar :title="$t('extension.hooks')" ref="hook" v-model="menu.hook">
-			<!-- TODO change into rules hooks -->
-			<!-- TODO if there is no rules about this site(*://subdomain.domain.tld/*), create new -->
-			<tile-options v-for="hook in hooks" :key="hook.id" :elem="hook"></tile-options>
-		</sidebar>
+		<template v-if="tab">
+			<sidebar :title="$t('extension.hooks')" ref="hook" v-model="menu.hook">
+				<tile-options v-for="hook in hooks"
+					:key="hook.id"
+					:elem="hook"
+					:enabled-options="siteRule.rules.hooks"
+					:update="updateContent('hooks')">
 
-		<!-- TODO filter sidebar -->
+				</tile-options>
+
+				<tile-options v-for="filter in filters"
+					:key="filter.id"
+					:elem="filter"
+					:enabled-options="siteRule.rules.filters"
+					:update="updateContent('filters')">
+
+				</tile-options>
+			</sidebar>
+		</template>
 	</app>
 </template>
 
@@ -84,6 +106,43 @@
 		& > * {
 			margin: 0 auto;
 		}
+
+		&--offline {
+			display: flex;
+			align-items: stretch;
+			flex-direction: column;
+			padding: 0;
+		}
+	}
+
+	.Notification {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		justify-content: center;
+		text-align: center;
+		margin: 0;
+		padding: 0 10px;
+
+		&__icon {
+			color: var(--theme-color);
+			font-size: 4rem;
+		}
+
+		&__title {
+			font-family: var(--theme-font-title);
+			font-weight: 300;
+			color: var(--theme-grey-1);
+			margin-bottom: 15px;
+			font-size: 1.5rem;
+		}
+
+		&__text {
+			font-family: var(--theme-font);
+			color: var(--theme-grey-4);
+			text-align: center;
+			word-break: keep-all;
+		}
 	}
 
 	.Config {
@@ -126,18 +185,22 @@
 	import Navigation from "../components/Navigation.vue";
 	import Sidebar from "../components/Sidebar.vue";
 	import TileOptions from "../components/TileOptions.vue";
+	import WarningPane from "../components/WarningPane.vue";
 
 	import {mapState} from "vuex";
 
 	export default {
 		data() {
 			return {
+				tab: false,
+				siteRule: null,
 				filteringActive: true,
 				menu: {
 					hook: false,
 					filter: false,
 					cover: false
-				}
+				},
+				offline: false
 			};
 		},
 
@@ -147,7 +210,8 @@
 			MainButton,
 			Navigation,
 			Sidebar,
-			TileOptions
+			TileOptions,
+			WarningPane
 		},
 
 		methods: {
@@ -157,7 +221,23 @@
 
 			closeMenu() {
 				Object.keys(this.menu).forEach(v => this.$refs[v].close());
-			}
+			},
+
+			updateContent(contentName) {
+				return (option, active) => {
+					let target = 'sites/removeRuleContent';
+
+					if(active) {
+						target = 'sites/addRuleContent';
+					}
+
+					this.$store.commit(target, {
+						id: this.siteRule.id,
+						type: contentName,
+						contentId: option.id
+					});
+				};
+			},
 		},
 
 		computed: {
@@ -169,6 +249,46 @@
 				filters: state => state.filters.filters,
 				hooks: state => state.hooks.hooks
 			})
+		},
+
+		created() {
+			if(!window.chrome || !chrome.tabs) return;
+
+			chrome.tabs.query({
+				active: true,
+				currentWindow: true
+			}, ([tab]) => {
+				if(!tab) return;
+
+				const urlBase = tab.url.split(':\/\/')[1].split('\/')[0];
+				const url = '*:\/\/' + urlBase;
+				const title = tab.title;
+				let existing = this.$store.state.sites.sites.find(v => v.match.value === url);
+
+				if(!existing) {
+					const newId = this.$store.getters['sites/maxId'];
+
+					this.$store.commit('sites/addSite', {
+						set: {
+							name: `${title} (${urlBase})`,
+							id: newId,
+							match: {
+								type: 'MatchPatterns',
+								value: tab.url
+							},
+							rules: {
+								hooks: this.$store.state.hooks.active.slice(),
+								filters: this.$store.state.filters.active.slice()
+							}
+						}
+					});
+
+					existing = this.$store.state.sites.sites.find(v => v.match.value === url);
+				}
+
+				this.siteRule = existing;
+				this.tab = true;
+			});
 		}
 	};
 </script>

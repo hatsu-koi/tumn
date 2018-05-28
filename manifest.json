@@ -12,5 +12,8 @@
         "default_icon": "app/images/icons/icon32.png",
         "default_popup": "app/pages/extension.html"
     },
-    "permissions": []
+    "options_page": "app/pages/settings.html",
+    "permissions": [
+        "tabs"
+    ]
 }
