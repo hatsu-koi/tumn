@@ -6,7 +6,7 @@
 			</a>
 		</header>
 
-		<section>
+		<section class="Sidebar__content Scroller">
 			<slot></slot>
 		</section>
 	</aside>
@@ -20,6 +20,8 @@
 		bottom: 0;
 		width: 90%;
 		height: 100%;
+		display: flex;
+		flex-direction: column;
 		padding-right: 10%;
 		background: var(--theme-grey-9);
 		transition: right .4s cubic-bezier(0.63,-0.25, 0.34, 1.49), box-shadow .4s ease;
@@ -43,6 +45,10 @@
 				font-size: 50px;
 				text-decoration: none;
 			}
+		}
+
+		&__content {
+			overflow-y: auto;
 		}
 	}
 </style>

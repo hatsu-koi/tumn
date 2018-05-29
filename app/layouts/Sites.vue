@@ -6,6 +6,7 @@
 					{{$t('sites.sites')}}
 				</h2>
 
+				<!-- Is changing to FadeSlide-group better? -->
 				<transition-group name="FadeSlide" tag="div" class="SiteList__list Scroller">
 					<button v-for="rule in rules"
 						class="SiteList__button Button Button--flat"

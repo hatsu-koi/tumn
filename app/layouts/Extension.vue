@@ -14,11 +14,17 @@
 
 			<section class="Config">
 				<h2>{{$t('extension.current_site')}}</h2>
-				<list-menu icon="hook" :desc="$t('extension.active', {num: 1})" @click="openMenu('hook')">
+				<list-menu icon="hook"
+					:desc="$t('extension.active', {num: siteRule.rules.hooks.length})"
+					@click="openMenu('hook')">
+
 					{{$t('extension.hooks')}}
 				</list-menu>
 
-				<list-menu icon="filter" :desc="$t('extension.active', {num: 3})" @click="openMenu('filter')">
+				<list-menu icon="filter"
+					:desc="$t('extension.active', {num: siteRule.rules.filters.length})"
+					@click="openMenu('filter')">
+
 					{{$t('extension.filters')}}
 				</list-menu>
 			</section>
@@ -52,7 +58,9 @@
 					:update="updateContent('hooks')">
 
 				</tile-options>
+			</sidebar>
 
+			<sidebar :title="$t('extension.filters')" ref="filter" v-model="menu.filter">
 				<tile-options v-for="filter in filters"
 					:key="filter.id"
 					:elem="filter"
@@ -225,6 +233,10 @@
 
 			updateContent(contentName) {
 				return (option, active) => {
+					if(!this.siteRule.id) {
+						this.createSite();
+					}
+
 					let target = 'sites/removeRuleContent';
 
 					if(active) {
@@ -238,6 +250,14 @@
 					});
 				};
 			},
+
+			createSite() {
+				const newId = this.$store.getters['sites/maxId'];
+				this.siteRule.id = newId;
+				this.$store.commit('sites/addSite', {
+					set: this.siteRule
+				});
+			}
 		},
 
 		computed: {
@@ -266,24 +286,17 @@
 				let existing = this.$store.state.sites.sites.find(v => v.match.value === url);
 
 				if(!existing) {
-					const newId = this.$store.getters['sites/maxId'];
-
-					this.$store.commit('sites/addSite', {
-						set: {
-							name: `${title} (${urlBase})`,
-							id: newId,
-							match: {
-								type: 'MatchPatterns',
-								value: tab.url
-							},
-							rules: {
-								hooks: this.$store.state.hooks.active.slice(),
-								filters: this.$store.state.filters.active.slice()
-							}
+					existing = {
+						name: `${title} (${urlBase})`,
+						match: {
+							type: 'MatchPatterns',
+							value: url
+						},
+						rules: {
+							hooks: this.$store.state.hooks.active.slice(),
+							filters: this.$store.state.filters.active.slice()
 						}
-					});
-
-					existing = this.$store.state.sites.sites.find(v => v.match.value === url);
+					};
 				}
 
 				this.siteRule = existing;

@@ -1,13 +1,13 @@
 <template>
 	<nav class="Navigation">
-		<a href="settings.html" class="Navigation__button">
+		<a href="settings.html#/settings" class="Navigation__button" target="_blank">
 			<span>
 				<i class="mdi mdi-settings"></i>
 				{{$t('extension.settings')}}
 			</span>
 		</a>
 
-		<a href="settings.html#/sites" class="Navigation__button Navigation__button--active">
+		<a href="settings.html#/sites" target="_blank" class="Navigation__button Navigation__button--active">
 			<span>
 				<i class="mdi mdi-format-list-checks"></i>
 				{{$t('extension.sites')}}
