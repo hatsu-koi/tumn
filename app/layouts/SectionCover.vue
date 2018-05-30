@@ -50,24 +50,23 @@
 				navigationNextLabel="⟩"
 				:navigationEnabled="true">
 
-				<slide v-for="i in 10" :key="i">
+				<slide v-for="key in covers" :key="key">
 					<div class="Cover__showcase">
 						<div class="Cover__text">
 							{{$t('settings.cover.placeholder_prefix')}}&nbsp;
 							<span class="Tumn__AbuseFilter">
-								<!--TODO add more filters, change getFilter('filter1') -->
-								<div class="Tumn__AbuseFilter__wrap" :style="getFilter('filter1')"></div>
+								<div class="Tumn__AbuseFilter__wrap" :style="getFilter(key)"></div>
 								{{$t('settings.cover.placeholder_swear')}}
 							</span>
 							{{$t('settings.cover.placeholder_postfix')}}
 						</div>
 
 						<div class="Cover__content">
-							<span class="Cover__title">filter{{i}}</span>
+							<span class="Cover__title">{{key}}</span>
 							<button class="Button"
-								:class="{'Button--disabled': `filter${i}` === filter}"
+								:class="{'Button--disabled': key === filter}"
 								v-ripple="'rgba(255, 255, 255, .1)'"
-								@click="setFilter(`filter${i}`)">
+								@click="setFilter(key)">
 
 								{{$t('settings.cover.use')}}
 							</button>
@@ -109,7 +108,7 @@
 		}
 
 		&__content {
-			height: 36px;
+			height: 40px;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -165,6 +164,12 @@
 	import filters from "../src/filters";
 
 	export default {
+		data() {
+			return {
+				covers: Object.keys(filters)
+			};
+		},
+
 		computed: bindState('config/cover', ['toggleCover', 'opacity', 'hoverOpacity', 'filter']),
 
 		methods: {
