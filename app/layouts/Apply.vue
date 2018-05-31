@@ -46,11 +46,11 @@
 			</div>
 
 			<div class="Plugin__actions">
-				<button class="Button" v-ripple="'rgba(255, 255, 255, .2)'">
+				<button class="Button" v-ripple="'rgba(255, 255, 255, .2)'" @click="install">
 					{{$t('apply.apply')}}
 				</button>
 
-				<button class="Button Button--flat" v-ripple="'rgba(0, 0, 0, .2)'">
+				<button class="Button Button--flat" v-ripple="'rgba(0, 0, 0, .2)'" @click="close">
 					{{$t('apply.cancel')}}
 				</button>
 			</div>
@@ -191,6 +191,14 @@
 		methods: {
 			update() {
 
+			},
+
+			install() {
+
+			},
+
+			close() {
+				
 			},
 
 			closeExcept

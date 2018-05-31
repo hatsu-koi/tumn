@@ -6,7 +6,7 @@ const WebpackBar = require('webpackbar');
 
 module.exports = {
 	entry: {
-		tumn: path.resolve(__dirname, 'app', 'index.js'),
+		tumn: path.resolve(__dirname, 'extension', 'index.js'),
 		apply: path.resolve(__dirname, 'app', 'src', 'ui', 'apply.js'),
 		extension: path.resolve(__dirname, 'app', 'src', 'ui', 'extension.js'),
 		settings: path.resolve(__dirname, 'app', 'src', 'ui', 'settings.js')

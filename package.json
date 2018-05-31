@@ -1,7 +1,7 @@
 {
   "name": "tumn",
   "version": "1.0.0",
-  "description": "Offers a blurry web for children.",
+  "description": "Offers a blurry web for us all.",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
