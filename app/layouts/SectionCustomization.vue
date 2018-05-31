@@ -61,8 +61,8 @@
 	import SettingItem from "../components/SettingItem.vue";
 	import TextInput from "../components/TextInput.vue";
 
-	import {bindState} from '../src/bindState';
-	import translation from "../src/translation";
+	import {bindState} from '../src/store/bindState';
+	import translation from "../src/resources/translation";
 
 	export default {
 		data() {

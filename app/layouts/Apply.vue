@@ -178,7 +178,7 @@
 	import TileOptions, {closeExcept} from "../components/TileOptions.vue";
 	import WarningPane from "../components/WarningPane.vue";
 
-	import {getMock} from "../src/mock";
+	import {getMock} from "../src/resources/mock";
 
 	export default {
 		data() {

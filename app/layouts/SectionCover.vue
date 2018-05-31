@@ -160,8 +160,8 @@
 	import SettingItem from "../components/SettingItem.vue";
 	import Slider from "../components/Slider.vue";
 
-	import {bindState} from '../src/bindState';
-	import filters from "../src/filters";
+	import {bindState} from '../src/store/bindState';
+	import filters from "../src/resources/filters";
 
 	export default {
 		data() {

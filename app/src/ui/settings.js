@@ -1,12 +1,12 @@
-import Overview from "./layouts/Overview.vue";
-import SettingFrame from "./layouts/SettingFrame.vue";
-import Settings from "./layouts/Settings.vue";
-import Sites from "./layouts/Sites.vue";
-import Statistics from "./layouts/Statistics.vue";
+import Overview from "../../layouts/Overview.vue";
+import SettingFrame from "../../layouts/SettingFrame.vue";
+import Settings from "../../layouts/Settings.vue";
+import Sites from "../../layouts/Sites.vue";
+import Statistics from "../../layouts/Statistics.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import init from "./src/init";
+import init from "./init";
 
 Vue.use(VueRouter);
 

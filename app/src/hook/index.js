@@ -3,6 +3,9 @@ class Hook {
 
 	}
 
+	activate() {
+		
+	}
 }
 
 export default Hook;

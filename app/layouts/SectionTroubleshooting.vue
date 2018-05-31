@@ -66,7 +66,7 @@
 	import ConfigList from "../components/ConfigList.vue";
 	import SettingItem from "../components/SettingItem.vue";
 
-	import {bindState} from '../src/bindState';
+	import {bindState} from '../src/store/bindState';
 
 	export default {
 		computed: bindState('config/cover', ['toggleCover', 'opacity', 'hoverOpacity', 'filter']),

@@ -2,7 +2,7 @@ import * as actions from "./actions";
 import * as mutations from "./mutations";
 
 import createPersistedState from "vuex-persistedstate";
-import {getMock, getMockHooks} from "./mock";
+import {getMock, getMockHooks} from "../resources/mock";
 import {update} from "./bindState";
 
 import Vuex from "vuex";
