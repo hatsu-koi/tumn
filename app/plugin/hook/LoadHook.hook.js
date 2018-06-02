@@ -2,21 +2,12 @@ class LoadHook {
 	constructor() {
 		this.nodes = {};
 		this.texts = [];
-		this.ignore = /^\s*$/;
-	}
-
-	extractText(node) {
-		if(this.ignore.test(node.nodeValue)) return;
-
-		const id = Math.random().toString(36).slice(2);
-		this.nodes[id] = node;
-		return [id, node.nodeValue.trim()];
 	}
 
 	traverse(node) {
 		const nodeTexts = [];
 		node.childNodes.forEach(v => {
-			switch(v.nodeName) {
+			switch(v.nodeName.toLowerCase()) {
 				case '#cdata-section':
 				case '#comment':
 				case 'script': case 'img': case'map': case 'link':
@@ -25,7 +16,7 @@ class LoadHook {
 				break;
 
 				case '#text':
-					const extract = hook.extractText(v);
+					const extract = window.$TUMN_HOOK.extractText(v);
 					if(!extract) break;
 
 					nodeTexts.push(extract);
@@ -35,6 +26,9 @@ class LoadHook {
 				case 'cite': case 'code': case 'dfn': case 'em': case 'font': case 'i': case 'kbd':
 				case 'label': case 'q': case 's': case 'samp': case 'small': case 'span':
 				case 'strong': case 'sub': case 'sup': case 'tt': case 'u': case 'var': case'wbr':
+
+				//Although p tag is not inline, I have added p tag because it is used to make a paragraph.
+				case 'p':
 
 					nodeTexts.push(...this.traverse(v));
 					break;
@@ -53,6 +47,7 @@ class LoadHook {
 
 	init() {
 		this.texts.push(this.traverse(document.body));
+		window.$TUMN_HOOK.sendExtracted(this.texts);
 	}
 }
 

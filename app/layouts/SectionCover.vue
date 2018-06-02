@@ -54,7 +54,7 @@
 					<div class="Cover__showcase">
 						<div class="Cover__text">
 							{{$t('settings.cover.placeholder_prefix')}}&nbsp;
-							<span class="Tumn__AbuseFilter">
+							<span class="Tumn__AbuseFilter Tumn__AbuseFilter--preview">
 								<div class="Tumn__AbuseFilter__wrap" :style="getFilter(key)"></div>
 								{{$t('settings.cover.placeholder_swear')}}
 							</span>
