@@ -4,10 +4,10 @@ import Vue from "vue";
 import VueI18n from "vue-i18n";
 import VueClickOutside from "v-click-outside";
 import VueRipple from "vue-ripple-directive";
-import VueRippleSmall from "../../directives/VueRippleSmall";
+import VueRippleSmall from "../directives/VueRippleSmall";
 import Vuex from "vuex";
 
-import "../../less/index.less";
+import "../../assets/less/index.less";
 
 export default function init(elem, options) {
 	Vue.directive('ripple', VueRipple);

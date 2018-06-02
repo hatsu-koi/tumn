@@ -3,7 +3,7 @@
 		<nav class="SideNav__list">
 			<router-link to="/" class="SideNav__item SideNav__item--accent">
 				<div class="SideNav__item__block">
-					<img src="../images/logo-inverse.svg">
+					<img src="../assets/images/logo-inverse.svg">
 				</div>
 				<h1 class="SideNav__title">{{$t('settings.overview')}}</h1>
 			</router-link>

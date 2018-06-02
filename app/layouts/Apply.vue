@@ -1,7 +1,7 @@
 <template>
 	<app class="App">
 		<header class="Header">
-			<img class="Header__logo" src="../images/logo.svg" alt="Tumn Logo">
+			<img class="Header__logo" src="../assets/images/logo.svg" alt="Tumn Logo">
 			<span class="Header__title">
 				<span class="Header__branding">Tumn</span>
 				<i class="Header__divider mdi mdi-chevron-right"></i>
@@ -198,7 +198,7 @@
 			},
 
 			close() {
-				
+
 			},
 
 			closeExcept

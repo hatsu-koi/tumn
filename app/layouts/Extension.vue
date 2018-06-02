@@ -1,7 +1,7 @@
 <template>
 	<app>
 		<header class="Header">
-			<img class="Header__logo" src="../images/logo.svg" alt="Tumn Logo">
+			<img class="Header__logo" src="../assets/images/logo.svg" alt="Tumn Logo">
 			<span class="Header__text">Tumn</span>
 		</header>
 

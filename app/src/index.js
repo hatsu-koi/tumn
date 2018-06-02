@@ -1,4 +1,4 @@
-import "../../app/less/abuse.less";
+import "../assets/less/abuse.less";
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 	if (changeInfo.status == 'complete') {
