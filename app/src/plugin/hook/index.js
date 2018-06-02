@@ -1,3 +1,6 @@
+import LoadHook from "./LoadHook.hook.js";
+import ScrollHook from "./ScrollHook.hook.js";
+
 export default {
 	title: "Default HookSet",
 	id: "default",
@@ -23,4 +26,9 @@ export default {
 		}
 	],
 	type: 'hooks'
+};
+
+export const source = {
+	"default.load": LoadHook,
+	"default.scroll": ScrollHook
 };

@@ -63,6 +63,12 @@ module.exports = {
 			},
 
 			{
+				test: /\.(?:hook|inject).js$/,
+				loader: 'raw-loader',
+				exclude: /node_modules/
+			},
+
+			{
 				test: /\.js$/,
 				loader: 'babel-loader',
 				options: {
@@ -113,6 +119,7 @@ module.exports = {
 	},
 
 	plugins: [
+		new webpack.EnvironmentPlugin(['NODE_ENV']),
 		new ExtractTextPlugin('[name].bundle.css'),
 		new WebpackBar()
 	],

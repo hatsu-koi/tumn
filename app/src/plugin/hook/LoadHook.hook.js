@@ -51,5 +51,4 @@ class LoadHook {
 	}
 }
 
-const hook = new LoadHook;
-hook.init();
+registerHook(LoadHook);

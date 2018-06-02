@@ -185,6 +185,16 @@ export default function makeStore() {
 	const config = {
 		namespaced: true,
 
+		state: {
+			firstRun: false
+		},
+
+		mutations: {
+			firstRun(state) {
+				state.firstRun = true;
+			}
+		},
+
 		modules: {
 			customization,
 			cover
@@ -201,7 +211,13 @@ export default function makeStore() {
 
 		plugins: [createPersistedState({
 			key: 'tumn-settings',
-			paths: ['config', 'filters.active', 'filters.dict', 'hooks.active', 'sites']
+			paths: [
+				'config',
+				'filters.active',
+				'filters.dict',
+				'hooks.active',
+				'sites'
+			]
 		})]
 	});
 
