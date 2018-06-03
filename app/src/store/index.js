@@ -1,6 +1,7 @@
 import * as actions from "./actions";
 import * as mutations from "./mutations";
 
+import createMutationsSharer from 'vuex-shared-mutations';
 import createPersistedState from "vuex-persistedstate";
 import {getMock, getMockHooks} from "../resources/mock";
 import {update} from "./bindState";
@@ -209,16 +210,23 @@ export default function makeStore() {
 			sites
 		},
 
-		plugins: [createPersistedState({
-			key: 'tumn-settings',
-			paths: [
-				'config',
-				'filters.active',
-				'filters.dict',
-				'hooks',
-				'sites'
-			]
-		})]
+		plugins: [
+			createPersistedState({
+				key: 'tumn-settings',
+				paths: [
+					'config',
+					'filters.active',
+					'filters.dict',
+					'hooks',
+					'sites'
+				]
+			}),
+
+			createMutationsSharer({
+				sharingKey: 'tumn-settings-sharer',
+				predicate: (mutation, state) => true
+			})
+		]
 	});
 
 	return store;

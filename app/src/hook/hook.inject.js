@@ -11,6 +11,7 @@ class HookInject {
 	constructor() {
 		this.nodes = {};
 		this.ignore = /^\s*$/;
+		this.mockSending = [];
 	}
 
 	extractText(node) {
@@ -25,7 +26,7 @@ class HookInject {
 	}
 
 	sendExtracted(extracted) {
-		console.log(extracted);
+		this.mockSending.push(extracted);
 	}
 
 	remapText(mapped) {
