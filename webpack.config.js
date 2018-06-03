@@ -52,18 +52,14 @@ module.exports = {
 						}),
 
 						'js': {
-							loader: 'babel-loader',
-							options: {
-								presets: ['env'],
-								plugins: ['transform-object-rest-spread']
-							}
+							loader: 'babel-loader'
 						}
 					}
 				}
 			},
 
 			{
-				test: /\.(?:hook|inject).js$/,
+				test: /\.(?:hook|inject)\.js$/,
 				loader: 'raw-loader',
 				exclude: /node_modules/
 			},
@@ -71,11 +67,10 @@ module.exports = {
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
-				options: {
-					presets: ['env'],
-					plugins: ['transform-object-rest-spread']
-				},
-				exclude: /node_modules/
+				exclude: [
+					/node_modules/,
+					/\.(?:hook|inject)\.js$/
+				]
 			},
 
 			{
@@ -119,9 +114,13 @@ module.exports = {
 	},
 
 	plugins: [
-		new webpack.EnvironmentPlugin(['NODE_ENV']),
+		new webpack.EnvironmentPlugin({
+			NODE_ENV: 'development'
+		}),
 		new ExtractTextPlugin('[name].bundle.css'),
-		new WebpackBar()
+		new WebpackBar({
+			profile: true
+		})
 	],
 
 	devtool: '#eval-source-map'

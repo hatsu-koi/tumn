@@ -174,7 +174,7 @@ export default function makeStore() {
 		namespaced: true,
 
 		state: {
-			hooks: getMockHooks(),
+			hooks: [],
 			active: []
 		},
 
@@ -215,7 +215,7 @@ export default function makeStore() {
 				'config',
 				'filters.active',
 				'filters.dict',
-				'hooks.active',
+				'hooks',
 				'sites'
 			]
 		})]

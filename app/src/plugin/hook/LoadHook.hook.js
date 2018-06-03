@@ -16,7 +16,7 @@ class LoadHook {
 				break;
 
 				case '#text':
-					const extract = window.$TUMN_HOOK.extractText(v);
+					const extract = $TUMN_HOOK.extractText(v);
 					if(!extract) break;
 
 					nodeTexts.push(extract);
@@ -47,8 +47,8 @@ class LoadHook {
 
 	init() {
 		this.texts.push(this.traverse(document.body));
-		window.$TUMN_HOOK.sendExtracted(this.texts);
+		$TUMN_HOOK.sendExtracted(this.texts);
 	}
 }
 
-registerHook(LoadHook);
+$TUMN_HOOK.registerHook(LoadHook);

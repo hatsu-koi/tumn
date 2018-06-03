@@ -9,7 +9,6 @@ const insertAfter = (node, appendingNode) => {
 
 class HookInject {
 	constructor() {
-		window.$TUMN_HOOK = this;
 		this.nodes = {};
 		this.ignore = /^\s*$/;
 	}
@@ -25,8 +24,8 @@ class HookInject {
 		return [id, node.nodeValue.trim()];
 	}
 
-	sendExtracted() {
-
+	sendExtracted(extracted) {
+		console.log(extracted);
 	}
 
 	remapText(mapped) {
@@ -53,6 +52,11 @@ class HookInject {
 	dispose() {
 		delete window.$TUMN_HOOK;
 	}
+
+	registerHook(Hook) {
+		const hook = new Hook;
+		hook.init();
+	}
 }
 
-export default HookManager;
+window.$TUMN_HOOK = new HookInject();

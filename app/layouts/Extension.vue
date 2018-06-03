@@ -281,7 +281,7 @@
 				if(!tab) return;
 
 				const urlBase = tab.url.split(':\/\/')[1].split('\/')[0];
-				const url = '*:\/\/' + urlBase;
+				const url = String.raw`*://${urlBase}/*`;
 				const title = tab.title;
 				let existing = this.$store.state.sites.sites.find(v => v.match.value === url);
 

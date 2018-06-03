@@ -24,7 +24,7 @@ export default function init(elem, options) {
 		silentTranslationWarn: true
 	});
 
-	new Vue({
+	const vm = new Vue({
 		el: '#app',
 		...options,
 		store,
@@ -33,4 +33,8 @@ export default function init(elem, options) {
 			return h(elem);
 		}
 	});
+
+	if(process.env.NODE_ENV === 'development') {
+		window.$TUMN = {store, i18n, vm};
+	}
 };

@@ -4,18 +4,23 @@
     "version": "1.0",
     "description": "Offers a blurry web for us all.",
     "icons": {
-        "16": "app/images/icons/icon16.png",
-        "24": "app/images/icons/icon24.png",
-        "32": "app/images/icons/icon32.png"
+        "16": "app/assets/images/icons/icon16.png",
+        "24": "app/assets/images/icons/icon24.png",
+        "32": "app/assets/images/icons/icon32.png"
     },
     "browser_action": {
-        "default_icon": "app/images/icons/icon32.png",
+        "default_icon": "app/assets/images/icons/icon32.png",
         "default_popup": "app/pages/extension.html"
     },
     "options_page": "app/pages/settings.html",
     "permissions": [
         "storage",
-        "tabs"
+        "tabs",
+        "http://*/",
+        "https://*/"
     ],
+    "background": {
+        "scripts": ["dist/tumn.bundle.js"]
+    },
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
