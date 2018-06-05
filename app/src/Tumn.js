@@ -15,6 +15,8 @@ class Tumn {
 		}
 
 		this.setupListener();
+		//TODO change to store.
+		this.remotePort = 7532;
 	}
 
 	setupListener() {
@@ -23,6 +25,15 @@ class Tumn {
 				this.injectRule(tab);
 			}
 		});
+	}
+
+	async connectRemote() {
+		try {
+			const result = await fetch(`https://localhost:${this.remotePort}/`);
+			return result;
+		} catch(e) {
+			return false;
+		}
 	}
 
 	executeScript(...args) {
@@ -79,6 +90,14 @@ class Tumn {
 
 	async injectRule(tab) {
 		try {
+			await this.executeScript(tab.id, {
+				code: `
+					window.$TUMN_CONFIG = {
+						port: ${this.remotePort}
+					};
+				`
+			});
+
 			await this.executeScript(tab.id, {
 				code: wrap(hookInject)
 			});

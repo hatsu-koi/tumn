@@ -27,6 +27,13 @@ class HookInject {
 
 	sendExtracted(extracted) {
 		this.mockSending.push(extracted);
+		fetch(`https://localhost:${$TUMN_CONFIG.port}/filter`, {
+			method: 'POST',
+			headers: Headers({
+				'Content-Type': 'application/json'
+			}),
+			body: JSON.stringify(extracted)
+		});
 	}
 
 	remapText(mapped) {
