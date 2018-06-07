@@ -1,5 +1,0 @@
-class HookManager {
-	constructor() {
-		
-	}
-}
