@@ -11,7 +11,6 @@ class HookInject {
 	constructor() {
 		this.nodes = {};
 		this.ignore = /^\s*$/;
-		this.mockSending = [];
 	}
 
 	extractText(node) {
@@ -26,34 +25,52 @@ class HookInject {
 	}
 
 	sendExtracted(extracted) {
-		this.mockSending.push(extracted);
-		fetch(`https://localhost:${$TUMN_CONFIG.port}/filter`, {
-			method: 'POST',
-			headers: Headers({
-				'Content-Type': 'application/json'
-			}),
-			body: JSON.stringify(extracted)
+		chrome.runtime.sendMessage({
+			type: 'QUERY',
+			body: {
+				extracted
+			}
+		}, resp => {
+			resp.forEach(([id, stack]) => {
+				if(stack.length > 0) {
+					const text = this.nodes[id].nodeValue;
+					const exportText = [];
+					let lastIndex = 0;
+
+					stack.forEach(([start, end]) => {
+						if(lastIndex !== 0) {
+							exportText.push(text.substr(lastIndex, start));
+						}
+						exportText.push([text.substr(start, end)]);
+						lastIndex = end;
+					});
+
+					if(lastIndex !== text.length - 1) {
+						exportText.push(text.slice(lastIndex));
+					}
+
+					this.remapText(id, exportText);
+				}
+			});
 		});
 	}
 
-	remapText(mapped) {
-		mapped.forEach(([id, texts]) => {
-			this.nodes[id].nodeValue = '';
+	remapText(id, texts) {
+		this.nodes[id].nodeValue = '';
 
-			texts.forEach(v => {
-				let node = null;
+		texts.forEach(v => {
+			let node = null;
 
-				if(Array.isArray(v)) {
-					node = document.createElement('span');
-					node.classList.add('Tumn__AbuseFilter');
-					node.innerText = v[0];
-					node.appendChild(document.createElement('span'))
-				} else {
-					node = document.createTextNode(v);
-				}
+			if(Array.isArray(v)) {
+				node = document.createElement('span');
+				node.classList.add('Tumn__AbuseFilter');
+				node.innerText = v[0];
+				node.appendChild(document.createElement('span'))
+			} else {
+				node = document.createTextNode(v);
+			}
 
-				insertAfter(node, this.nodes[id]);
-			});
+			insertAfter(node, this.nodes[id]);
 		});
 	}
 

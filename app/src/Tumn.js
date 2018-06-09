@@ -1,6 +1,9 @@
+import CustomDict from "./filter/CustomDict";
+
 import builtinHook, {source as builtinHookSource} from "./plugin/hook";
 import hookInject from "./hook/hook.inject.js";
 import matchPattern from "url-match-patterns";
+import {mergeRange, mapIndexText} from "./common/mergeRange";
 
 const wrap = script => `(function() {${script}})()`;
 
@@ -15,7 +18,7 @@ class Tumn {
 		}
 
 		this.setupListener();
-		//TODO change to store.
+		this.customDict = new CustomDict(this);
 		this.remotePort = 7532;
 	}
 
@@ -25,12 +28,13 @@ class Tumn {
 				this.injectRule(tab);
 			}
 		});
+
+		chrome.runtime.onMessage((...args) => this.parseMessage(...args));
 	}
 
 	async connectRemote() {
 		try {
-			const result = await fetch(`https://localhost:${this.remotePort}/`);
-			return result;
+			return await fetch(`https://localhost:${this.remotePort}/`).then(v => v.json());
 		} catch(e) {
 			return false;
 		}
@@ -45,6 +49,17 @@ class Tumn {
 				resolve(result);
 			});
 		});
+	}
+
+	async parseMessage(message, sender, response) {
+		if(!message || !message.type) return;
+
+		switch(message.type) {
+			case 'QUERY':
+				const resp = await this.query(message.body);
+				response(resp);
+				break;
+		}
 	}
 
 	installHook(hookDescription) {
@@ -88,16 +103,48 @@ class Tumn {
 		return rule;
 	}
 
+	async query({extracted}) {
+		const dictQueried = this.customDict.filter(extracted);
+		const queried = await fetch(`https://localhost:${$TUMN_CONFIG.port}/filter`, {
+			method: 'POST',
+			headers: Headers({
+				'Content-Type': 'application/json'
+			}),
+			body: JSON.stringify(extracted)
+		}).then(v => v.json());
+
+		dictQueried.forEach(queryRes => {
+			const [id, indexes] = queryRes;
+			const contains = queried.find(([elemId]) => elemId === id);
+			if(contains) {
+				contains[1] = contains[1].concat(indexes);
+				return;
+			}
+
+			queried.push(queryRes);
+		});
+
+		return queried.map(queryRes => {
+			const stack = [];
+			const indexes = queryRes[1];
+
+			indexes.sort(([s1], [s2]) => s1 - s2);
+			indexes.forEach((prev, curr, i) => {
+				const firstElem = prev[0];
+
+				if(firstElem[0] < curr[0] && curr[0] < firstElem[1]) {
+					firstElem[1] === Math.max(firstElem[1], curr[1]);
+				} else {
+					stack.push(prev.pop());
+				}
+			}, indexes.slice());
+
+			return [queryRes[0], stack];
+		});
+	}
+
 	async injectRule(tab) {
 		try {
-			await this.executeScript(tab.id, {
-				code: `
-					window.$TUMN_CONFIG = {
-						port: ${this.remotePort}
-					};
-				`
-			});
-
 			await this.executeScript(tab.id, {
 				code: wrap(hookInject)
 			});
