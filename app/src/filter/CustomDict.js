@@ -10,18 +10,19 @@ class CustomDict {
 		texts.forEach(textSet => {
 			textSet.forEach(([id, text]) => {
 				let indexes = [];
-				const stack = [];
 
-				this.tumn.store.state.filter.dict.dict.forEach(dictWord => {
+				this.tumn.store.state.filters.dict.dict.forEach(dictWord => {
 					let pos = text.indexOf(dictWord);
 					if(pos === -1) return;
 
 					while (pos !== -1) {
-						indexes.push(pos, pos + dictWord.length);
+						indexes.push([pos, pos + dictWord.length]);
+						pos = text.indexOf(dictWord, pos + 1);
 					}
 				});
 
-				exportTextSet.push([id, indexes]);
+				if(indexes.length > 0)
+					exportTextSet.push([id, indexes]);
 			});
 		});
 

@@ -202,12 +202,27 @@ export default function makeStore() {
 		}
 	};
 
+	const status = {
+		namespaced: true,
+
+		state: {
+			processorOnline: false
+		},
+
+		mutations: {
+			processorOnline(state, value) {
+				state.processorOnline = value;
+			}
+		}
+	};
+
 	const store = new Vuex.Store({
 		modules: {
 			config,
 			filters,
 			hooks,
-			sites
+			sites,
+			status
 		},
 
 		plugins: [

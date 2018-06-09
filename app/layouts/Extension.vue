@@ -5,7 +5,7 @@
 			<span class="Header__text">Tumn</span>
 		</header>
 
-		<section class="Container" v-if="tab && !offline">
+		<section class="Container" v-if="tab && processorOnline">
 			<main-button v-model="filteringActive">
 				<span slot="identifier">
 					34%
@@ -31,7 +31,7 @@
 		</section>
 
 		<section class="Container Container--offline" v-else>
-			<div class="Notification" v-if="!offline">
+			<div class="Notification" v-if="processorOnline">
 				<i class="Notification__icon mdi mdi-alert"></i>
 				<h2 class="Notification__title">{{$t('extension.no_url')}}</h2>
 				<span class="Notification__text">{{$t('extension.no_url_desc')}}</span>
@@ -207,8 +207,7 @@
 					hook: false,
 					filter: false,
 					cover: false
-				},
-				offline: false
+				}
 			};
 		},
 
@@ -267,7 +266,8 @@
 
 			...mapState({
 				filters: state => state.filters.filters,
-				hooks: state => state.hooks.hooks
+				hooks: state => state.hooks.hooks,
+				processorOnline: state => state.status.processorOnline
 			})
 		},
 

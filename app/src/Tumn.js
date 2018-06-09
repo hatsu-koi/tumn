@@ -1,9 +1,9 @@
 import CustomDict from "./filter/CustomDict";
 
+import abuseStyle from "!raw-loader!less-loader!../assets/less/abuse.less";
 import builtinHook, {source as builtinHookSource} from "./plugin/hook";
 import hookInject from "./hook/hook.inject.js";
 import matchPattern from "url-match-patterns";
-import {mergeRange, mapIndexText} from "./common/mergeRange";
 
 const wrap = script => `(function() {${script}})()`;
 
@@ -29,7 +29,7 @@ class Tumn {
 			}
 		});
 
-		chrome.runtime.onMessage((...args) => this.parseMessage(...args));
+		chrome.runtime.onMessage.addListener((...args) => this.parseMessage(...args));
 	}
 
 	async connectRemote() {
@@ -51,14 +51,20 @@ class Tumn {
 		});
 	}
 
-	async parseMessage(message, sender, response) {
+	parseMessage(message, sender, response) {
 		if(!message || !message.type) return;
+
+		if(process.env.NODE_ENV === 'development') {
+			console.log(`Incomming message: ${message.type}`);
+			const _response = response;
+
+			response = (...args) => console.log(`Response: ${JSON.stringify(args[0])}`) || _response(...args);
+		}
 
 		switch(message.type) {
 			case 'QUERY':
-				const resp = await this.query(message.body);
-				response(resp);
-				break;
+				this.query(message.body).then(response);
+				return true;
 		}
 	}
 
@@ -105,13 +111,22 @@ class Tumn {
 
 	async query({extracted}) {
 		const dictQueried = this.customDict.filter(extracted);
-		const queried = await fetch(`https://localhost:${$TUMN_CONFIG.port}/filter`, {
-			method: 'POST',
-			headers: Headers({
-				'Content-Type': 'application/json'
-			}),
-			body: JSON.stringify(extracted)
-		}).then(v => v.json());
+		let queried = [];
+		try {
+			queried = await fetch(`https://localhost:${$TUMN_CONFIG.port}/filter`, {
+				method: 'POST',
+				headers: Headers({
+					'Content-Type': 'application/json'
+				}),
+				body: JSON.stringify(extracted)
+			}).then(v => v.json());
+
+			if(!this.store.state.status.processorOnline) {
+				this.store.commit('status/processorOnline', true);
+			}
+		} catch(e) {
+			this.store.commit('status/processorOnline', false);
+		}
 
 		dictQueried.forEach(queryRes => {
 			const [id, indexes] = queryRes;
@@ -126,18 +141,22 @@ class Tumn {
 
 		return queried.map(queryRes => {
 			const stack = [];
-			const indexes = queryRes[1];
+			const indexes = queryRes[1].sort(([s1], [s2]) => s1 - s2);
 
-			indexes.sort(([s1], [s2]) => s1 - s2);
-			indexes.forEach((prev, curr, i) => {
-				const firstElem = prev[0];
-
-				if(firstElem[0] < curr[0] && curr[0] < firstElem[1]) {
-					firstElem[1] === Math.max(firstElem[1], curr[1]);
-				} else {
-					stack.push(prev.pop());
+			indexes.reduce((prev, curr, i, arr) => {
+				if(prev !== null) {
+					if(prev[0] <= curr[0] && curr[0] <= prev[1]) {
+						curr[0] = Math.min(prev[0], curr[0]);
+						curr[1] = Math.max(prev[1], curr[1]);
+					} else {
+						stack.push(prev);
+					}
 				}
-			}, indexes.slice());
+
+				if(i === arr.length - 1) stack.push(curr);
+
+				return curr;
+			}, null);
 
 			return [queryRes[0], stack];
 		});
@@ -148,8 +167,25 @@ class Tumn {
 			await this.executeScript(tab.id, {
 				code: wrap(hookInject)
 			});
+
+
+			chrome.tabs.insertCSS(tab.id, {
+				code: abuseStyle
+			});
+
+			//TODO Change to cover settings.
+			chrome.tabs.insertCSS(tab.id, {
+				code: `
+					.Tumn__AbuseFilter::after {
+						background: ${this.store.state.config.customization.color};
+					}
+				`
+			});
+
 		} catch(err) {
 			//When doesn't have permission to this site
+
+			if(process.env.NODE_ENV === 'development') console.log("EPERM", err);
 			return;
 		}
 

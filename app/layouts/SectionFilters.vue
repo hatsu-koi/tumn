@@ -1,6 +1,6 @@
 <template>
 	<config-list :name="$t('settings.filters')" slug="filters" ref="filters">
-		<template v-if="mockProcessor">
+		<template v-if="processorOnline">
 			<tile-filters :enabled-options="activeFilters" editable></tile-filters>
 		</template>
 
@@ -43,13 +43,13 @@
 	export default {
 		data() {
 			return {
-				mockProcessor: false,
 				dictDialog: false
 			};
 		},
 
 		computed: mapState({
-			activeFilters: state => state.filters.active
+			activeFilters: state => state.filters.active,
+			processorOnline: state => state.status.processorOnline
 		}),
 
 		components: {

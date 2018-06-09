@@ -1,4 +1,4 @@
-const insertAfter = (node, appendingNode) => {
+const insertAfter = (appendingNode, node) => {
 	if(node.nextSibiling) {
 		node.parentNode.insertBefore(appendingNode, node.nextSibiling);
 		return;
@@ -21,7 +21,7 @@ class HookInject {
 		this.nodes[id] = node;
 
 		node.$TUMN_ID = id;
-		return [id, node.nodeValue.trim()];
+		return [id, node.nodeValue];
 	}
 
 	sendExtracted(extracted) {
@@ -38,10 +38,8 @@ class HookInject {
 					let lastIndex = 0;
 
 					stack.forEach(([start, end]) => {
-						if(lastIndex !== 0) {
-							exportText.push(text.substr(lastIndex, start));
-						}
-						exportText.push([text.substr(start, end)]);
+						exportText.push(text.substring(lastIndex, start));
+						exportText.push([text.substring(start, end)]);
 						lastIndex = end;
 					});
 
@@ -49,6 +47,7 @@ class HookInject {
 						exportText.push(text.slice(lastIndex));
 					}
 
+					// console.log("Mapped Text", JSON.stringify(exportText));
 					this.remapText(id, exportText);
 				}
 			});
@@ -65,7 +64,6 @@ class HookInject {
 				node = document.createElement('span');
 				node.classList.add('Tumn__AbuseFilter');
 				node.innerText = v[0];
-				node.appendChild(document.createElement('span'))
 			} else {
 				node = document.createTextNode(v);
 			}
