@@ -26,7 +26,11 @@ class Tumn {
 
 	setupListener() {
 		chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-			if(tab.url.endsWith('.thook.json') && !tab.url.startsWith('chrome-extension')) {
+			if(
+				tab.url.endsWith('.thook.json') &&
+				!tab.url.startsWith('chrome-extension') &&
+				!/^https?:\/\/github.com/.test(tab.url)
+			) {
 				const extId = chrome.runtime.id;
 
 				chrome.tabs.update(tabId, {
@@ -92,6 +96,9 @@ class Tumn {
 			case 'QUERY':
 				this.query(message.body).then(response);
 				return true;
+
+			case 'INSTALL':
+				this.installHook(message.body.plugin);
 		}
 	}
 

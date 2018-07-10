@@ -9,7 +9,7 @@
 			</span>
 		</header>
 
-		<section class="Plugin">
+		<section class="Plugin" v-if="plugin">
 			<h2 class="Plugin__title">
 				{{plugin.title}} <span class="Plugin__version">{{plugin.version}}</span>
 			</h2>
@@ -181,22 +181,23 @@
 	export default {
 		data() {
 			return {
-				plugin: {},
+				plugin: undefined,
 				installCheck: []
 			};
 		},
 
 		methods: {
-			update() {
-
-			},
-
 			install() {
-
+				chrome.runtime.sendMessage({
+					type: 'INSTALLHOOK',
+					body: {
+						plugin: this.plugin
+					}
+				});
 			},
 
 			close() {
-
+				close();
 			},
 
 			closeExcept
@@ -204,18 +205,18 @@
 
 		async mounted() {
 			let href = location.href.match(/\#.*$/);
-			if(!href) return;
+			if(!href) {
+				close();
+				return;
+			}
 
 			href = decodeURIComponent(href[0].slice(1));
 
 			try {
-				this.plugin = await fetch(href).then(v => {
-					v.json();
-				});
-
+				this.plugin = await fetch(href).then(v => v.json());
 				this.installCheck = this.plugin.options.map(v => v.id);
 			} catch(e) {
-				close();
+				console.log(e);
 			}
 		},
 
