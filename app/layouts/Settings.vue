@@ -28,14 +28,21 @@
 			SettingsPane
 		},
 
-		mounted() {
+		async mounted() {
+			try {
+				const filters = await fetch(`http://localhost:5000/filterset`).then(v => v.json());
+
+				this.$store.commit('filters/updateSetFromResponse', filters);
+				this.$store.commit('status/processorOnline', true);
+			} catch(e) {
+				this.$store.commit('status/processorOnline', false);
+			}
+
 			const hash = this.$router.history.current.hash;
 			if(!hash) return;
 
 			const elem = this.$el.querySelector(hash);
 			if(!elem) return;
-
-			console.log(elem.scrollTop);
 
 			const scrollPane = this.$el;
 			scrollPane.scroll({

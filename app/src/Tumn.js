@@ -26,6 +26,16 @@ class Tumn {
 
 	setupListener() {
 		chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+			if(tab.url.endsWith('.thook.json') && !tab.url.startsWith('chrome-extension')) {
+				const extId = chrome.runtime.id;
+
+				chrome.tabs.update(tabId, {
+					url: `chrome-extension://${extId}/app/pages/apply.html#${encodeURIComponent(tab.url)}`,
+				});
+
+				return;
+			}
+
 			if (changeInfo.status == 'complete') {
 				this.injectRule(tab);
 			}
@@ -36,7 +46,7 @@ class Tumn {
 
 	async connectRemote() {
 		try {
-			return await fetch(`https://localhost:${this.remotePort}/`).then(v => v.json());
+			return await fetch(`http://localhost:${this.remotePort}/`).then(v => v.json());
 		} catch(e) {
 			return false;
 		}
@@ -44,7 +54,7 @@ class Tumn {
 
 	async updateFilter() {
 		try {
-			const res = await fetch(`https://localhost:${this.remotePort}/filterset`);
+			const res = await fetch(`http://localhost:${this.remotePort}/filterset`);
 			const filters = await res.json();
 
 			this.store.commit('filters/updateSetFromResponse', filters);
@@ -69,10 +79,13 @@ class Tumn {
 		if(!message || !message.type) return;
 
 		if(process.env.NODE_ENV === 'development') {
-			console.log(`Incomming message: ${message.type}`);
+			if(process.env.NODE_ENV === 'development') console.log(`Incomming message: ${message.type}`);
 			const _response = response;
 
-			response = (...args) => console.log(`Response: ${JSON.stringify(args[0])}`) || _response(...args);
+			response = (...args) => {
+				if(process.env.NODE_ENV === 'development') console.log(`Response: ${JSON.stringify(args[0])}`);
+				return _response(...args);
+			};
 		}
 
 		switch(message.type) {
@@ -140,7 +153,7 @@ class Tumn {
 		const dictQueried = this.customDict.filter(extracted);
 		let queried = [];
 		try {
-			queried = await fetch(`https://localhost:${this.remotePort}/filter`, {
+			queried = await fetch(`http://localhost:${this.remotePort}/query`, {
 				method: 'POST',
 				headers: new Headers({
 					'Content-Type': 'application/json'
@@ -152,8 +165,8 @@ class Tumn {
 				this.store.commit('status/processorOnline', true);
 			}
 		} catch(e) {
-			console.log(e);
-			this.store.commit('status/processorOnline', false);
+			if(process.env.NODE_ENV === 'development') console.log(e);
+			//this.store.commit('status/processorOnline', false);
 		}
 
 		dictQueried.forEach(queryRes => {

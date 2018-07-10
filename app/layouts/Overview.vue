@@ -178,6 +178,15 @@
 					behavior: 'smooth'
 				});
 			}
+		},
+
+		async mounted() {
+			try {
+				await fetch(`http://localhost:5000/filterset`)
+				this.$store.commit('status/processorOnline', true);
+			} catch(e) {
+				this.$store.commit('status/processorOnline', false);
+			}
 		}
 	};
 </script>

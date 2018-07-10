@@ -15,7 +15,7 @@
 					:update="update"
 					:enabled-options="enabledOptions"
 					:editable="editable"
-					flatten description
+					flatten foldable description
 					@open="closeExcept(filter.id)">
 
 				</tile-options>

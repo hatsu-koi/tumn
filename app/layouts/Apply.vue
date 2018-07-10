@@ -178,13 +178,11 @@
 	import TileOptions, {closeExcept} from "../components/TileOptions.vue";
 	import WarningPane from "../components/WarningPane.vue";
 
-	import {getMock} from "../src/resources/mock";
-
 	export default {
 		data() {
 			return {
-				plugin: getMock()[0],
-				installCheck: getMock()[0].options.map(v => v.id)
+				plugin: {},
+				installCheck: []
 			};
 		},
 
@@ -202,6 +200,23 @@
 			},
 
 			closeExcept
+		},
+
+		async mounted() {
+			let href = location.href.match(/\#.*$/);
+			if(!href) return;
+
+			href = decodeURIComponent(href[0].slice(1));
+
+			try {
+				this.plugin = await fetch(href).then(v => {
+					v.json();
+				});
+
+				this.installCheck = this.plugin.options.map(v => v.id);
+			} catch(e) {
+				close();
+			}
 		},
 
 		components: {
