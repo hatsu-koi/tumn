@@ -159,7 +159,7 @@ export default function makeStore() {
 		namespaced: true,
 
 		state: {
-			filters: getMock(),
+			filters: [],
 			active: []
 		},
 
@@ -167,7 +167,12 @@ export default function makeStore() {
 			dict
 		},
 
-		mutations: getMutations('filters'),
+		mutations: {
+			...getMutations('filters'),
+			updateSetFromResponse(state, filters) {
+				state.filters = filters;
+			}
+		},
 		actions: getActions('filters')
 	};
 

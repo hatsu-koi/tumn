@@ -9,14 +9,14 @@
 				</h2>
 
 				<list-menu icon="hook"
-					:desc="$t('settings.active', {num: 1})"
+					:desc="$t('settings.active', {num: activeHooks})"
 					@click="navigateSetting('hooks')" large>
 
 					{{$t("settings.hooks")}}
 				</list-menu>
 
 				<list-menu icon="filter"
-					:desc="$t('settings.active', {num: 3})"
+					:desc="$t('settings.active', {num: activeFilters})"
 					@click="navigateSetting('filters')" large>
 
 					{{$t("settings.filters")}}
@@ -28,9 +28,9 @@
 					<i class="mdi mdi-cloud"></i> {{$t("settings.processor")}}
 				</h2>
 
-				<span class="Indicator Indicator--online">
+				<span class="Indicator" :class="{'Indicator--online': processorOnline}">
 					<i class="mdi mdi-triangle"></i>
-					{{$t("settings.processor_online")}}
+					{{$t(processorOnline ? "settings.processor_online" : "settings.processor_offline")}}
 				</span>
 
 				<list-menu icon="bug" @click="navigateSetting('trouble-shooting')" large>
@@ -38,6 +38,7 @@
 				</list-menu>
 			</div>
 
+			<!-- TODO unimplemented function
 			<div class="Column">
 				<h2 class="Column__title">
 					<i class="mdi mdi-history"></i> {{$t("settings.filtered_words")}}
@@ -46,7 +47,7 @@
 				<span class="Figure">
 					30000
 				</span>
-			</div>
+			</div> -->
 		</div>
 
 		<footer class="Footer">
@@ -131,7 +132,7 @@
 		data() {
 			return {
 				scrollThrottle: 0,
-				mockChart: [
+				mockChart: [/* TODO unimplemented function
 					[1000, '2/22 (Sun)'],
 					[3000, '2/23 (Mon)'],
 					[2000, '2/24 (Tue)'],
@@ -139,8 +140,22 @@
 					[1000, '2/26 (Thu)'],
 					[2000, '2/27 (Fri)'],
 					[5000, '2/28 (Sat)']
-				]
+				*/]
 			};
+		},
+
+		computed: {
+			processorOnline() {
+				return this.$store.state.status.processorOnline;
+			},
+
+			activeFilters() {
+				return this.$store.state.filters.active.length;
+			},
+
+			activeHooks() {
+				return this.$store.state.hooks.active.length;
+			}
 		},
 
 		methods: {

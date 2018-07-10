@@ -19,7 +19,9 @@ class Tumn {
 
 		this.setupListener();
 		this.customDict = new CustomDict(this);
-		this.remotePort = 7532;
+		this.remotePort = 5000;
+
+		this.updateFilter();
 	}
 
 	setupListener() {
@@ -35,6 +37,18 @@ class Tumn {
 	async connectRemote() {
 		try {
 			return await fetch(`https://localhost:${this.remotePort}/`).then(v => v.json());
+		} catch(e) {
+			return false;
+		}
+	}
+
+	async updateFilter() {
+		try {
+			const res = await fetch(`https://localhost:${this.remotePort}/filterset`);
+			const filters = await res.json();
+
+			this.store.commit('filters/updateSetFromResponse', filters);
+			return true;
 		} catch(e) {
 			return false;
 		}
@@ -68,8 +82,21 @@ class Tumn {
 		}
 	}
 
-	installHook(hookDescription) {
+	async installHook(hookDescription) {
+		const elems = hookDescription.options;
+		const sources = {};
 
+		for(elem of elems) {
+			const fetchRes = await fetch(elem.href);
+			const fetchSource = await fetchRes.text();
+			sources[elem.id] = fetchSource;
+		}
+
+		await this.saveHookSource(sources);
+
+		this.store.commit('hooks/addSet', {
+			set: hookDescription
+		});
 	}
 
 	saveHookSource(sources) {
@@ -113,9 +140,9 @@ class Tumn {
 		const dictQueried = this.customDict.filter(extracted);
 		let queried = [];
 		try {
-			queried = await fetch(`https://localhost:${$TUMN_CONFIG.port}/filter`, {
+			queried = await fetch(`https://localhost:${this.remotePort}/filter`, {
 				method: 'POST',
-				headers: Headers({
+				headers: new Headers({
 					'Content-Type': 'application/json'
 				}),
 				body: JSON.stringify(extracted)
@@ -125,6 +152,7 @@ class Tumn {
 				this.store.commit('status/processorOnline', true);
 			}
 		} catch(e) {
+			console.log(e);
 			this.store.commit('status/processorOnline', false);
 		}
 

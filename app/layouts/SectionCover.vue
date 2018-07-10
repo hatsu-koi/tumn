@@ -1,5 +1,6 @@
 <template>
 	<config-list :name="$t('settings.cover.cover')" slug="cover">
+		<!-- TODO unimplemented function
 		<setting-item nocontent>
 			<checkbox v-model="toggleCover" reverse>
 				{{$t('settings.cover.reveal_toggle')}}
@@ -9,6 +10,7 @@
 				</span>
 			</checkbox>
 		</setting-item>
+		-->
 
 		<setting-item nocontent>
 			<slider v-model="opacity">
