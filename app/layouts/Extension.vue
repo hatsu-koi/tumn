@@ -8,7 +8,7 @@
 		<section class="Container" v-if="tab && processorOnline">
 			<main-button v-model="filteringActive">
 				<span slot="identifier">
-					34%
+					◇
 				</span>
 			</main-button>
 

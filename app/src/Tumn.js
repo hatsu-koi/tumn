@@ -27,7 +27,7 @@ class Tumn {
 	setupListener() {
 		chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 			if(
-				tab.url.endsWith('.thook.json') &&
+				(tab.url.endsWith('.thook.json') || tab.url.endsWith('filterset.json')) &&
 				!tab.url.startsWith('chrome-extension') &&
 				!/^https?:\/\/github.com/.test(tab.url)
 			) {
@@ -61,7 +61,7 @@ class Tumn {
 			const res = await fetch(`http://localhost:${this.remotePort}/filterset`);
 			const filters = await res.json();
 
-			this.store.commit('filters/updateSetFromResponse', filters);
+			this.store.commit('filters/updateSetFromResponse', filters.filters);
 			return true;
 		} catch(e) {
 			return false;

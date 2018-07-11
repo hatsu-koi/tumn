@@ -188,6 +188,18 @@
 
 		methods: {
 			install() {
+				if(this.plugin.type === 'filters') {
+					fetch(`http://localhost:${this.remotePort}/filterset`, {
+						method: 'POST',
+						headers: new Headers({
+							'Content-Type': 'application/json'
+						}),
+						body: JSON.stringify({
+							"url": this.plugin.information.source.href
+						})
+					});
+				}
+
 				chrome.runtime.sendMessage({
 					type: 'INSTALLHOOK',
 					body: {
