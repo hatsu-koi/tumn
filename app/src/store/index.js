@@ -211,7 +211,7 @@ export default function makeStore() {
 		namespaced: true,
 
 		state: {
-			processorOnline: false
+			processorOnline: true
 		},
 
 		mutations: {

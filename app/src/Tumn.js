@@ -94,7 +94,7 @@ class Tumn {
 
 		switch(message.type) {
 			case 'QUERY':
-				this.query(message.body).then(response);
+				this.query(message.body, sender).then(response);
 				return true;
 
 			case 'INSTALL':
@@ -156,7 +156,9 @@ class Tumn {
 		return rule;
 	}
 
-	async query({extracted}) {
+	async query({extracted}, {tab}) {
+		const filterRules = this.getRules(tab.url).rules.filters;
+
 		const dictQueried = this.customDict.filter(extracted);
 		let queried = [];
 		try {
@@ -165,7 +167,10 @@ class Tumn {
 				headers: new Headers({
 					'Content-Type': 'application/json'
 				}),
-				body: JSON.stringify(extracted)
+				body: JSON.stringify({
+					text: extracted,
+					filters: filterRules
+				})
 			}).then(v => v.json());
 
 			if(!this.store.state.status.processorOnline) {
