@@ -16,7 +16,7 @@ class CustomDict {
 					if(pos === -1) return;
 
 					while (pos !== -1) {
-						indexes.push([pos, pos + dictWord.length]);
+						indexes.push([pos, pos + dictWord.length - 1]);
 						pos = text.indexOf(dictWord, pos + 1);
 					}
 				});

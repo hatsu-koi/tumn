@@ -39,8 +39,8 @@ class HookInject {
 
 					stack.forEach(([start, end]) => {
 						exportText.push(text.substring(lastIndex, start));
-						exportText.push([text.substring(start, end)]);
-						lastIndex = end;
+						exportText.push([text.substring(start, end + 1)]);
+						lastIndex = end + 1;
 					});
 
 					if(lastIndex !== text.length - 1) {
