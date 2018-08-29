@@ -4,6 +4,7 @@ import abuseStyle from "!raw-loader!less-loader!../assets/less/abuse.less";
 import builtinHook, {source as builtinHookSource} from "./plugin/hook";
 import hookInject from "./hook/hook.inject.js";
 import matchPattern from "url-match-patterns";
+import config from './resources/config.js'
 
 const wrap = script => `(function() {${script}})()`;
 
@@ -40,7 +41,7 @@ class Tumn {
 				return;
 			}
 
-			if (changeInfo.status == 'complete') {
+			if (changeInfo.status === 'complete') {
 				this.injectRule(tab);
 			}
 		});
@@ -50,7 +51,7 @@ class Tumn {
 
 	async connectRemote() {
 		try {
-			return await fetch(`http://localhost:${this.remotePort}/`).then(v => v.json());
+			return await fetch(`${config.addr}/`).then(v => v.json());
 		} catch(e) {
 			return false;
 		}
@@ -58,7 +59,7 @@ class Tumn {
 
 	async updateFilter() {
 		try {
-			const res = await fetch(`http://localhost:${this.remotePort}/filterset`);
+			const res = await fetch(`${config.addr}/filterset`);
 			const filters = await res.json();
 
 			this.store.commit('filters/updateSetFromResponse', filters.filters);
@@ -162,7 +163,7 @@ class Tumn {
 		const dictQueried = this.customDict.filter(extracted);
 		let queried = [];
 		try {
-			queried = await fetch(`http://localhost:${this.remotePort}/query`, {
+			queried = await fetch(`${config.addr}/query`, {
 				method: 'POST',
 				headers: new Headers({
 					'Content-Type': 'application/json'

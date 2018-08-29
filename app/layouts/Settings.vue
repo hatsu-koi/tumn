@@ -30,7 +30,7 @@
 
 		async mounted() {
 			try {
-				const filters = await fetch(`http://localhost:5000/filterset`).then(v => v.json());
+				const filters = await fetch(`${config.addr}/filterset`).then(v => v.json());
 
 				this.$store.commit('filters/updateSetFromResponse', filters.filters);
 				this.$store.commit('status/processorOnline', true);

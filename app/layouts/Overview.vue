@@ -121,6 +121,7 @@
 	import Chart from "../components/Chart.vue";
 	import ListMenu from "../components/ListMenu.vue";
 	import SettingsPane from "../components/SettingsPane.vue";
+	import config from '../src/resources/config.js'
 
 	export default {
 		components: {
@@ -182,7 +183,7 @@
 
 		async mounted() {
 			try {
-				await fetch(`http://localhost:5000/filterset`)
+				await fetch(`${config.addr}/filterset`);
 				this.$store.commit('status/processorOnline', true);
 			} catch(e) {
 				this.$store.commit('status/processorOnline', false);
