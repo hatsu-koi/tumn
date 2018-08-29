@@ -18,6 +18,8 @@
 	import SectionTroubleshooting from "./SectionTroubleshooting.vue";
 	import SettingsPane from "../components/SettingsPane.vue";
 
+	import config from "../src/resources/config";
+
 	export default {
 		components: {
 			SectionCover,

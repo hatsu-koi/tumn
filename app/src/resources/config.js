@@ -1,3 +1,3 @@
 export default {
-	'addr': 'http://localhost:5000'
+	'addr': 'http://13.59.157.2:5000'
 }
